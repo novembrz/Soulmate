@@ -49,9 +49,6 @@ final class ProfileViewModel: ObservableObject {
         var firstColumn = ColumnModel()
         var secondColumn = ColumnModel()
         
-        //guard let professions = user?.userProfessions else { return }
-        //let professions = professionsArray.sorted(by: { $0.position < $1.position })
-        
         for prof in personProfessions {
             prof.position % 2 == 0 ? firstColumn.gridItems.append(prof) : secondColumn.gridItems.append(prof)
         }

@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  HomeViewModel.swift
 //  Soulmate
 //
 //  Created by dasha on 30.11.2021.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-final class MainViewModel: ObservableObject {
+final class HomeViewModel: ObservableObject {
     
     @Published var showProfileView = false
     @Published var professionalSpheres = MockService.professionalSpheres

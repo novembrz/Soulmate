@@ -21,7 +21,7 @@ struct ProfileView: View {
                     profile
                     GridView(viewModel: viewModel)
                 }
-                .padding(.bottom, 50)
+                .padding(.bottom, 70)
             }
             .background(Color.defaultBackground.ignoresSafeArea())
         }
@@ -141,6 +141,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
+        //DisplayView()
         ProfileView(viewModel: ProfileViewModel())
     }
 }

@@ -49,6 +49,6 @@ struct ProjectCardView: View {
 
 struct ProjectCard_Previews: PreviewProvider {
     static var previews: some View {
-       MainView(viewModel: MainViewModel())
+       HomeView(viewModel: HomeViewModel())
     }
 }

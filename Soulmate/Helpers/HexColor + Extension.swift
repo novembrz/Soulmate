@@ -1,5 +1,5 @@
 //
-//  hex Color + Extension.swift
+//  HexColor + Extension.swift
 //  Soulmate
 //
 //  Created by dasha on 09.12.2021.

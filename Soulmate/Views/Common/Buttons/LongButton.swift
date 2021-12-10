@@ -21,6 +21,7 @@ struct LongButton: View {
                 HStack(spacing: 11) {
                     if iconName != nil {
                         Image(iconName!)
+                            .foregroundColor(.whiteText)
                     }
                     
                     Text(title)

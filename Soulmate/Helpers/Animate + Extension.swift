@@ -24,4 +24,8 @@ extension Animation {
             .delay(delay)
             .speed(speed) //быстрее
     }
+    
+    static func navigationAnimation() -> Animation {
+        Animation.interactiveSpring(response: 0.7, dampingFraction: 0.8, blendDuration: 0.8)
+    }
 }

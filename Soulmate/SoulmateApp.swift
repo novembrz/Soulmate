@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct SoulmateApp: App {
     var body: some Scene {
-        WindowGroup<MainView> {
-            MainView(viewModel: MainViewModel())
+        WindowGroup<DisplayView> {
+            DisplayView()
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  HomeView.swift
 //  Soulmate
 //
 //  Created by dasha on 29.11.2021.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct HomeView: View {
     
-    @ObservedObject var viewModel: MainViewModel
+    @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -32,6 +32,7 @@ struct MainView: View {
                 }
             }
             .padding(.top, 30)
+            .padding(.bottom, 70)
         }
         .background(Color.defaultBackground.ignoresSafeArea())
         .fullScreenCover(isPresented: $viewModel.showProfileView) {
@@ -217,6 +218,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(viewModel: MainViewModel())
+       DisplayView()
     }
 }
