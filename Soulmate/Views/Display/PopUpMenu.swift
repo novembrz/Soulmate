@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct PopUpMenu: View {
+    
+    @State var menu = ["Project", "Photo", "Audio", "Text"]
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack(alignment: .bottom) {
+            HStack(spacing: 28) {
+                ForEach($menu, id: \.self) { item in
+                    Circle()
+                        .frame(width: 37, height: 37)
+                        .foregroundColor(.mintGreen)
+                }
+            }
+        }
     }
 }
 

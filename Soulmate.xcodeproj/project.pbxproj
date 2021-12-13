@@ -28,6 +28,8 @@
 		C842576727527E2D009C405C /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C842576627527E2D009C405C /* GridView.swift */; };
 		C842576C275283FF009C405C /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C842576B275283FF009C405C /* BackButton.swift */; };
 		C842576E275286E3009C405C /* PluralLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = C842576D275286E3009C405C /* PluralLocalized.swift */; };
+		C851BC092763E2CD007A725E /* TitleBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851BC082763E2CD007A725E /* TitleBlock.swift */; };
+		C851BC0B2763E606007A725E /* UserProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851BC0A2763E606007A725E /* UserProjectsViewModel.swift */; };
 		C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */; };
 		C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884135D27615F91004C21C3 /* HexColor + Extension.swift */; };
 		C8864400275979E600BC1B06 /* ContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88643FF275979E600BC1B06 /* ContentBlock.swift */; };
@@ -76,6 +78,8 @@
 		C842576627527E2D009C405C /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		C842576B275283FF009C405C /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		C842576D275286E3009C405C /* PluralLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalized.swift; sourceTree = "<group>"; };
+		C851BC082763E2CD007A725E /* TitleBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBlock.swift; sourceTree = "<group>"; };
+		C851BC0A2763E606007A725E /* UserProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProjectsViewModel.swift; sourceTree = "<group>"; };
 		C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseInfoView.swift; sourceTree = "<group>"; };
 		C884135D27615F91004C21C3 /* HexColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HexColor + Extension.swift"; sourceTree = "<group>"; };
 		C88643FF275979E600BC1B06 /* ContentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlock.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				C88643FF275979E600BC1B06 /* ContentBlock.swift */,
+				C851BC082763E2CD007A725E /* TitleBlock.swift */,
 				C8864403275A065000BC1B06 /* Buttons */,
 			);
 			path = Common;
@@ -285,6 +290,8 @@
 			isa = PBXGroup;
 			children = (
 				C8F17D8527568FFB00BC6A44 /* UserProjectsView.swift */,
+				C851BC0A2763E606007A725E /* UserProjectsViewModel.swift */,
+				C8864404275A110800BC1B06 /* ProjectCardView.swift */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -295,7 +302,6 @@
 				C8F17D922756BFB300BC6A44 /* Search */,
 				C8B06F2427552CF700177330 /* HomeView.swift */,
 				C8F17D8B275697E700BC6A44 /* HomeViewModel.swift */,
-				C8864404275A110800BC1B06 /* ProjectCardView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 				C8F17D8A2756943700BC6A44 /* ProfessionalSpheres.swift in Sources */,
 				C8135723276354C00072B1F7 /* DisplayView.swift in Sources */,
 				C8F17D8F2756BFA400BC6A44 /* SearchView.swift in Sources */,
+				C851BC0B2763E606007A725E /* UserProjectsViewModel.swift in Sources */,
 				C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */,
 				C8B06F272755593C00177330 /* StandartButton.swift in Sources */,
 				C813572F276355CF0072B1F7 /* PopUpMenu.swift in Sources */,
@@ -402,6 +409,7 @@
 				C8F17D8627568FFB00BC6A44 /* UserProjectsView.swift in Sources */,
 				C842576E275286E3009C405C /* PluralLocalized.swift in Sources */,
 				C8D8DAF6275C337C009A0552 /* UserModel.swift in Sources */,
+				C851BC092763E2CD007A725E /* TitleBlock.swift in Sources */,
 				C8864405275A110800BC1B06 /* ProjectCardView.swift in Sources */,
 				C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */,
 				C8D8DAD1275A9D4C009A0552 /* Animation + Extension.swift in Sources */,

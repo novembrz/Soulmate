@@ -192,9 +192,10 @@ struct HomeView: View {
                     ForEach(viewModel.friendsData, id: \.self) { project in
                         VStack(spacing: 13) {
                             //Если индекс четный то во 2, не четный - 1
-                            ProjectCardView(user: "Azizova")
-                            ProjectCardView(user: "Dilan")
+                            ProjectCardView(userImage: "Azizova", title: "Зарисовки", description: "Дизайн интерьера", haveProfileButton: true)
+                            ProjectCardView(userImage: "Dilan", title: "Загородные дома", description: "Прокуратура", haveProfileButton: true)
                         }
+                        .frame(width: 370)
                     }
                 }
             }
