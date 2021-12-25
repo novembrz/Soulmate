@@ -12,7 +12,10 @@
 		C81357292763552E0072B1F7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81357282763552E0072B1F7 /* CustomTabBar.swift */; };
 		C813572B276355410072B1F7 /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813572A276355410072B1F7 /* TabButton.swift */; };
 		C813572D276355580072B1F7 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813572C276355580072B1F7 /* TabBarViewModel.swift */; };
-		C813572F276355CF0072B1F7 /* PopUpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813572E276355CF0072B1F7 /* PopUpMenu.swift */; };
+		C841CA4E2777B0BA00AC6610 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C841CA4D2777B0BA00AC6610 /* CustomNavigationView.swift */; };
+		C841CA522777C26100AC6610 /* CustomNavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C841CA512777C26100AC6610 /* CustomNavigationContainer.swift */; };
+		C841CA542777CAAD00AC6610 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C841CA532777CAAD00AC6610 /* CustomNavigationBar.swift */; };
+		C841CA562777CB4E00AC6610 /* CustomNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C841CA552777CB4E00AC6610 /* CustomNavigationLink.swift */; };
 		C842574427501F8D009C405C /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574327501F8D009C405C /* Montserrat-Black.ttf */; };
 		C842574D27501FCA009C405C /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574527501FCA009C405C /* Montserrat-Light.ttf */; };
 		C842574E27501FCA009C405C /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574627501FCA009C405C /* Montserrat-ExtraLight.ttf */; };
@@ -65,7 +68,10 @@
 		C81357282763552E0072B1F7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		C813572A276355410072B1F7 /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
 		C813572C276355580072B1F7 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
-		C813572E276355CF0072B1F7 /* PopUpMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpMenu.swift; sourceTree = "<group>"; };
+		C841CA4D2777B0BA00AC6610 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
+		C841CA512777C26100AC6610 /* CustomNavigationContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationContainer.swift; sourceTree = "<group>"; };
+		C841CA532777CAAD00AC6610 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		C841CA552777CB4E00AC6610 /* CustomNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationLink.swift; sourceTree = "<group>"; };
 		C842574327501F8D009C405C /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		C842574527501FCA009C405C /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		C842574627501FCA009C405C /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -128,20 +134,12 @@
 		C8135721276354A70072B1F7 /* Display */ = {
 			isa = PBXGroup;
 			children = (
-				C8135726276355120072B1F7 /* DisplayViews */,
-				C81357272763551B0072B1F7 /* TabBar */,
-				C813572E276355CF0072B1F7 /* PopUpMenu.swift */,
-			);
-			path = Display;
-			sourceTree = "<group>";
-		};
-		C8135726276355120072B1F7 /* DisplayViews */ = {
-			isa = PBXGroup;
-			children = (
 				C8135722276354C00072B1F7 /* DisplayView.swift */,
 				C8135724276354EA0072B1F7 /* DisplayContentView.swift */,
+				C841CA4C2777AF6B00AC6610 /* Navigation */,
+				C81357272763551B0072B1F7 /* TabBar */,
 			);
-			path = DisplayViews;
+			path = Display;
 			sourceTree = "<group>";
 		};
 		C81357272763551B0072B1F7 /* TabBar */ = {
@@ -152,6 +150,17 @@
 				C813572C276355580072B1F7 /* TabBarViewModel.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		C841CA4C2777AF6B00AC6610 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				C841CA4D2777B0BA00AC6610 /* CustomNavigationView.swift */,
+				C841CA512777C26100AC6610 /* CustomNavigationContainer.swift */,
+				C841CA532777CAAD00AC6610 /* CustomNavigationBar.swift */,
+				C841CA552777CB4E00AC6610 /* CustomNavigationLink.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		C842574127501CEC009C405C /* Views */ = {
@@ -428,7 +437,7 @@
 				C851BC0B2763E606007A725E /* UserProjectsViewModel.swift in Sources */,
 				C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */,
 				C8B06F272755593C00177330 /* StandartButton.swift in Sources */,
-				C813572F276355CF0072B1F7 /* PopUpMenu.swift in Sources */,
+				C841CA542777CAAD00AC6610 /* CustomNavigationBar.swift in Sources */,
 				C842575A27502973009C405C /* Color + Extension.swift in Sources */,
 				C8135725276354EA0072B1F7 /* DisplayContentView.swift in Sources */,
 				C842575727502473009C405C /* ThemeFont.swift in Sources */,
@@ -437,8 +446,11 @@
 				C8F17D8627568FFB00BC6A44 /* UserProjectsView.swift in Sources */,
 				C842576E275286E3009C405C /* PluralLocalized.swift in Sources */,
 				C8D8DAF6275C337C009A0552 /* UserModel.swift in Sources */,
+				C841CA562777CB4E00AC6610 /* CustomNavigationLink.swift in Sources */,
 				C851BC092763E2CD007A725E /* TitleBlock.swift in Sources */,
+				C841CA522777C26100AC6610 /* CustomNavigationContainer.swift in Sources */,
 				C8864405275A110800BC1B06 /* ProjectStrokeCardView.swift in Sources */,
+				C841CA4E2777B0BA00AC6610 /* CustomNavigationView.swift in Sources */,
 				C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */,
 				C8D8DAD1275A9D4C009A0552 /* Animation + Extension.swift in Sources */,
 				C842576327527DF5009C405C /* ColumnModel.swift in Sources */,
