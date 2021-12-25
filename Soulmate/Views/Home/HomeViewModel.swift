@@ -11,6 +11,7 @@ import SwiftUI
 final class HomeViewModel: ObservableObject {
     
     @Published var showProfileView = false
+    @Published var showProjectsView = false
     @Published var professionalSpheres = MockService.professionalSpheres
     @Published var friendsData = MockService.friendsData
     

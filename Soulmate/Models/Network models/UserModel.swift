@@ -9,6 +9,7 @@ import Foundation
 
 
 struct UserModel: Decodable {
+    var path: String?
     var id: Int
     var username: String
     var firstName: String
@@ -20,6 +21,9 @@ struct UserModel: Decodable {
     var views: Int
     var userProfessions: [UserProfessions]
     var avatars: [Avatars]
+    var totalWorks: Int?
+    var totalSubscribers: Int?
+    var totalLikes: Int?
 }
 
 
@@ -28,7 +32,6 @@ struct UserProfessions: Decodable, Identifiable, Equatable {
     var main: Bool
     var id: Int
     var position: Int
-    var totalWorks: Int
 }
 
 

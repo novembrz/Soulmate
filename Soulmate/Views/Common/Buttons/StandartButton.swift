@@ -28,7 +28,6 @@ struct StandartButton: View {
                 
                 Image(imageName)
                     .resizable()
-                    
                     .frame(width: imageWidth, height: imageHeight)
                     .foregroundColor(iconColor)
                     .font(.system(size: imageHeight, weight: .medium))

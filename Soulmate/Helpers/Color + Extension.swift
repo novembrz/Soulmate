@@ -15,6 +15,7 @@ extension Color {
     
     public static let mintGreen = Color("green")
     public static let lightPurple = Color("purple")
+    public static let turquoise = Color("turquoise")
     
     public static let elementShadow = Color("shadow")
     public static let grayForElements = Color("gray")
@@ -22,7 +23,6 @@ extension Color {
     
     public static let whiteText = Color("whiteText")
     public static let blackText = Color("black")
-    
 }
 
 

@@ -56,11 +56,11 @@ struct CardView: View {
                         Spacer()
                         
                         HStack(spacing: 6) {
-                            Text("\(grid.totalWorks)")
+                            Text("\(5)")
                                 .boldFont(16)
                                 .foregroundColor(grid.main ? .whiteText : .blackText)
                                  
-                            Text("работа".pluralLocalized(number: grid.totalWorks))
+                            Text("работа".pluralLocalized(number: 5))
                                 .regularFont(16)
                                 .foregroundColor(grid.main ? .whiteText : .blackText)
                         }

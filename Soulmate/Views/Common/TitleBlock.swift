@@ -10,7 +10,7 @@ import SwiftUI
 struct TitleBlock<Content: View>: View {
     
     private var viewTitle: String = ""
-    private let content: Content
+    private let content: Content?
     
     public init(viewTitle: String, @ViewBuilder content: () -> Content) {
         self.viewTitle = viewTitle
@@ -22,7 +22,7 @@ struct TitleBlock<Content: View>: View {
     }
     
     public var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 34) {
                 BackButton()
                 
@@ -30,7 +30,6 @@ struct TitleBlock<Content: View>: View {
                     .boldFont(24)
                     .foregroundColor(.blackText)
             }
-            .padding(.top, 26)
             
             Spacer()
             
@@ -39,11 +38,23 @@ struct TitleBlock<Content: View>: View {
     }
 }
 
+
 struct TitleBlock_Previews: PreviewProvider {
     static var previews: some View {
         TitleBlock(viewTitle: "Искать") {
-            Text("d")
+            Button {} label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 43, height: 43)
+                        .foregroundColor(.whiteToDark)
+                    
+                    Image("more")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                }
+            }
         }
-            .background(Color.defaultBackground)
+        .padding(.horizontal, 26)
+        .background(Color.defaultBackground)
     }
 }

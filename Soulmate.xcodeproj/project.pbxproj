@@ -30,11 +30,12 @@
 		C842576E275286E3009C405C /* PluralLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = C842576D275286E3009C405C /* PluralLocalized.swift */; };
 		C851BC092763E2CD007A725E /* TitleBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851BC082763E2CD007A725E /* TitleBlock.swift */; };
 		C851BC0B2763E606007A725E /* UserProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851BC0A2763E606007A725E /* UserProjectsViewModel.swift */; };
+		C86A8F482772155100CEBCC8 /* WalkthroughModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */; };
 		C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */; };
 		C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884135D27615F91004C21C3 /* HexColor + Extension.swift */; };
 		C8864400275979E600BC1B06 /* ContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88643FF275979E600BC1B06 /* ContentBlock.swift */; };
 		C8864402275A064800BC1B06 /* LongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864401275A064800BC1B06 /* LongButton.swift */; };
-		C8864405275A110800BC1B06 /* ProjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864404275A110800BC1B06 /* ProjectCardView.swift */; };
+		C8864405275A110800BC1B06 /* ProjectStrokeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864404275A110800BC1B06 /* ProjectStrokeCardView.swift */; };
 		C8B06F2527552CF700177330 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F2427552CF700177330 /* HomeView.swift */; };
 		C8B06F272755593C00177330 /* StandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F262755593C00177330 /* StandartButton.swift */; };
 		C8B06F2A2755620100177330 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F292755620100177330 /* UserService.swift */; };
@@ -42,6 +43,9 @@
 		C8D8DAF1275C1308009A0552 /* Animate + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */; };
 		C8D8DAF3275C1C2A009A0552 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8DAF2275C1C2A009A0552 /* NetworkService.swift */; };
 		C8D8DAF6275C337C009A0552 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8DAF5275C337C009A0552 /* UserModel.swift */; };
+		C8DB70DC2774DA430031EF90 /* ProjectRectangleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB70DB2774DA430031EF90 /* ProjectRectangleCardView.swift */; };
+		C8DB70DF277539810031EF90 /* UserWorksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB70DE277539810031EF90 /* UserWorksView.swift */; };
+		C8DB70E227753A370031EF90 /* UserWorksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB70E127753A370031EF90 /* UserWorksViewModel.swift */; };
 		C8E584AB274983F20057B309 /* SoulmateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E584AA274983F20057B309 /* SoulmateApp.swift */; };
 		C8E584AD274983F20057B309 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E584AC274983F20057B309 /* ProfileView.swift */; };
 		C8E584AF274983F30057B309 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8E584AE274983F30057B309 /* Assets.xcassets */; };
@@ -80,11 +84,12 @@
 		C842576D275286E3009C405C /* PluralLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalized.swift; sourceTree = "<group>"; };
 		C851BC082763E2CD007A725E /* TitleBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBlock.swift; sourceTree = "<group>"; };
 		C851BC0A2763E606007A725E /* UserProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProjectsViewModel.swift; sourceTree = "<group>"; };
+		C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughModel.swift; sourceTree = "<group>"; };
 		C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseInfoView.swift; sourceTree = "<group>"; };
 		C884135D27615F91004C21C3 /* HexColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HexColor + Extension.swift"; sourceTree = "<group>"; };
 		C88643FF275979E600BC1B06 /* ContentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlock.swift; sourceTree = "<group>"; };
 		C8864401275A064800BC1B06 /* LongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongButton.swift; sourceTree = "<group>"; };
-		C8864404275A110800BC1B06 /* ProjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCardView.swift; sourceTree = "<group>"; };
+		C8864404275A110800BC1B06 /* ProjectStrokeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStrokeCardView.swift; sourceTree = "<group>"; };
 		C8B06F2427552CF700177330 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C8B06F262755593C00177330 /* StandartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartButton.swift; sourceTree = "<group>"; };
 		C8B06F292755620100177330 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -92,6 +97,9 @@
 		C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animate + Extension.swift"; sourceTree = "<group>"; };
 		C8D8DAF2275C1C2A009A0552 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C8D8DAF5275C337C009A0552 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		C8DB70DB2774DA430031EF90 /* ProjectRectangleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRectangleCardView.swift; sourceTree = "<group>"; };
+		C8DB70DE277539810031EF90 /* UserWorksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorksView.swift; sourceTree = "<group>"; };
+		C8DB70E127753A370031EF90 /* UserWorksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorksViewModel.swift; sourceTree = "<group>"; };
 		C8E584A7274983F20057B309 /* Soulmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soulmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E584AA274983F20057B309 /* SoulmateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoulmateApp.swift; sourceTree = "<group>"; };
 		C8E584AC274983F20057B309 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -153,6 +161,7 @@
 				C8F17D8D2756986700BC6A44 /* Home */,
 				C842576427527E16009C405C /* Profile */,
 				C8F17D8427568FE800BC6A44 /* Projects */,
+				C8DB70DD2775393C0031EF90 /* Works */,
 				C842576A275283EB009C405C /* Common */,
 			);
 			path = Views;
@@ -192,6 +201,7 @@
 			children = (
 				C8D8DAF4275C1F78009A0552 /* Network models */,
 				C842576227527DF5009C405C /* ColumnModel.swift */,
+				C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -247,6 +257,24 @@
 			path = "Network models";
 			sourceTree = "<group>";
 		};
+		C8DB70DD2775393C0031EF90 /* Works */ = {
+			isa = PBXGroup;
+			children = (
+				C8DB70DE277539810031EF90 /* UserWorksView.swift */,
+				C8DB70E127753A370031EF90 /* UserWorksViewModel.swift */,
+			);
+			path = Works;
+			sourceTree = "<group>";
+		};
+		C8DB70E0277539AE0031EF90 /* Project lists */ = {
+			isa = PBXGroup;
+			children = (
+				C8864404275A110800BC1B06 /* ProjectStrokeCardView.swift */,
+				C8DB70DB2774DA430031EF90 /* ProjectRectangleCardView.swift */,
+			);
+			path = "Project lists";
+			sourceTree = "<group>";
+		};
 		C8E5849E274983F20057B309 = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +319,7 @@
 			children = (
 				C8F17D8527568FFB00BC6A44 /* UserProjectsView.swift */,
 				C851BC0A2763E606007A725E /* UserProjectsViewModel.swift */,
-				C8864404275A110800BC1B06 /* ProjectCardView.swift */,
+				C8DB70E0277539AE0031EF90 /* Project lists */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -410,14 +438,18 @@
 				C842576E275286E3009C405C /* PluralLocalized.swift in Sources */,
 				C8D8DAF6275C337C009A0552 /* UserModel.swift in Sources */,
 				C851BC092763E2CD007A725E /* TitleBlock.swift in Sources */,
-				C8864405275A110800BC1B06 /* ProjectCardView.swift in Sources */,
+				C8864405275A110800BC1B06 /* ProjectStrokeCardView.swift in Sources */,
 				C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */,
 				C8D8DAD1275A9D4C009A0552 /* Animation + Extension.swift in Sources */,
 				C842576327527DF5009C405C /* ColumnModel.swift in Sources */,
 				C81357292763552E0072B1F7 /* CustomTabBar.swift in Sources */,
+				C8DB70DF277539810031EF90 /* UserWorksView.swift in Sources */,
 				C8F17D88275692E100BC6A44 /* MockService.swift in Sources */,
 				C813572B276355410072B1F7 /* TabButton.swift in Sources */,
+				C8DB70E227753A370031EF90 /* UserWorksViewModel.swift in Sources */,
+				C8DB70DC2774DA430031EF90 /* ProjectRectangleCardView.swift in Sources */,
 				C8B06F2A2755620100177330 /* UserService.swift in Sources */,
+				C86A8F482772155100CEBCC8 /* WalkthroughModel.swift in Sources */,
 				C8E584AD274983F20057B309 /* ProfileView.swift in Sources */,
 				C8864400275979E600BC1B06 /* ContentBlock.swift in Sources */,
 				C8864402275A064800BC1B06 /* LongButton.swift in Sources */,

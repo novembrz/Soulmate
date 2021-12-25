@@ -9,7 +9,7 @@ import Foundation
 
 class MockService {
     
-    static var professionArray: [UserProfessions] = [UserProfessions(name: "", main: false, id: 0, position: 0, totalWorks: 0)]
+    static var professionArray: [UserProfessions] = [UserProfessions(name: "", main: false, id: 0, position: 0)]
     
     static var friendsData = ["Petrov", "Avetisyan", "Azizova", "Dilan"]    
     

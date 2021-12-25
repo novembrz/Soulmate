@@ -35,9 +35,6 @@ struct HomeView: View {
             .padding(.bottom, 70)
         }
         .background(Color.defaultBackground.ignoresSafeArea())
-        .fullScreenCover(isPresented: $viewModel.showProfileView) {
-            ProfileView(viewModel: ProfileViewModel())
-        }
     }
     
     
@@ -160,6 +157,9 @@ struct HomeView: View {
                 }
             }
         }
+        .fullScreenCover(isPresented: $viewModel.showProfileView) {
+            ProfileView(viewModel: ProfileViewModel())
+        }
     }
     
     
@@ -185,20 +185,26 @@ struct HomeView: View {
     
     var projects: some View {
         ContentBlock(title: "Проекты", buttonTitle: "Все") {
-            print()
+            viewModel.showProjectsView = true
         } content: {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: -35) {
                     ForEach(viewModel.friendsData, id: \.self) { project in
                         VStack(spacing: 13) {
                             //Если индекс четный то во 2, не четный - 1
-                            ProjectCardView(userImage: "Azizova", title: "Зарисовки", description: "Дизайн интерьера", haveProfileButton: true)
-                            ProjectCardView(userImage: "Dilan", title: "Загородные дома", description: "Прокуратура", haveProfileButton: true)
+                            ProjectStrokeCardView(title: "Зарисовки", description: "Дизайн интерьера", projectImages: ["Azizova"], haveProfileButton: true)
+                                .padding(.horizontal, 26)
+                            
+                            ProjectStrokeCardView(title: "Загородные дома", description: "Прокуратура", projectImages: ["Dilan"], haveProfileButton: true)
+                                .padding(.horizontal, 26)
                         }
                         .frame(width: 370)
                     }
                 }
             }
+        }
+        .fullScreenCover(isPresented: $viewModel.showProjectsView) {
+            UserProjectsView(viewModel: UserProjectsViewModel())
         }
     }
     
