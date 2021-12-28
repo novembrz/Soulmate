@@ -1,5 +1,5 @@
 //
-//  ProjectsView.swift
+//  UserFoldersView.swift
 //  Soulmate
 //
 //  Created by dasha on 30.11.2021.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct UserProjectsView: View {
+struct UserFoldersView: View {
     
-    @ObservedObject var viewModel: UserProjectsViewModel
+    @ObservedObject var viewModel: UserFoldersViewModel
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             
             VStack(alignment: .leading, spacing: 34) {
                 
-                TitleBlock(viewTitle: viewModel.getProjectName()) {
+                TitleBlock(viewTitle: viewModel.getFolderName()) {
                     moreButtons
                 }
                 
@@ -39,7 +39,7 @@ struct UserProjectsView: View {
     var moreButtons: some View {
         VStack(alignment: .trailing, spacing: 12) {
             HStack(spacing: 12) {
-                StandartButton(imageName: viewModel.currentViewStyle == .stroke ? "rectangles" : "lines", action: viewModel.changeProjectView)
+                StandartButton(imageName: viewModel.currentViewStyle == .stroke ? "rectangles" : "lines", action: viewModel.changeFolderView)
                 
                 StandartButton(imageName: "more", action: viewModel.openDetailBottomSheet)
             }
@@ -53,7 +53,7 @@ struct UserProjectsView: View {
     var strokeList: some View {
         VStack(alignment: .leading, spacing: 17) {
             ForEach($viewModel.professionWorks, id: \.self) { work in
-                ProjectStrokeCardView(title: work.wrappedValue, description: "Марианна Пелевина", projectImages: viewModel.projectImages, haveProfileButton: false)
+                FolderStrokeCardView(title: work.wrappedValue, description: "Марианна Пелевина", folderImages: viewModel.folderImages, haveProfileButton: false)
             }
         }
     }
@@ -61,7 +61,7 @@ struct UserProjectsView: View {
     var  rectangleList: some View {
         VStack(spacing: 17) {
             ForEach($viewModel.professionWorks, id: \.self) { work in
-                ProjectRectangleCardView(title: work.wrappedValue, description: "Марианна Пелевина", projectImages: viewModel.projectImages)
+                FolderRectangleCardView(title: work.wrappedValue, description: "Марианна Пелевина", folderImages: viewModel.folderImages)
             }
         }
     }
@@ -70,8 +70,8 @@ struct UserProjectsView: View {
 
 //MARK: - Previews
 
-struct UserProjectsView_Previews: PreviewProvider {
+struct UserFoldersView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProjectsView(viewModel: UserProjectsViewModel())
+        UserFoldersView(viewModel: UserFoldersViewModel())
     }
 }

@@ -27,7 +27,7 @@ struct HomeView: View {
                         VStack(spacing: 48) {
                             sphere
                             environment
-                            projects
+                            folders
                             works
                         }
                     }
@@ -159,24 +159,24 @@ struct HomeView: View {
     }
     
     
-    //MARK: projects
+    //MARK: folders
     
-    var projects: some View {
+    var folders: some View {
         ContentBlock(title: "Проекты", buttonTitle: "Все") {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: -35) {
-                    ForEach(viewModel.friendsData, id: \.self) { project in
+                    ForEach(viewModel.friendsData, id: \.self) { folder in
                         VStack(spacing: 13) {
                             //Если индекс четный то во 2, не четный - 1
                             CustomNavigationLink {
-                                ProjectStrokeCardView(title: "Зарисовки", description: "Дизайн интерьера", projectImages: ["Azizova"], haveProfileButton: true)
+                                FolderStrokeCardView(title: "Зарисовки", description: "Дизайн интерьера", folderImages: ["Azizova"], haveProfileButton: true)
                                     .padding(.horizontal, 26)
                             } destination: {
                                 UserWorksView(viewModel: UserWorksViewModel())
                             }
                             
                             CustomNavigationLink {
-                                ProjectStrokeCardView(title: "Загородные дома", description: "Прокуратура", projectImages: ["Dilan"], haveProfileButton: true)
+                                FolderStrokeCardView(title: "Загородные дома", description: "Прокуратура", folderImages: ["Dilan"], haveProfileButton: true)
                                     .padding(.horizontal, 26)
                             } destination: {
                                 UserWorksView(viewModel: UserWorksViewModel())
@@ -187,7 +187,7 @@ struct HomeView: View {
                 }
             }
         } destination: {
-            UserProjectsView(viewModel: UserProjectsViewModel())
+            UserFoldersView(viewModel: UserFoldersViewModel())
         }
     }
     

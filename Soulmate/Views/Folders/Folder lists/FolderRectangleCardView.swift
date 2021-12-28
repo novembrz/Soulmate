@@ -1,5 +1,5 @@
 //
-//  ProjectRectangleCardView.swift
+//  FolderRectangleCardView.swift
 //  Soulmate
 //
 //  Created by dasha on 23.12.2021.
@@ -7,23 +7,21 @@
 
 import SwiftUI
 
-struct ProjectRectangleCardView: View {
+struct FolderRectangleCardView: View {
     var title: String
     var description: String
     var coauthorCount: Int?
-    var projectImages: [String]?
-    var projectImagesCount: Int { projectImages?.count ?? 0 }
-    //var profileId and projectId
-    @State var showProject = false
+    var folderImages: [String]?
+    var folderImagesCount: Int { folderImages?.count ?? 0 }
     
     var body: some View {
-        Button {
-            showProject = true
-        } label: {
+        CustomNavigationLink {
             VStack(spacing: 9) {
                 previewImages
-                projectDescription
+                folderDescription
             }
+        } destination: {
+            UserWorksView(viewModel: UserWorksViewModel())
         }
     }
     
@@ -32,23 +30,23 @@ struct ProjectRectangleCardView: View {
 
     var previewImages: some View {
         HStack(spacing: 2) {
-            if projectImages != nil {
-                if let image = projectImages?[0] {
+            if folderImages != nil {
+                if let image = folderImages?[0] {
                     Image(image)
                         .resizable()
                         .scaledToFill()
                 }
                 
                 VStack(spacing: 2) {
-                    if projectImagesCount > 1 {
-                        Image(projectImages?[1] ?? "")
+                    if folderImagesCount > 1 {
+                        Image(folderImages?[1] ?? "")
                             .resizable()
                             .frame(width: 100)
-                            .frame(height: projectImagesCount > 2 ? 85 : .infinity)
+                            .frame(height: folderImagesCount > 2 ? 85 : .infinity)
                     }
                     
-                    if projectImagesCount > 2 {
-                        Image(projectImages?[2] ?? "")
+                    if folderImagesCount > 2 {
+                        Image(folderImages?[2] ?? "")
                             .resizable()
                             .frame(width: 100)
                             .frame(height: 85)
@@ -62,15 +60,12 @@ struct ProjectRectangleCardView: View {
         }
         .frame(height: 170)
         .cornerRadius(15)
-        .fullScreenCover(isPresented: $showProject) {
-            UserWorksView(viewModel: UserWorksViewModel())
-        }
     }
 
     
     //MARK: - Project Description
 
-    var projectDescription: some View {
+    var folderDescription: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 3) {
                 Text(title)
@@ -111,8 +106,8 @@ struct ProjectRectangleCardView: View {
 
 //MARK: - Previews
 
-struct ProjectRectangleCardView_Previews: PreviewProvider {
+struct FolderRectangleCardView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProjectsView(viewModel: UserProjectsViewModel())
+        UserFoldersView(viewModel: UserFoldersViewModel())
     }
 }

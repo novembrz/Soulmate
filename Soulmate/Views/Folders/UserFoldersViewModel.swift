@@ -1,5 +1,5 @@
 //
-//  UserProjectsViewModel.swift
+//  UserFoldersViewModel.swift
 //  Soulmate
 //
 //  Created by dasha on 10.12.2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class UserProjectsViewModel: ObservableObject {
+final class UserFoldersViewModel: ObservableObject {
     
     enum ViewStyle {
         case stroke, rectangle
@@ -16,9 +16,9 @@ final class UserProjectsViewModel: ObservableObject {
     @Published var professionWorks = ["Концепция феминистического сериала по «1984» Дж. Оруэлла", "Сценарий сериала «Гамбит»", "Фильм «Отверженные»", "Чек-лист «Как создать реалистичного отрицательного персонажа, которому все будут сопережевать»", "Сценарий сериала «Код 13»"]
     
     @Published var currentViewStyle: ViewStyle = .stroke
-    @Published var projectImages = ["Azizova", "Dilan", "Kasigina"]
+    @Published var folderImages = ["Azizova", "Dilan", "Kasigina"]
     
-    func getProjectName() -> String {
+    func getFolderName() -> String {
         return "Сценарист"
     }
     
@@ -30,7 +30,7 @@ final class UserProjectsViewModel: ObservableObject {
         print(#function)
     }
     
-    func changeProjectView() {
+    func changeFolderView() {
         currentViewStyle = currentViewStyle == .stroke ? .rectangle : .stroke
     }
 }

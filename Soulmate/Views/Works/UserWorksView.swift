@@ -30,7 +30,7 @@ struct UserWorksView: View {
     var title: some View {
         VStack(alignment: .leading, spacing: 11) {
             
-            TitleBlock(viewTitle: viewModel.projectName) {
+            TitleBlock(viewTitle: viewModel.folderNames) {
                 Button {} label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
@@ -69,7 +69,7 @@ struct UserWorksView: View {
     
     var description: some View {
         VStack(alignment: .trailing, spacing: 12) {
-            Text(viewModel.projectDescription)
+            Text(viewModel.folderDescription)
                 .mediumFont(14)
                 .foregroundColor(.blackText)
                 .multilineTextAlignment(.leading)
