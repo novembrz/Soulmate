@@ -55,9 +55,9 @@ struct ProfileView: View {
     
     var profileInfo: some View {
         VStack(alignment: .leading, spacing: 110) {
-            VStack(alignment: .leading, spacing: 12) {
+            
+            TitleBlock(viewTitle: "\(viewModel.user?.firstName ?? "")\n\(viewModel.user?.lastName ?? "")", titleColor: .whiteText) {
                 actionButtons
-                profileMainInfo
             }
             
             VStack(alignment: .leading, spacing: 40) {
@@ -90,9 +90,9 @@ struct ProfileView: View {
     
     var actionButtons: some View {
         HStack(alignment: .top) {
-            BackButton()
-            
-            Spacer()
+//            BackButton()
+//
+//            Spacer()
             
             VStack(alignment: .trailing, spacing: 12) {
                 HStack(spacing: 12) {

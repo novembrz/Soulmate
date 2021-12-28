@@ -10,10 +10,15 @@ import SwiftUI
 struct TitleBlock<Content: View>: View {
     
     private var viewTitle: String = ""
+    private var titleColor: Color? = .blackText
+    private var padding: CGFloat? = 11 //34
     private let content: Content?
     
-    public init(viewTitle: String, @ViewBuilder content: () -> Content) {
+    
+    public init(viewTitle: String, titleColor: Color? = .blackText, padding: CGFloat? = 11, @ViewBuilder content: () -> Content) {
         self.viewTitle = viewTitle
+        self.titleColor = titleColor
+        self.padding = padding
         self.content = content()
     }
     
@@ -21,19 +26,17 @@ struct TitleBlock<Content: View>: View {
         self.content = content()
     }
     
-    public var body: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 34) {
-                BackButton()
-                
-                Text(viewTitle)
-                    .boldFont(24)
-                    .foregroundColor(.blackText)
+    var body: some View {
+        VStack(alignment: .leading, spacing: padding) {
+            HStack {
+                Spacer()
+                content
             }
             
-            Spacer()
-            
-            content
+            Text(viewTitle)
+                .boldFont(24)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(titleColor)
         }
     }
 }

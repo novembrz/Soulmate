@@ -12,10 +12,6 @@
 		C81357292763552E0072B1F7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81357282763552E0072B1F7 /* CustomTabBar.swift */; };
 		C813572B276355410072B1F7 /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813572A276355410072B1F7 /* TabButton.swift */; };
 		C813572D276355580072B1F7 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813572C276355580072B1F7 /* TabBarViewModel.swift */; };
-		C841CA4E2777B0BA00AC6610 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C841CA4D2777B0BA00AC6610 /* CustomNavigationView.swift */; };
-		C841CA522777C26100AC6610 /* CustomNavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C841CA512777C26100AC6610 /* CustomNavigationContainer.swift */; };
-		C841CA542777CAAD00AC6610 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C841CA532777CAAD00AC6610 /* CustomNavigationBar.swift */; };
-		C841CA562777CB4E00AC6610 /* CustomNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C841CA552777CB4E00AC6610 /* CustomNavigationLink.swift */; };
 		C842574427501F8D009C405C /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574327501F8D009C405C /* Montserrat-Black.ttf */; };
 		C842574D27501FCA009C405C /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574527501FCA009C405C /* Montserrat-Light.ttf */; };
 		C842574E27501FCA009C405C /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574627501FCA009C405C /* Montserrat-ExtraLight.ttf */; };
@@ -39,9 +35,11 @@
 		C8864400275979E600BC1B06 /* ContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88643FF275979E600BC1B06 /* ContentBlock.swift */; };
 		C8864402275A064800BC1B06 /* LongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864401275A064800BC1B06 /* LongButton.swift */; };
 		C8864405275A110800BC1B06 /* ProjectStrokeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864404275A110800BC1B06 /* ProjectStrokeCardView.swift */; };
+		C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */; };
 		C8B06F2527552CF700177330 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F2427552CF700177330 /* HomeView.swift */; };
 		C8B06F272755593C00177330 /* StandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F262755593C00177330 /* StandartButton.swift */; };
 		C8B06F2A2755620100177330 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F292755620100177330 /* UserService.swift */; };
+		C8CE4859277A612A001CF60A /* ContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CE4858277A612A001CF60A /* ContentCard.swift */; };
 		C8D8DAD1275A9D4C009A0552 /* Animation + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8DAD0275A9D4C009A0552 /* Animation + Extension.swift */; };
 		C8D8DAF1275C1308009A0552 /* Animate + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */; };
 		C8D8DAF3275C1C2A009A0552 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8DAF2275C1C2A009A0552 /* NetworkService.swift */; };
@@ -68,10 +66,6 @@
 		C81357282763552E0072B1F7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		C813572A276355410072B1F7 /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
 		C813572C276355580072B1F7 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
-		C841CA4D2777B0BA00AC6610 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
-		C841CA512777C26100AC6610 /* CustomNavigationContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationContainer.swift; sourceTree = "<group>"; };
-		C841CA532777CAAD00AC6610 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
-		C841CA552777CB4E00AC6610 /* CustomNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationLink.swift; sourceTree = "<group>"; };
 		C842574327501F8D009C405C /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		C842574527501FCA009C405C /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		C842574627501FCA009C405C /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -96,9 +90,11 @@
 		C88643FF275979E600BC1B06 /* ContentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlock.swift; sourceTree = "<group>"; };
 		C8864401275A064800BC1B06 /* LongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongButton.swift; sourceTree = "<group>"; };
 		C8864404275A110800BC1B06 /* ProjectStrokeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStrokeCardView.swift; sourceTree = "<group>"; };
+		C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		C8B06F2427552CF700177330 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C8B06F262755593C00177330 /* StandartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartButton.swift; sourceTree = "<group>"; };
 		C8B06F292755620100177330 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		C8CE4858277A612A001CF60A /* ContentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCard.swift; sourceTree = "<group>"; };
 		C8D8DAD0275A9D4C009A0552 /* Animation + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation + Extension.swift"; sourceTree = "<group>"; };
 		C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animate + Extension.swift"; sourceTree = "<group>"; };
 		C8D8DAF2275C1C2A009A0552 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -155,10 +151,7 @@
 		C841CA4C2777AF6B00AC6610 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				C841CA4D2777B0BA00AC6610 /* CustomNavigationView.swift */,
-				C841CA512777C26100AC6610 /* CustomNavigationContainer.swift */,
-				C841CA532777CAAD00AC6610 /* CustomNavigationBar.swift */,
-				C841CA552777CB4E00AC6610 /* CustomNavigationLink.swift */,
+				C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -339,6 +332,7 @@
 				C8F17D922756BFB300BC6A44 /* Search */,
 				C8B06F2427552CF700177330 /* HomeView.swift */,
 				C8F17D8B275697E700BC6A44 /* HomeViewModel.swift */,
+				C8CE4858277A612A001CF60A /* ContentCard.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -437,7 +431,6 @@
 				C851BC0B2763E606007A725E /* UserProjectsViewModel.swift in Sources */,
 				C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */,
 				C8B06F272755593C00177330 /* StandartButton.swift in Sources */,
-				C841CA542777CAAD00AC6610 /* CustomNavigationBar.swift in Sources */,
 				C842575A27502973009C405C /* Color + Extension.swift in Sources */,
 				C8135725276354EA0072B1F7 /* DisplayContentView.swift in Sources */,
 				C842575727502473009C405C /* ThemeFont.swift in Sources */,
@@ -446,11 +439,8 @@
 				C8F17D8627568FFB00BC6A44 /* UserProjectsView.swift in Sources */,
 				C842576E275286E3009C405C /* PluralLocalized.swift in Sources */,
 				C8D8DAF6275C337C009A0552 /* UserModel.swift in Sources */,
-				C841CA562777CB4E00AC6610 /* CustomNavigationLink.swift in Sources */,
 				C851BC092763E2CD007A725E /* TitleBlock.swift in Sources */,
-				C841CA522777C26100AC6610 /* CustomNavigationContainer.swift in Sources */,
 				C8864405275A110800BC1B06 /* ProjectStrokeCardView.swift in Sources */,
-				C841CA4E2777B0BA00AC6610 /* CustomNavigationView.swift in Sources */,
 				C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */,
 				C8D8DAD1275A9D4C009A0552 /* Animation + Extension.swift in Sources */,
 				C842576327527DF5009C405C /* ColumnModel.swift in Sources */,
@@ -468,6 +458,8 @@
 				C8D8DAF1275C1308009A0552 /* Animate + Extension.swift in Sources */,
 				C842576C275283FF009C405C /* BackButton.swift in Sources */,
 				C8B06F2527552CF700177330 /* HomeView.swift in Sources */,
+				C8CE4859277A612A001CF60A /* ContentCard.swift in Sources */,
+				C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */,
 				C8E584AB274983F20057B309 /* SoulmateApp.swift in Sources */,
 				C842576727527E2D009C405C /* GridView.swift in Sources */,
 				C8E584BB27498A7A0057B309 /* ProfileViewModel.swift in Sources */,

@@ -72,6 +72,7 @@ struct UserWorksView: View {
             Text(viewModel.projectDescription)
                 .mediumFont(14)
                 .foregroundColor(.blackText)
+                .multilineTextAlignment(.leading)
                 .lineLimit(viewModel.readMore ? nil : 3)
                 .lineSpacing(7)
             
@@ -94,9 +95,9 @@ struct UserWorksView: View {
         VStack {
             if let works = viewModel.works {
                 ScrollView(.vertical, showsIndicators: false) {
-                    LazyVGrid(columns: viewModel.columns) {
+                    LazyVGrid(columns: viewModel.columns, spacing: 22) {
                         ForEach(works, id: \.self) { work in
-                            VStack(alignment: .leading, spacing: 2) {
+                            VStack(alignment: .leading, spacing: 7) {
                                 Image(work)
                                     .resizable()
                                     //.aspectRatio(contentMode: .fill)

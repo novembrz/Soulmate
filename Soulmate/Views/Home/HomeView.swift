@@ -12,29 +12,31 @@ struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 8) {
-                title
-                
-                VStack(alignment: .leading, spacing: 25) {
-                    HStack(spacing: 11) {
-                        SearchView(viewModel: SearchViewModel())
-                        filterButton
-                    }
-                    .padding(.horizontal, viewModel.screenOffset)
+        CustomNavigationView {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 8) {
+                    title
                     
-                    VStack(spacing: 48) {
-                        sphere
-                        environment
-                        projects
-                        works
+                    VStack(alignment: .leading, spacing: 25) {
+                        HStack(spacing: 11) {
+                            SearchView(viewModel: SearchViewModel())
+                            filterButton
+                        }
+                        .padding(.horizontal, viewModel.screenOffset)
+                        
+                        VStack(spacing: 48) {
+                            sphere
+                            environment
+                            projects
+                            works
+                        }
                     }
                 }
+                .padding(.top, 30)
+                .padding(.bottom, 70)
             }
-            .padding(.top, 30)
-            .padding(.bottom, 70)
+            .background(Color.defaultBackground.ignoresSafeArea())
         }
-        .background(Color.defaultBackground.ignoresSafeArea())
     }
     
     
@@ -76,6 +78,7 @@ struct HomeView: View {
     //MARK: - sphere
     
     var sphere: some View {
+        
         ContentBlock(title: "Сферы") {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 11) {
@@ -104,7 +107,7 @@ struct HomeView: View {
                 .padding(.horizontal, viewModel.screenOffset)
             }
             .shadow(color: .elementShadow.opacity(0.3), radius: 30, x: 4, y: 4)
-        }
+        } destination: {}
     }
     
     
@@ -112,39 +115,15 @@ struct HomeView: View {
     
     var environment: some View {
         ContentBlock(title: "Из твоей среды", buttonTitle: "Все") {
-            print("environmen all")
-        } content: {
             VStack(spacing: viewModel.screenOffset) {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 11) {
                         ForEach(viewModel.friendsData, id: \.self) { user in
-                            Button {
-                                withAnimation {
-                                    viewModel.showProfileView = true
-                                }
-                            } label: {
-                                ZStack(alignment: .bottomLeading) {
-                                    Image(user)
-                                        .resizable()
-                                        .frame(width: 135, height: 195)
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(15)
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text("Sasha")
-                                            .boldFont(12)
-                                            .foregroundColor(.whiteText)
-                                        
-                                        Text(user)
-                                            .boldFont(12)
-                                            .foregroundColor(.whiteText)
-                                        
-                                        Text("Writter")
-                                            .regularFont(11)
-                                            .foregroundColor(.whiteText)
-                                    }
-                                    .padding(10)
-                                }
+                            CustomNavigationLink {
+                                ContentCard(content: user)
+                                    .frame(width: 135)
+                            } destination: {
+                                ProfileView(viewModel: ProfileViewModel())
                             }
                         }
                         seeAllUser
@@ -156,8 +135,7 @@ struct HomeView: View {
                     print("")
                 }
             }
-        }
-        .fullScreenCover(isPresented: $viewModel.showProfileView) {
+        } destination: {
             ProfileView(viewModel: ProfileViewModel())
         }
     }
@@ -185,25 +163,30 @@ struct HomeView: View {
     
     var projects: some View {
         ContentBlock(title: "Проекты", buttonTitle: "Все") {
-            viewModel.showProjectsView = true
-        } content: {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: -35) {
                     ForEach(viewModel.friendsData, id: \.self) { project in
                         VStack(spacing: 13) {
                             //Если индекс четный то во 2, не четный - 1
-                            ProjectStrokeCardView(title: "Зарисовки", description: "Дизайн интерьера", projectImages: ["Azizova"], haveProfileButton: true)
-                                .padding(.horizontal, 26)
+                            CustomNavigationLink {
+                                ProjectStrokeCardView(title: "Зарисовки", description: "Дизайн интерьера", projectImages: ["Azizova"], haveProfileButton: true)
+                                    .padding(.horizontal, 26)
+                            } destination: {
+                                UserWorksView(viewModel: UserWorksViewModel())
+                            }
                             
-                            ProjectStrokeCardView(title: "Загородные дома", description: "Прокуратура", projectImages: ["Dilan"], haveProfileButton: true)
-                                .padding(.horizontal, 26)
+                            CustomNavigationLink {
+                                ProjectStrokeCardView(title: "Загородные дома", description: "Прокуратура", projectImages: ["Dilan"], haveProfileButton: true)
+                                    .padding(.horizontal, 26)
+                            } destination: {
+                                UserWorksView(viewModel: UserWorksViewModel())
+                            }
                         }
                         .frame(width: 370)
                     }
                 }
             }
-        }
-        .fullScreenCover(isPresented: $viewModel.showProjectsView) {
+        } destination: {
             UserProjectsView(viewModel: UserProjectsViewModel())
         }
     }
@@ -212,11 +195,15 @@ struct HomeView: View {
     //MARK: works
     
     var works: some View {
-        ContentBlock(title: "Топ работ", buttonTitle: "Все") {
-            print()
-        } content: {
-            Text("Топ работ")
-        }
+        ContentBlock(title: "Топ работ") {
+            LazyVGrid(columns: viewModel.columns, spacing: 18) {
+                ForEach(0...15, id: \.self) { work in
+                    ContentCard(content: "\(work)", height: 137, isColor: true)
+                }
+            }
+            .padding(.horizontal, viewModel.screenOffset)
+        } destination: {}
+        
     }
 }
 

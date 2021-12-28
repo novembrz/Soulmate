@@ -2,118 +2,77 @@
 //  CustomNavigationView.swift
 //  Soulmate
 //
-//  Created by dasha on 25.12.2021.
+//  Created by dasha on 27.12.2021.
 //
 
 import SwiftUI
-//Сам таб бар
 
-enum NavigationViewState {
-    case main, sub
-}
 
-struct CustomNavigationView<Buttons: View>: View {
+struct CustomNavigationView<Content: View>: View {
     
-    private var viewTitle: String? = ""
-    private var subTitle: String? = ""
-    private let buttons: Buttons?
-    private var viewState: NavigationViewState? = .sub
+    private let content: Content
     
-    @Environment(\.presentationMode) var presentationMode
-    
-    
-    //MARK: - Initional
-    
-    public init(viewTitle: String? = "", subTitle: String? = "", viewState: NavigationViewState? = .sub, @ViewBuilder buttons: () -> Buttons) {
-        self.viewTitle = viewTitle
-        self.subTitle = subTitle
-        self.viewState = viewState
-        self.buttons = buttons()
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
     }
-    
     
     var body: some View {
-        switch viewState {
-        case .main:
-            main
-        case .sub:
-            sub
-        case .none:
-            Text("")
+        NavigationView {
+            ZStack(alignment: .top) {
+                content
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
+}
 
+
+struct CustomNavigationLink<Title: View, Destination: View>: View {
     
-    //MARK: - Main
+    private let destination: Destination
+    private let title: Title?
+    
 
-    var main: some View {
-        HStack(alignment: .top) {
-            textBlock
-            
-            Spacer()
-            
-            buttons
-        }
-        .padding(.horizontal, 26)
-        .padding(.top, 30)
+    init(@ViewBuilder title: () -> Title?, @ViewBuilder destination: () -> Destination) {
+        self.title = title()
+        self.destination = destination()
     }
     
-    
-    //MARK: - Sub
-
-    var sub: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 34) {
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .frame(width: 43, height: 43)
-                            .foregroundColor(.white)
-                        
-                        Image(systemName: "chevron.left")
-                            .resizable()
-                            .frame(width: 7, height: 14)
-                    }
-                }
-                textBlock
+    var body: some View {
+        NavigationLink {
+            ZStack(alignment: .topLeading) {
+                destination
+                
+                BackButton()
+                    .padding(.leading, 26)
             }
-            Spacer()
-            
-            buttons
-        }
-        .padding(.horizontal, 26)
-    }
-    
-    
-    //MARK: - Text Block
-    
-    var textBlock: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if viewTitle != "" {
-            Text(viewTitle ?? "")
-                .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.black)
-            }
-
-            if subTitle != "" {
-            Text(subTitle ?? "")
-                .font(.system(size: 18, weight: .regular))
-                .foregroundColor(.black)
-            }
+            .navigationBarHidden(true)
+        } label: {
+            title
         }
     }
 }
 
 
-//MARK: - Previews
 
-struct CustomNavigationView_Previews: PreviewProvider {
+struct NavView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomNavigationView(viewTitle: "CustomNavigationView", subTitle: "ЧИсто таб бар") {
-            Text("Content")
+        CustomNavigationView {
+            VStack(spacing: 40) {
+                Text("Home page")
+                
+                CustomNavigationLink {
+                    Text("Tap")
+                } destination: {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        Text("Destination View Controller")
+                            .padding(.top, 40)
+                    }
+                    
+                }
+            }
         }
-        .background(Color.yellow)
     }
 }

@@ -9,12 +9,10 @@ import SwiftUI
 
 
 final class HomeViewModel: ObservableObject {
-    
-    @Published var showProfileView = false
-    @Published var showProjectsView = false
+
     @Published var professionalSpheres = MockService.professionalSpheres
     @Published var friendsData = MockService.friendsData
     
     let screenOffset: CGFloat = 26
-    
+    var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
 }

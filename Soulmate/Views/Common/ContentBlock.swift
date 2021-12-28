@@ -7,47 +7,41 @@
 
 import SwiftUI
 
-struct ContentBlock<Content: View>: View {
+struct ContentBlock<Content: View, Destination: View>: View {
     
     private var title: String?
-    private var titleFontSize: CGFloat = 20
+    private let titleFontSize: CGFloat = 20
     private var buttonTitle: String?
     private var buttonFontSize: CGFloat = 17
     private var bottomPadding: CGFloat = 48
-    private var onButtonTap: (() -> ())?
     private let content: Content
+    private var destination: Destination?
     
     
     //MARK: - Initialize
     
     //полный инит
-    public init(title: String, titleFontSize: CGFloat = 21, buttonTitle: String, buttonFontSize: CGFloat = 18, onButtonTap: @escaping () -> (), @ViewBuilder content: () -> Content) {
+    public init(title: String, buttonTitle: String, @ViewBuilder content: () -> Content, @ViewBuilder destination: () -> Destination?) {
         self.title = title
-        self.titleFontSize = titleFontSize
         self.buttonTitle = buttonTitle
-        self.buttonFontSize = buttonFontSize
-        self.onButtonTap = onButtonTap
+        self.destination = destination()
         self.content = content()
     }
     
-    //инит c тайтлом
-    public init(title: String, titleFontSize: CGFloat = 21, @ViewBuilder content: () -> Content) {
+    //инит c тайтлом без кнопки
+    public init(title: String, @ViewBuilder content: () -> Content, @ViewBuilder destination: () -> Destination?) {
         self.title = title
-        self.titleFontSize = titleFontSize
         self.content = content()
+        self.destination = destination()
     }
     
-    //инит с кнопкой
-    public init(buttonTitle: String, buttonFontSize: CGFloat = 18, onButtonTap: @escaping () -> (), @ViewBuilder content: () -> Content) {
+    //инит с кнопкой без тайтла
+    public init(buttonTitle: String, @ViewBuilder content: () -> Content, @ViewBuilder destination: () -> Destination) {
         self.buttonTitle = buttonTitle
-        self.buttonFontSize = buttonFontSize
-        self.onButtonTap = onButtonTap
+        self.destination = destination()
         self.content = content()
     }
     
-    public init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
     
     //MARK: - View
     
@@ -61,22 +55,21 @@ struct ContentBlock<Content: View>: View {
                             .foregroundColor(.blackText)
                     }
                     Spacer()
+                    
                     if let title = buttonTitle {
-                        Button(action: {
-                            onButtonTap?()
-                        }) {
+                        CustomNavigationLink {
                             Text(title)
                                 .foregroundColor(.mintGreen)
                                 .boldFont(buttonFontSize)
+                        } destination: {
+                            destination
                         }
                     }
                 }
                 .padding(.horizontal, 26)
             }
-            
             self.content
         }
-        
     }
 }
 
@@ -86,8 +79,8 @@ struct ContentBlock<Content: View>: View {
 struct ContentBlock_Previews: PreviewProvider {
     static var previews: some View {
         ContentBlock(title: "Search", buttonTitle: "All") {
-            print("")
-        } content: {
+            ProfileView(viewModel: ProfileViewModel())
+        } destination: {
             SearchView(viewModel: SearchViewModel())
         }
     }
