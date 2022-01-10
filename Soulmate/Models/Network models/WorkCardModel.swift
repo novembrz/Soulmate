@@ -8,7 +8,5 @@
 import Foundation
 
 //Сам пост
-struct CardModel: Decodable {}
+struct WorkCardModel: Decodable {}
 
-//Папка с работами
-struct FolderModel: Decodable {}

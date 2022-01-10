@@ -11,23 +11,25 @@ import SwiftUI
 final class ProfileViewModel: ObservableObject {
     
     @Published var user: UserModel?
-    
-    var personProfessions: [UserProfessions] { user?.userProfessions.sorted(by: { $0.position < $1.position }) ?? [] }
     @Published var columns: [ColumnModel] = []
     @Published var isAllowWritingMessages = true
+    
+    var personProfessions: [UserProfessions] { user?.userProfessions?.sorted(by: { $0.position < $1.position }) ?? [] }
+    
+    let defaultHex = "9AC5BC"
     
     let maxHeigth = UIScreen.main.bounds.height / 1.32
     let width = UIScreen.main.bounds.size.width
     let screenOffset: CGFloat = 26
     let cardsOffset: CGFloat = 15
-    
     var cardWidth: CGFloat { return (width - 2*screenOffset - 15) / 2 }
     var cardHeight: CGFloat { return cardWidth * 1.3 }
     
-    //MARK: - Methods
+    
+    //MARK: - Fetch
     
     func fetchUser() {
-        fetchData { [self] result in
+        DataFetcherServices.fetchUser(id: 3) { [self] result in
             DispatchQueue.main.async {
                 guard let userData = result else { return }
                 user = userData
@@ -36,9 +38,8 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
-    private func fetchData(completion: @escaping (UserModel?) -> Void) {
-        NetworkService.fetchData(urlString: "http://localhost:8080/api/user/3", completion: completion)
-    }
+    
+    // MARK: - Column
     
     func columnIndex(of column: ColumnModel) -> Int {
         guard let index = columns.firstIndex(of: column) else { return 0 }
@@ -55,6 +56,9 @@ final class ProfileViewModel: ObservableObject {
         
         columns = [firstColumn, secondColumn]
     }
+    
+    
+    // MARK: - Actions
     
     func subscribeUser() {
         //userService.followUser()

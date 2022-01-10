@@ -29,33 +29,7 @@ struct CustomNavigationView<Content: View>: View {
 }
 
 
-struct CustomNavigationLink<Title: View, Destination: View>: View {
-    
-    private let destination: Destination
-    private let title: Title?
-    
-
-    init(@ViewBuilder title: () -> Title?, @ViewBuilder destination: () -> Destination) {
-        self.title = title()
-        self.destination = destination()
-    }
-    
-    var body: some View {
-        NavigationLink {
-            ZStack(alignment: .topLeading) {
-                destination
-                
-                BackButton()
-                    .padding(.leading, 26)
-            }
-            .navigationBarHidden(true)
-        } label: {
-            title
-        }
-    }
-}
-
-
+//MARK: - Previews
 
 struct NavView_Previews: PreviewProvider {
     static var previews: some View {

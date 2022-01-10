@@ -25,7 +25,7 @@ struct ProfileView: View {
             }
             .background(Color.defaultBackground.ignoresSafeArea())
         }
-        .onAppear() { viewModel.fetchUser() }
+        .onAppear { viewModel.fetchUser() }
     }
     
     

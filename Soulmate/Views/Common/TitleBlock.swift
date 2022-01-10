@@ -35,8 +35,8 @@ struct TitleBlock<Content: View>: View {
             
             Text(viewTitle)
                 .boldFont(24)
-                .multilineTextAlignment(.leading)
                 .foregroundColor(titleColor)
+                .frame(maxWidth: 260, alignment: .leading)
         }
     }
 }

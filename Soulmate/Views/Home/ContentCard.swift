@@ -9,14 +9,18 @@ import SwiftUI
 
 struct ContentCard: View {
     
-    var content: String
+    var name: String
+    var lastName: String?
+    var description: String
+    var imageString: String
+    
     var height: CGFloat = 195
     var isColor: Bool = false
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             if !isColor {
-                Image(content)
+                Image(imageString) // распарсить 
                     .resizable()
                     .frame(height: height)
                     .aspectRatio(contentMode: .fit)
@@ -28,12 +32,12 @@ struct ContentCard: View {
             }
             
             VStack(alignment: .leading) {
-                Text("Sasha\n\(content)")
+                Text("\(name)\n\(lastName ?? "")")
                     .boldFont(12)
                     .foregroundColor(.whiteText)
                     .multilineTextAlignment(.leading)
                 
-                Text("Writter")
+                Text(description)
                     .regularFont(11)
                     .foregroundColor(.whiteText)
             }
@@ -41,9 +45,9 @@ struct ContentCard: View {
         }
     }
 }
-
-struct ContentCard_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentCard(content: "Azizova")
-    }
-}
+//
+//struct ContentCard_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentCard(content: "Azizova")
+//    }
+//}

@@ -30,7 +30,7 @@ struct UserWorksView: View {
     var title: some View {
         VStack(alignment: .leading, spacing: 11) {
             
-            TitleBlock(viewTitle: viewModel.folderNames) {
+            TitleBlock(viewTitle: viewModel.folderNames, padding: 34) {
                 Button {} label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
@@ -43,21 +43,35 @@ struct UserWorksView: View {
                     }
                 }
             }
-            
-            HStack(spacing: 3) {
+            authors
+        }
+    }
+    
+    
+    //MARK: - Authors
+    
+    var authors: some View {
+        HStack(spacing: 3) {
+            CustomNavigationLink {
                 Image(viewModel.author)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .scaledToFill()
                     .cornerRadius(10)
-                
-                if let coauthors = viewModel.coauthors {
-                    ForEach(coauthors, id: \.self) { coauthor in
+            } destination: {
+                ProfileView(viewModel: ProfileViewModel())
+            }
+            
+            if let coauthors = viewModel.coauthors {
+                ForEach(coauthors, id: \.self) { coauthor in
+                    CustomNavigationLink {
                         Image(coauthor)
                             .resizable()
                             .frame(width: 40, height: 40)
                             .scaledToFill()
                             .cornerRadius(10)
+                    } destination: {
+                        ProfileView(viewModel: ProfileViewModel())
                     }
                 }
             }
@@ -100,10 +114,9 @@ struct UserWorksView: View {
                             VStack(alignment: .leading, spacing: 7) {
                                 Image(work)
                                     .resizable()
-                                    //.aspectRatio(contentMode: .fill)
+                                    
                                     .frame(height: 210)
                                     .aspectRatio(contentMode: .fit)
-                                    //.frame(width: 163)
                                     .cornerRadius(15)
                                 
                                 HStack {
@@ -130,6 +143,9 @@ struct UserWorksView: View {
         }
     }
 }
+
+
+//MARK: - Previews
 
 struct WorksView_Previews: PreviewProvider {
     static var previews: some View {

@@ -14,7 +14,9 @@
 		C813572D276355580072B1F7 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813572C276355580072B1F7 /* TabBarViewModel.swift */; };
 		C81F1029277BBB6B006787E0 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F1028277BBB6B006787E0 /* HomeModel.swift */; };
 		C81F102B277BBC65006787E0 /* WorkCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102A277BBC65006787E0 /* WorkCardView.swift */; };
-		C81F102D277BBC81006787E0 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102C277BBC81006787E0 /* CardModel.swift */; };
+		C81F102D277BBC81006787E0 /* WorkCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102C277BBC81006787E0 /* WorkCardModel.swift */; };
+		C81F1030277BC2A0006787E0 /* FolderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102F277BC2A0006787E0 /* FolderModel.swift */; };
+		C81F1032277BCAB2006787E0 /* DataFetcherServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F1031277BCAB2006787E0 /* DataFetcherServices.swift */; };
 		C842574427501F8D009C405C /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574327501F8D009C405C /* Montserrat-Black.ttf */; };
 		C842574D27501FCA009C405C /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574527501FCA009C405C /* Montserrat-Light.ttf */; };
 		C842574E27501FCA009C405C /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C842574627501FCA009C405C /* Montserrat-ExtraLight.ttf */; };
@@ -32,6 +34,7 @@
 		C842576E275286E3009C405C /* PluralLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = C842576D275286E3009C405C /* PluralLocalized.swift */; };
 		C851BC092763E2CD007A725E /* TitleBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851BC082763E2CD007A725E /* TitleBlock.swift */; };
 		C851BC0B2763E606007A725E /* UserFoldersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851BC0A2763E606007A725E /* UserFoldersViewModel.swift */; };
+		C85AF643278C8DB0008034FE /* CustomNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AF642278C8DB0008034FE /* CustomNavigationLink.swift */; };
 		C86A8F482772155100CEBCC8 /* WalkthroughModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */; };
 		C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */; };
 		C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884135D27615F91004C21C3 /* HexColor + Extension.swift */; };
@@ -41,7 +44,6 @@
 		C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */; };
 		C8B06F2527552CF700177330 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F2427552CF700177330 /* HomeView.swift */; };
 		C8B06F272755593C00177330 /* StandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F262755593C00177330 /* StandartButton.swift */; };
-		C8B06F2A2755620100177330 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F292755620100177330 /* UserService.swift */; };
 		C8CE4859277A612A001CF60A /* ContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CE4858277A612A001CF60A /* ContentCard.swift */; };
 		C8D8DAD1275A9D4C009A0552 /* Animation + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8DAD0275A9D4C009A0552 /* Animation + Extension.swift */; };
 		C8D8DAF1275C1308009A0552 /* Animate + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */; };
@@ -71,7 +73,9 @@
 		C813572C276355580072B1F7 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		C81F1028277BBB6B006787E0 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		C81F102A277BBC65006787E0 /* WorkCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCardView.swift; sourceTree = "<group>"; };
-		C81F102C277BBC81006787E0 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		C81F102C277BBC81006787E0 /* WorkCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCardModel.swift; sourceTree = "<group>"; };
+		C81F102F277BC2A0006787E0 /* FolderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderModel.swift; sourceTree = "<group>"; };
+		C81F1031277BCAB2006787E0 /* DataFetcherServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherServices.swift; sourceTree = "<group>"; };
 		C842574327501F8D009C405C /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		C842574527501FCA009C405C /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		C842574627501FCA009C405C /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		C842576D275286E3009C405C /* PluralLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalized.swift; sourceTree = "<group>"; };
 		C851BC082763E2CD007A725E /* TitleBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBlock.swift; sourceTree = "<group>"; };
 		C851BC0A2763E606007A725E /* UserFoldersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFoldersViewModel.swift; sourceTree = "<group>"; };
+		C85AF642278C8DB0008034FE /* CustomNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationLink.swift; sourceTree = "<group>"; };
 		C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughModel.swift; sourceTree = "<group>"; };
 		C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseInfoView.swift; sourceTree = "<group>"; };
 		C884135D27615F91004C21C3 /* HexColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HexColor + Extension.swift"; sourceTree = "<group>"; };
@@ -99,7 +104,6 @@
 		C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		C8B06F2427552CF700177330 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C8B06F262755593C00177330 /* StandartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartButton.swift; sourceTree = "<group>"; };
-		C8B06F292755620100177330 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		C8CE4858277A612A001CF60A /* ContentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCard.swift; sourceTree = "<group>"; };
 		C8D8DAD0275A9D4C009A0552 /* Animation + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation + Extension.swift"; sourceTree = "<group>"; };
 		C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animate + Extension.swift"; sourceTree = "<group>"; };
@@ -154,10 +158,20 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		C81F102E277BC1EC006787E0 /* UI models */ = {
+			isa = PBXGroup;
+			children = (
+				C842576227527DF5009C405C /* ColumnModel.swift */,
+				C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */,
+			);
+			path = "UI models";
+			sourceTree = "<group>";
+		};
 		C841CA4C2777AF6B00AC6610 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */,
+				C85AF642278C8DB0008034FE /* CustomNavigationLink.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -208,8 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				C8D8DAF4275C1F78009A0552 /* Network models */,
-				C842576227527DF5009C405C /* ColumnModel.swift */,
-				C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */,
+				C81F102E277BC1EC006787E0 /* UI models */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,8 +263,8 @@
 			isa = PBXGroup;
 			children = (
 				C8D8DAF2275C1C2A009A0552 /* NetworkService.swift */,
+				C81F1031277BCAB2006787E0 /* DataFetcherServices.swift */,
 				C8F17D87275692E100BC6A44 /* MockService.swift */,
-				C8B06F292755620100177330 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -261,7 +274,8 @@
 			children = (
 				C81F1028277BBB6B006787E0 /* HomeModel.swift */,
 				C8D8DAF5275C337C009A0552 /* UserModel.swift */,
-				C81F102C277BBC81006787E0 /* CardModel.swift */,
+				C81F102F277BC2A0006787E0 /* FolderModel.swift */,
+				C81F102C277BBC81006787E0 /* WorkCardModel.swift */,
 				C8F17D892756943700BC6A44 /* ProfessionalSpheres.swift */,
 			);
 			path = "Network models";
@@ -338,10 +352,10 @@
 		C8F17D8D2756986700BC6A44 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C8F17D922756BFB300BC6A44 /* Search */,
 				C8B06F2427552CF700177330 /* HomeView.swift */,
 				C8F17D8B275697E700BC6A44 /* HomeViewModel.swift */,
 				C8CE4858277A612A001CF60A /* ContentCard.swift */,
+				C8F17D922756BFB300BC6A44 /* Search */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -439,9 +453,11 @@
 				C81F1029277BBB6B006787E0 /* HomeModel.swift in Sources */,
 				C8F17D8F2756BFA400BC6A44 /* SearchView.swift in Sources */,
 				C851BC0B2763E606007A725E /* UserFoldersViewModel.swift in Sources */,
+				C81F1030277BC2A0006787E0 /* FolderModel.swift in Sources */,
 				C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */,
+				C81F1032277BCAB2006787E0 /* DataFetcherServices.swift in Sources */,
 				C8B06F272755593C00177330 /* StandartButton.swift in Sources */,
-				C81F102D277BBC81006787E0 /* CardModel.swift in Sources */,
+				C81F102D277BBC81006787E0 /* WorkCardModel.swift in Sources */,
 				C842575A27502973009C405C /* Color + Extension.swift in Sources */,
 				C8135725276354EA0072B1F7 /* DisplayContentView.swift in Sources */,
 				C842575727502473009C405C /* ThemeFont.swift in Sources */,
@@ -461,7 +477,6 @@
 				C813572B276355410072B1F7 /* TabButton.swift in Sources */,
 				C8DB70E227753A370031EF90 /* UserWorksViewModel.swift in Sources */,
 				C8DB70DC2774DA430031EF90 /* FolderRectangleCardView.swift in Sources */,
-				C8B06F2A2755620100177330 /* UserService.swift in Sources */,
 				C86A8F482772155100CEBCC8 /* WalkthroughModel.swift in Sources */,
 				C8E584AD274983F20057B309 /* ProfileView.swift in Sources */,
 				C8864400275979E600BC1B06 /* ContentBlock.swift in Sources */,
@@ -474,6 +489,7 @@
 				C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */,
 				C8E584AB274983F20057B309 /* SoulmateApp.swift in Sources */,
 				C842576727527E2D009C405C /* GridView.swift in Sources */,
+				C85AF643278C8DB0008034FE /* CustomNavigationLink.swift in Sources */,
 				C8E584BB27498A7A0057B309 /* ProfileViewModel.swift in Sources */,
 				C8D8DAF3275C1C2A009A0552 /* NetworkService.swift in Sources */,
 				C8F17D8C275697E700BC6A44 /* HomeViewModel.swift in Sources */,

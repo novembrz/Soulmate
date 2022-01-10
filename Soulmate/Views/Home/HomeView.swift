@@ -36,6 +36,7 @@ struct HomeView: View {
                 .padding(.bottom, 70)
             }
             .background(Color.defaultBackground.ignoresSafeArea())
+            .onAppear { viewModel.fetchHomePage() }
         }
     }
     
@@ -118,9 +119,15 @@ struct HomeView: View {
             VStack(spacing: viewModel.screenOffset) {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 11) {
-                        ForEach(viewModel.friendsData, id: \.self) { user in
+                        ForEach(viewModel.suitableUsers, id: \.self) { user in
                             CustomNavigationLink {
-                                ContentCard(content: user)
+                                ContentCard(name: user.firstName,
+                                            description: user.userProfessions?
+                                                .filter { $0.main }
+                                                .first?.name ?? "",
+                                            imageString: user.avatars?
+                                                .filter { $0.main }
+                                                .first?.link ?? "")
                                     .frame(width: 135)
                             } destination: {
                                 ProfileView(viewModel: ProfileViewModel())
@@ -141,6 +148,8 @@ struct HomeView: View {
     }
     
     
+    //MARK: - seeAllUser
+    
     var seeAllUser: some View {
         Button {} label: {
             VStack(spacing: 15) {
@@ -159,7 +168,7 @@ struct HomeView: View {
     }
     
     
-    //MARK: folders
+    //MARK: - folders
     
     var folders: some View {
         ContentBlock(title: "Проекты", buttonTitle: "Все") {
@@ -192,13 +201,13 @@ struct HomeView: View {
     }
     
     
-    //MARK: works
+    //MARK: - works
     
     var works: some View {
         ContentBlock(title: "Топ работ") {
             LazyVGrid(columns: viewModel.columns, spacing: 18) {
                 ForEach(0...15, id: \.self) { work in
-                    ContentCard(content: "\(work)", height: 137, isColor: true)
+                    ContentCard(name: "work", lastName: "work", description: "work", imageString: "", height: 137, isColor: true)
                 }
             }
             .padding(.horizontal, viewModel.screenOffset)

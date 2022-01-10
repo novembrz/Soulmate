@@ -9,18 +9,18 @@ import Foundation
 
 
 struct UserModel: Decodable {
-    var path: String?
+    var path: String? // future deprecated
     var id: Int
     var username: String
     var firstName: String
     var lastName: String
-    var city: String
-    var age: Int
-    var color: String
-    var description: String
-    var views: Int
-    var userProfessions: [UserProfessions]
-    var avatars: [Avatars]
+    var city: String?
+    var age: Int?
+    var color: String?
+    var description: String?
+    var views: Int?
+    var userProfessions: [UserProfessions]?
+    var avatars: [Avatars]?
     var totalWorks: Int?
     var totalSubscribers: Int?
     var totalLikes: Int?

@@ -18,7 +18,7 @@ struct GridView: View {
             ForEach(viewModel.columns) { column in
                 LazyVStack(alignment: .leading, spacing: viewModel.cardsOffset) {
                     if let user = viewModel.user {
-                        CardView(column: column, color: user.color)
+                        CardView(column: column, color: user.color ?? viewModel.defaultHex)
                     }
                 }
                 .offset(y: viewModel.columnIndex(of: column) == 0 ? 60 : 0)
