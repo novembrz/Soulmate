@@ -11,37 +11,29 @@ struct LongButton: View {
     
     var title: String
     var iconName: String?
-    var action: (() -> ())
     
     var body: some View {
         VStack {
-            Button {
-                action()
-            } label: {
-                HStack(spacing: 11) {
-                    if iconName != nil {
-                        Image(iconName!)
-                            .foregroundColor(.whiteText)
-                    }
-                    
-                    Text(title)
-                        .mediumFont(14)
+            HStack(spacing: 11) {
+                if iconName != nil {
+                    Image(iconName!)
                         .foregroundColor(.whiteText)
                 }
-                .padding(.vertical, 15)
-                .frame(maxWidth: .infinity)
+                
+                Text(title)
+                    .mediumFont(14)
+                    .foregroundColor(.whiteText)
             }
-            .background(Color.mintGreen)
-            .cornerRadius(15)
+            .padding(.vertical, 15)
+            .frame(maxWidth: .infinity)
         }
-        .padding(.horizontal, 26)
+        .background(Color.mintGreen)
+        .cornerRadius(15)
     }
 }
 
 struct LongButton_Previews: PreviewProvider {
     static var previews: some View {
-        LongButton(title: "Найти на карте", iconName: "map") {
-            print("")
-        }
+        LongButton(title: "Найти на карте", iconName: "map")
     }
 }

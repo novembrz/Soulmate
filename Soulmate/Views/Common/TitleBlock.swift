@@ -2,62 +2,39 @@
 //  TitleBlock.swift
 //  Soulmate
 //
-//  Created by dasha on 10.12.2021.
+//  Created by dasha on 11.01.2022.
 //
 
 import SwiftUI
 
-struct TitleBlock<Content: View>: View {
+struct TitleBlock: View {
     
     private var viewTitle: String = ""
+    private var subTitle: String? = ""
     private var titleColor: Color? = .blackText
-    private var padding: CGFloat? = 11 //34
-    private let content: Content?
     
     
-    public init(viewTitle: String, titleColor: Color? = .blackText, padding: CGFloat? = 11, @ViewBuilder content: () -> Content) {
+    public init(viewTitle: String, subTitle: String? = "", titleColor: Color? = .blackText) {
         self.viewTitle = viewTitle
+        self.subTitle = subTitle
         self.titleColor = titleColor
-        self.padding = padding
-        self.content = content()
-    }
-    
-    public init(@ViewBuilder content: () -> Content) {
-        self.content = content()
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: padding) {
-            HStack {
-                Spacer()
-                content
-            }
-            
+        VStack(alignment: .leading, spacing: 3) {
             Text(viewTitle)
                 .boldFont(24)
                 .foregroundColor(titleColor)
                 .frame(maxWidth: 260, alignment: .leading)
-        }
-    }
-}
-
-
-struct TitleBlock_Previews: PreviewProvider {
-    static var previews: some View {
-        TitleBlock(viewTitle: "Искать") {
-            Button {} label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 15)
-                        .frame(width: 43, height: 43)
-                        .foregroundColor(.whiteToDark)
-                    
-                    Image("more")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                }
+            
+            if subTitle != "" {
+                Text(subTitle ?? "")
+                    .mediumFont(18)
+                    .foregroundColor(titleColor)
+                    .frame(maxWidth: 260, alignment: .leading)
             }
         }
-        .padding(.horizontal, 26)
-        .background(Color.defaultBackground)
+        .frame(maxWidth: 260, alignment: .leading)
+        .padding(.top, 77)
     }
 }

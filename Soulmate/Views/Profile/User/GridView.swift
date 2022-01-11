@@ -18,14 +18,13 @@ struct GridView: View {
             ForEach(viewModel.columns) { column in
                 LazyVStack(alignment: .leading, spacing: viewModel.cardsOffset) {
                     if let user = viewModel.user {
-                        CardView(column: column, color: user.color ?? viewModel.defaultHex)
+                        CardView(column: column, color: user.color ?? viewModel.defaultHex, user: viewModel.user)
                     }
                 }
                 .offset(y: viewModel.columnIndex(of: column) == 0 ? 60 : 0)
             }
         }
         .padding(.horizontal, viewModel.screenOffset)
-        
     }
 }
 
@@ -36,11 +35,12 @@ struct CardView: View {
     
     var column: ColumnModel
     var color: String
+    var user: UserModel?
     
     var body: some View {
         
         ForEach(column.gridItems) { grid in
-            Button {} label: {
+            CustomNavigationLink {
                 ZStack(alignment: .leading) {
                     Rectangle()
                         .foregroundColor(grid.main ? Color(hex: color) : .whiteToDark)
@@ -68,6 +68,8 @@ struct CardView: View {
                     .padding(.vertical, 25)
                     .padding(.horizontal, 15)
                 }
+            } destination: {
+                AboutUserView(user: user ?? MockService.mockUser)
             }
         }
     }

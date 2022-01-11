@@ -13,7 +13,6 @@ struct CustomNavigationLink<Title: View, Destination: View>: View {
     private let destination: Destination
     private let title: Title?
     
-
     init(@ViewBuilder title: () -> Title?, @ViewBuilder destination: () -> Destination) {
         self.title = title()
         self.destination = destination()

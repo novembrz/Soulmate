@@ -15,7 +15,7 @@ struct ProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .topTrailing) {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: -120) {
                     profile
@@ -24,6 +24,8 @@ struct ProfileView: View {
                 .padding(.bottom, 70)
             }
             .background(Color.defaultBackground.ignoresSafeArea())
+            
+            actionButtons
         }
         .onAppear { viewModel.fetchUser() }
     }
@@ -55,10 +57,9 @@ struct ProfileView: View {
     
     var profileInfo: some View {
         VStack(alignment: .leading, spacing: 110) {
-            
-            TitleBlock(viewTitle: "\(viewModel.user?.firstName ?? "")\n\(viewModel.user?.lastName ?? "")", titleColor: .whiteText) {
-                actionButtons
-            }
+            TitleBlock(viewTitle: viewModel.title,
+                          subTitle: viewModel.description,
+                          titleColor: .whiteText)
             
             VStack(alignment: .leading, spacing: 40) {
                 profileBaseInfo
@@ -90,20 +91,23 @@ struct ProfileView: View {
     
     var actionButtons: some View {
         HStack(alignment: .top) {
-//            BackButton()
-//
-//            Spacer()
-            
             VStack(alignment: .trailing, spacing: 12) {
                 HStack(spacing: 12) {
                     if viewModel.isAllowWritingMessages {
-                        StandartButton(imageName: "send", action: viewModel.routeToMessage)
+                        StandartButton(imageName: "send")
                     }
-                    StandartButton(imageName: "subscribe", action: viewModel.subscribeUser)
+                    StandartButton(imageName: "subscribe")
                 }
-                StandartButton(imageName: "dote", action: viewModel.routeToUserDescription)
+                
+                CustomNavigationLink { //MARK: aaaaaaa
+                    StandartButton(imageName: "dote")
+                } destination: {
+                    AboutUserView(user: viewModel.user ?? MockService.mockUser)
+                        .frame(maxWidth: .infinity)
+                }
             }
         }
+        .padding(.horizontal, viewModel.screenOffset)
     }
     
     
@@ -116,6 +120,7 @@ struct ProfileView: View {
             ProfileBaseInfoView(icon: "people", number: 11537)
         }
     }
+    
     
     //MARK: - Professions
     
@@ -141,7 +146,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        //DisplayView()
         ProfileView(viewModel: ProfileViewModel())
     }
 }

@@ -14,6 +14,10 @@ final class ProfileViewModel: ObservableObject {
     @Published var columns: [ColumnModel] = []
     @Published var isAllowWritingMessages = true
     
+    var ageString: String { user?.age == nil ? "" : "\(user?.age ?? 0)" }
+    var description: String { "\(user?.city ?? ""), \(ageString)"}
+    var title: String { "\(user?.firstName ?? "")\n\(user?.lastName ?? "")" }
+    
     var personProfessions: [UserProfessions] { user?.userProfessions?.sorted(by: { $0.position < $1.position }) ?? [] }
     
     let defaultHex = "9AC5BC"
@@ -29,7 +33,7 @@ final class ProfileViewModel: ObservableObject {
     //MARK: - Fetch
     
     func fetchUser() {
-        DataFetcherServices.fetchUser(id: 3) { [self] result in
+        DataFetcherServices.fetchUser(id: 2) { [self] result in
             DispatchQueue.main.async {
                 guard let userData = result else { return }
                 user = userData

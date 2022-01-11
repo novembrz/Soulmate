@@ -138,9 +138,8 @@ struct HomeView: View {
                     .padding(.horizontal, viewModel.screenOffset)
                 }
                 
-                LongButton(title: "Найти на карте", iconName: "map") {
-                    print("")
-                }
+                LongButton(title: "Найти на карте", iconName: "map")
+                    .padding(.horizontal, 26)
             }
         } destination: {
             ProfileView(viewModel: ProfileViewModel())

@@ -11,17 +11,29 @@ struct UserWorksView: View {
     
     @ObservedObject var viewModel: UserWorksViewModel
     
+    
     var body: some View {
+        ZStack(alignment: .topLeading) {
+            content
+            moreButton
+        }
+        .background(Color.defaultBackground.ignoresSafeArea())
+    }
+    
+    
+    //MARK: - Content
+    
+    var content: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 35) {
                 title
-                description
+                BigTextBlock(text: viewModel.folderDescription)
                 works
+                seeOtherButton
             }
             .padding(.bottom, 70)
             .padding(.horizontal, 26)
         }
-        .background(Color.defaultBackground.ignoresSafeArea())
     }
     
     
@@ -29,20 +41,7 @@ struct UserWorksView: View {
     
     var title: some View {
         VStack(alignment: .leading, spacing: 11) {
-            
-            TitleBlock(viewTitle: viewModel.folderNames, padding: 34) {
-                Button {} label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .frame(width: 43, height: 43)
-                            .foregroundColor(.whiteToDark)
-                        
-                        Image("more")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                    }
-                }
-            }
+            TitleBlock(viewTitle: viewModel.folderNames)
             authors
         }
     }
@@ -79,30 +78,6 @@ struct UserWorksView: View {
     }
     
     
-    //MARK: - Descripton
-    
-    var description: some View {
-        VStack(alignment: .trailing, spacing: 12) {
-            Text(viewModel.folderDescription)
-                .mediumFont(14)
-                .foregroundColor(.blackText)
-                .multilineTextAlignment(.leading)
-                .lineLimit(viewModel.readMore ? nil : 3)
-                .lineSpacing(7)
-            
-            if !viewModel.readMore {
-                Button {
-                    viewModel.readMore = true
-                } label: {
-                    Text("читать дальше...")
-                        .boldFont(16)
-                        .foregroundColor(.mintGreen)
-                }
-            }
-        }
-    }
-    
-    
     //MARK: - Works
     
     var works: some View {
@@ -114,8 +89,7 @@ struct UserWorksView: View {
                             VStack(alignment: .leading, spacing: 7) {
                                 Image(work)
                                     .resizable()
-                                    
-                                    .frame(height: 210)
+                                    .frame(height: 225)
                                     .aspectRatio(contentMode: .fit)
                                     .cornerRadius(15)
                                 
@@ -141,6 +115,33 @@ struct UserWorksView: View {
                 Text("Нет инфы")
             }
         }
+    }
+    
+    
+    //MARK: - See Other Button
+
+    var seeOtherButton: some View {
+        CustomNavigationLink {
+            LongButton(title: "Посмотреть другие проекты автора")
+        } destination: {
+            UserFoldersView(viewModel: UserFoldersViewModel())
+        }
+    }
+    
+    
+    //MARK: - More Button
+    
+    var moreButton: some View {
+        HStack {
+            Spacer()
+            
+            CustomNavigationLink {
+                BigStandartButton(imageName: "more")
+            } destination: {
+                
+            }
+        }
+        .padding(.horizontal, 26)
     }
 }
 

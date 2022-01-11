@@ -24,6 +24,10 @@ class MockService {
         ProfessionalSpheres(sphereName: "Танцы", icon: "💃🏻")
     ]
     
+    
+    static var mockUser: UserModel = UserModel(id: 1, username: "username", firstName: "username", lastName: "username", city: "username", age: 16, color: "#FF0000", description: "username", views: 16, userProfessions: professionArray, avatars: [Avatars(link: "", main: true)], totalWorks: 16, totalSubscribers: 16, totalLikes: 16)
+    
+    
     static func followUser() {
         print(#function)
     }

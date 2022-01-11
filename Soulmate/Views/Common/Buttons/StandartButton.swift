@@ -15,11 +15,13 @@ struct StandartButton: View {
     var buttonSize: CGFloat = 32
     var imageWidth: CGFloat = 15
     var imageHeight: CGFloat = 15
-    var action: (() -> ())
+    var action: (() -> ())?
     
     var body: some View {
         Button {
-          action()
+            if action != nil {
+                action!()
+            }
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)

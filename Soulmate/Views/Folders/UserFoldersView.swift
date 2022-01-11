@@ -11,14 +11,23 @@ struct UserFoldersView: View {
     
     @ObservedObject var viewModel: UserFoldersViewModel
     
+    
     var body: some View {
+        ZStack(alignment: .topLeading) {
+            content
+            moreButtons
+        }
+        .background(Color.defaultBackground.ignoresSafeArea())
+    }
+    
+    
+    //MARK: - Content
+    
+    var content: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            
             VStack(alignment: .leading, spacing: 34) {
                 
-                TitleBlock(viewTitle: viewModel.getFolderName()) {
-                    moreButtons
-                }
+                TitleBlock(viewTitle: viewModel.getFolderName())
                 
                 switch viewModel.currentViewStyle {
                 case .stroke:
@@ -30,21 +39,24 @@ struct UserFoldersView: View {
             .padding(.bottom, 70)
             .padding(.horizontal, 26)
         }
-        .background(Color.defaultBackground.ignoresSafeArea())
     }
     
     
     //MARK: - More Buttons
     
     var moreButtons: some View {
-        VStack(alignment: .trailing, spacing: 12) {
-            HStack(spacing: 12) {
-                StandartButton(imageName: viewModel.currentViewStyle == .stroke ? "rectangles" : "lines", action: viewModel.changeFolderView)
-                
+        HStack(alignment: .top, spacing: 12) {
+            Spacer()
+            
+            StandartButton(imageName: viewModel.currentViewStyle == .stroke ? "rectangles" : "lines", action: viewModel.changeFolderView)
+            
+            VStack(spacing: 12) {
                 StandartButton(imageName: "more", action: viewModel.openDetailBottomSheet)
+                
+                StandartButton(imageName: "user", action: viewModel.routeToUserDescription)
             }
-            StandartButton(imageName: "user", action: viewModel.routeToUserDescription)
         }
+        .padding(.horizontal, 26)
     }
     
     
