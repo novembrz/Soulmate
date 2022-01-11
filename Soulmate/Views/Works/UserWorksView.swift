@@ -31,8 +31,8 @@ struct UserWorksView: View {
                 works
                 seeOtherButton
             }
-            .padding(.bottom, 70)
-            .padding(.horizontal, 26)
+            .padding(.bottom, Constants.bottomInset)
+            .padding(.horizontal, Constants.horizontalInset)
         }
     }
     
@@ -141,7 +141,7 @@ struct UserWorksView: View {
                 
             }
         }
-        .padding(.horizontal, 26)
+        .padding(.horizontal, Constants.horizontalInset)
     }
 }
 

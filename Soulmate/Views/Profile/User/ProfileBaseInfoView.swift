@@ -18,12 +18,12 @@ struct ProfileBaseInfoView: View {
                 .foregroundColor(.whiteToDark)
                 .scaledToFit()
                 .frame(height: 11)
-                .shadow(color: .blackText.opacity(0.3), radius: 2, x: 0, y: 0)
+                .textShadow()
             
             Text("\(number)")
                 .foregroundColor(.whiteText)
                 .mediumFont(14)
-                .shadow(color: .blackText.opacity(0.3), radius: 2, x: 0, y: 0)
+                .textShadow()
         }
     }
 }

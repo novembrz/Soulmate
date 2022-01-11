@@ -35,7 +35,7 @@ struct AboutUserView: View {
             
             StandartButton(imageName: "subscribe")
         }
-        .padding(.horizontal, 26)
+        .padding(.horizontal, Constants.horizontalInset)
     }
     
     
@@ -49,14 +49,14 @@ struct AboutUserView: View {
                     BigTextBlock(text: user.description!, textLineLimit: 6)
                 }
             }
-            .padding(.horizontal, 26)
+            .padding(.horizontal, Constants.horizontalInset)
             
             //MARK: if workPlaces != nil
             workPlaces
             
             Spacer()
         }
-        .padding(.bottom, 70)
+        .padding(.bottom, Constants.bottomInset)
     }
     
     
@@ -112,9 +112,9 @@ struct AboutUserView: View {
                     .cornerRadius(15)
                 }
             }
-            .padding(.horizontal, 26)
+            .padding(.horizontal, Constants.horizontalInset)
         }
-        .shadow(color: .elementShadow.opacity(0.3), radius: 30, x: 4, y: 4)
+        .elementShadow()
     }
 }
 

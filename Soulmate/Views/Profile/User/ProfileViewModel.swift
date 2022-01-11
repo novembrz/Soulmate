@@ -24,9 +24,8 @@ final class ProfileViewModel: ObservableObject {
     
     let maxHeigth = UIScreen.main.bounds.height / 1.32
     let width = UIScreen.main.bounds.size.width
-    let screenOffset: CGFloat = 26
     let cardsOffset: CGFloat = 15
-    var cardWidth: CGFloat { return (width - 2*screenOffset - 15) / 2 }
+    var cardWidth: CGFloat { return (width - 2*Constants.horizontalInset - 15) / 2 }
     var cardHeight: CGFloat { return cardWidth * 1.3 }
     
     

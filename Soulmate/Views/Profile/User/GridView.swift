@@ -24,7 +24,7 @@ struct GridView: View {
                 .offset(y: viewModel.columnIndex(of: column) == 0 ? 60 : 0)
             }
         }
-        .padding(.horizontal, viewModel.screenOffset)
+        .padding(.horizontal, Constants.horizontalInset)
     }
 }
 

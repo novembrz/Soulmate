@@ -18,18 +18,12 @@ struct BigStandartButton: View {
             RoundedRectangle(cornerRadius: 15)
                 .frame(width: 43, height: 43)
                 .foregroundColor(.whiteToDark)
+                .buttonShadow(radius: 30)
             
             Image(imageName)
                 .resizable()
                 .frame(width: width, height: height)
                 .foregroundColor(.blackToWhite)
         }
-    }
-}
-
-struct BigStandartButton_Previews: PreviewProvider {
-    static var previews: some View {
-        BigStandartButton(imageName: "more")
-            .background(Color.defaultBackground)
     }
 }

@@ -36,8 +36,8 @@ struct UserFoldersView: View {
                     rectangleList
                 }
             }
-            .padding(.bottom, 70)
-            .padding(.horizontal, 26)
+            .padding(.bottom, Constants.bottomInset)
+            .padding(.horizontal, Constants.horizontalInset)
         }
     }
     
@@ -56,7 +56,7 @@ struct UserFoldersView: View {
                 StandartButton(imageName: "user", action: viewModel.routeToUserDescription)
             }
         }
-        .padding(.horizontal, 26)
+        .padding(.horizontal, Constants.horizontalInset)
     }
     
     

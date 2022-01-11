@@ -21,7 +21,7 @@ struct ProfileView: View {
                     profile
                     GridView(viewModel: viewModel)
                 }
-                .padding(.bottom, 70)
+                .padding(.bottom, Constants.bottomInset)
             }
             .background(Color.defaultBackground.ignoresSafeArea())
             
@@ -66,7 +66,7 @@ struct ProfileView: View {
                 professions
             }
         }
-        .padding(.horizontal, viewModel.screenOffset)
+        .padding(.horizontal, Constants.horizontalInset)
     }
     
     
@@ -77,12 +77,12 @@ struct ProfileView: View {
             Text("\(viewModel.user?.firstName ?? "")\n\(viewModel.user?.lastName ?? "")")
                 .boldFont(24)
                 .foregroundColor(.whiteText)
-                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 0)
+                .textShadow(radius: 10)
             
             Text("\(viewModel.user?.city ?? ""), \(viewModel.user?.age ?? 0)")
                 .mediumFont(18)
                 .foregroundColor(.whiteText)
-                .shadow(color: .black.opacity(0.5), radius: 8, x: 0, y: 0)
+                .textShadow(opacity: 0.5, radius: 8)
         }
     }
     
@@ -107,7 +107,7 @@ struct ProfileView: View {
                 }
             }
         }
-        .padding(.horizontal, viewModel.screenOffset)
+        .padding(.horizontal, Constants.horizontalInset)
     }
     
     
@@ -134,7 +134,7 @@ struct ProfileView: View {
                         .mediumFont(18)
                         .foregroundColor(.whiteText)
                         .multilineTextAlignment(.trailing)
-                        .shadow(color: .blackText.opacity(0.3), radius: 2, x: 0, y: 0)
+                        .textShadow()
                 }
             }
         }

@@ -41,7 +41,7 @@ struct FolderStrokeCardView: View {
         .background(Color.whiteToDark)
         .cornerRadius(15)
         .frame(maxWidth: .infinity)
-        .shadow(color: .elementShadow.opacity(0.3), radius: 30, x: 4, y: 4)
+        .elementShadow()
     }
     
     

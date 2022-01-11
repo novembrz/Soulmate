@@ -44,3 +44,4 @@ extension View {
         self.modifier(ThemedFont(size: size, font: .regular))
     }
 }
+

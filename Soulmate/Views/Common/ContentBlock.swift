@@ -66,7 +66,7 @@ struct ContentBlock<Content: View, Destination: View>: View {
                         }
                     }
                 }
-                .padding(.horizontal, 26)
+                .padding(.horizontal, Constants.horizontalInset)
             }
             self.content
         }

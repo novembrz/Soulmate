@@ -24,7 +24,7 @@ struct CustomNavigationLink<Title: View, Destination: View>: View {
                 destination
                 
                 BackButton()
-                    .padding(.leading, 26)
+                    .padding(.leading, Constants.horizontalInset)
             }
             .navigationBarHidden(true)
         } label: {

@@ -21,6 +21,7 @@ struct BackButton: View {
                 RoundedRectangle(cornerRadius: 15)
                     .frame(width: 43, height: 43)
                     .foregroundColor(.whiteToDark)
+                    .buttonShadow(radius: 30)
                 
                 Image(systemName: "chevron.left")
                     .foregroundColor(.blackToWhite)

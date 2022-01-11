@@ -14,7 +14,6 @@ final class HomeViewModel: ObservableObject {
     @Published var friendsData = MockService.friendsData
     @Published var suitableUsers: [UserModel] = []
     
-    let screenOffset: CGFloat = 26
     var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
     
     func fetchHomePage() {

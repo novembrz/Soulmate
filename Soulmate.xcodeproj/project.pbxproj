@@ -45,6 +45,8 @@
 		C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */; };
 		C8A6AFEB278CDB9A00A3B80D /* TitleBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFEA278CDB9A00A3B80D /* TitleBlock.swift */; };
 		C8A6AFEE278D8EEC00A3B80D /* BigStandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFED278D8EEC00A3B80D /* BigStandartButton.swift */; };
+		C8A6AFF0278D963B00A3B80D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFEF278D963B00A3B80D /* Constants.swift */; };
+		C8A6AFF2278D9A4000A3B80D /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFF1278D9A4000A3B80D /* Shadow.swift */; };
 		C8B06F2527552CF700177330 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F2427552CF700177330 /* HomeView.swift */; };
 		C8B06F272755593C00177330 /* StandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F262755593C00177330 /* StandartButton.swift */; };
 		C8CE4859277A612A001CF60A /* ContentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CE4858277A612A001CF60A /* ContentCard.swift */; };
@@ -108,6 +110,8 @@
 		C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		C8A6AFEA278CDB9A00A3B80D /* TitleBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBlock.swift; sourceTree = "<group>"; };
 		C8A6AFED278D8EEC00A3B80D /* BigStandartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigStandartButton.swift; sourceTree = "<group>"; };
+		C8A6AFEF278D963B00A3B80D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C8A6AFF1278D9A4000A3B80D /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		C8B06F2427552CF700177330 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C8B06F262755593C00177330 /* StandartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartButton.swift; sourceTree = "<group>"; };
 		C8CE4858277A612A001CF60A /* ContentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCard.swift; sourceTree = "<group>"; };
@@ -215,11 +219,12 @@
 			isa = PBXGroup;
 			children = (
 				C842574227501F7C009C405C /* Fonts */,
+				C8A6AFF3278D9A5500A3B80D /* Modifiers */,
 				C842575927502973009C405C /* Color + Extension.swift */,
 				C884135D27615F91004C21C3 /* HexColor + Extension.swift */,
 				C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */,
-				C842575627502473009C405C /* ThemeFont.swift */,
 				C842576D275286E3009C405C /* PluralLocalized.swift */,
+				C8A6AFEF278D963B00A3B80D /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -274,6 +279,15 @@
 				C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		C8A6AFF3278D9A5500A3B80D /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				C842575627502473009C405C /* ThemeFont.swift */,
+				C8A6AFF1278D9A4000A3B80D /* Shadow.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		C8B06F28275561F000177330 /* Services */ = {
@@ -502,6 +516,7 @@
 				C8A6AFEE278D8EEC00A3B80D /* BigStandartButton.swift in Sources */,
 				C8864402275A064800BC1B06 /* LongButton.swift in Sources */,
 				C81F102B277BBC65006787E0 /* WorkCardView.swift in Sources */,
+				C8A6AFF2278D9A4000A3B80D /* Shadow.swift in Sources */,
 				C8D8DAF1275C1308009A0552 /* Animate + Extension.swift in Sources */,
 				C842576C275283FF009C405C /* BackButton.swift in Sources */,
 				C8B06F2527552CF700177330 /* HomeView.swift in Sources */,
@@ -511,6 +526,7 @@
 				C842576727527E2D009C405C /* GridView.swift in Sources */,
 				C85AF643278C8DB0008034FE /* CustomNavigationLink.swift in Sources */,
 				C8E584BB27498A7A0057B309 /* ProfileViewModel.swift in Sources */,
+				C8A6AFF0278D963B00A3B80D /* Constants.swift in Sources */,
 				C8D8DAF3275C1C2A009A0552 /* NetworkService.swift in Sources */,
 				C8F17D8C275697E700BC6A44 /* HomeViewModel.swift in Sources */,
 			);

@@ -22,7 +22,7 @@ struct HomeView: View {
                             SearchView(viewModel: SearchViewModel())
                             filterButton
                         }
-                        .padding(.horizontal, viewModel.screenOffset)
+                        .padding(.horizontal, Constants.horizontalInset)
                         
                         VStack(spacing: 48) {
                             sphere
@@ -33,7 +33,7 @@ struct HomeView: View {
                     }
                 }
                 .padding(.top, 30)
-                .padding(.bottom, 70)
+                .padding(.bottom, Constants.bottomInset)
             }
             .background(Color.defaultBackground.ignoresSafeArea())
             .onAppear { viewModel.fetchHomePage() }
@@ -53,7 +53,7 @@ struct HomeView: View {
                 .regularFont(18)
                 .foregroundColor(.blackText)
         }
-        .padding(.horizontal, viewModel.screenOffset)
+        .padding(.horizontal, Constants.horizontalInset)
     }
     
     
@@ -105,9 +105,9 @@ struct HomeView: View {
                         }
                     }
                 }
-                .padding(.horizontal, viewModel.screenOffset)
+                .padding(.horizontal, Constants.horizontalInset)
             }
-            .shadow(color: .elementShadow.opacity(0.3), radius: 30, x: 4, y: 4)
+            .elementShadow()
         } destination: {}
     }
     
@@ -116,7 +116,7 @@ struct HomeView: View {
     
     var environment: some View {
         ContentBlock(title: "Из твоей среды", buttonTitle: "Все") {
-            VStack(spacing: viewModel.screenOffset) {
+            VStack(spacing: Constants.horizontalInset) {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 11) {
                         ForEach(viewModel.suitableUsers, id: \.self) { user in
@@ -135,11 +135,11 @@ struct HomeView: View {
                         }
                         seeAllUser
                     }
-                    .padding(.horizontal, viewModel.screenOffset)
+                    .padding(.horizontal, Constants.horizontalInset)
                 }
                 
                 LongButton(title: "Найти на карте", iconName: "map")
-                    .padding(.horizontal, 26)
+                    .padding(.horizontal, Constants.horizontalInset)
             }
         } destination: {
             ProfileView(viewModel: ProfileViewModel())
@@ -178,14 +178,14 @@ struct HomeView: View {
                             //Если индекс четный то во 2, не четный - 1
                             CustomNavigationLink {
                                 FolderStrokeCardView(title: "Зарисовки", description: "Дизайн интерьера", folderImages: ["Azizova"], haveProfileButton: true)
-                                    .padding(.horizontal, 26)
+                                    .padding(.horizontal, Constants.horizontalInset)
                             } destination: {
                                 UserWorksView(viewModel: UserWorksViewModel())
                             }
                             
                             CustomNavigationLink {
                                 FolderStrokeCardView(title: "Загородные дома", description: "Прокуратура", folderImages: ["Dilan"], haveProfileButton: true)
-                                    .padding(.horizontal, 26)
+                                    .padding(.horizontal, Constants.horizontalInset)
                             } destination: {
                                 UserWorksView(viewModel: UserWorksViewModel())
                             }
@@ -209,7 +209,7 @@ struct HomeView: View {
                     ContentCard(name: "work", lastName: "work", description: "work", imageString: "", height: 137, isColor: true)
                 }
             }
-            .padding(.horizontal, viewModel.screenOffset)
+            .padding(.horizontal, Constants.horizontalInset)
         } destination: {}
         
     }

@@ -27,6 +27,7 @@ struct StandartButton: View {
                 RoundedRectangle(cornerRadius: 8)
                     .frame(width: buttonSize, height: buttonSize)
                     .foregroundColor(bgColor)
+                    .buttonShadow()
                 
                 Image(imageName)
                     .resizable()
