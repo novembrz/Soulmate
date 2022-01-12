@@ -26,6 +26,24 @@ struct UserModel: Decodable {
     var totalLikes: Int?
 }
 
+/*
+ "author": {
+     "path": null,
+     "id": 1,
+     "username": "yar",
+     "firstName": "Ярослав",
+     "lastName": "Девятовский",
+     "age": 22,
+     "city": "Илькино",
+     "color": "#903F3C",
+     "description": "I am programmer",
+     "views": 3,
+     "avatars": [
+         {}
+     ]
+ }
+ */
+
 
 struct UserProfessions: Decodable, Identifiable, Equatable {
     var name: String
@@ -36,8 +54,8 @@ struct UserProfessions: Decodable, Identifiable, Equatable {
 
 
 struct Avatars: Decodable {
-    var link: String
-    var main: Bool
+    var link: String?
+    var main: Bool?
 }
 
 

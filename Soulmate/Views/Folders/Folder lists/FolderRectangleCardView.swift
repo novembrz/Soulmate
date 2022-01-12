@@ -54,8 +54,7 @@ struct FolderRectangleCardView: View {
                 }
                 
             } else {
-                Rectangle()
-                    .background(Color.red)
+                Image(Constants.plugImage)
             }
         }
         .frame(height: 170)

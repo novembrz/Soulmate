@@ -79,7 +79,7 @@ struct ContentBlock<Content: View, Destination: View>: View {
 struct ContentBlock_Previews: PreviewProvider {
     static var previews: some View {
         ContentBlock(title: "Search", buttonTitle: "All") {
-            ProfileView(viewModel: ProfileViewModel())
+            ProfileView(userId: 2, viewModel: ProfileViewModel())
         } destination: {
             SearchView(viewModel: SearchViewModel())
         }

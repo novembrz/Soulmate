@@ -126,11 +126,12 @@ struct HomeView: View {
                                                 .filter { $0.main }
                                                 .first?.name ?? "",
                                             imageString: user.avatars?
-                                                .filter { $0.main }
+                                                .filter { $0.main ?? false }
                                                 .first?.link ?? "")
                                     .frame(width: 135)
                             } destination: {
-                                ProfileView(viewModel: ProfileViewModel())
+                                ProfileView(userId: user.id,
+                                            viewModel: ProfileViewModel())
                             }
                         }
                         seeAllUser
@@ -142,7 +143,7 @@ struct HomeView: View {
                     .padding(.horizontal, Constants.horizontalInset)
             }
         } destination: {
-            ProfileView(viewModel: ProfileViewModel())
+            //MARK: Все users
         }
     }
     
@@ -168,23 +169,29 @@ struct HomeView: View {
     
     
     //MARK: - folders
-    
+  
     var folders: some View {
         ContentBlock(title: "Проекты", buttonTitle: "Все") {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: -35) {
-                    ForEach(viewModel.friendsData, id: \.self) { folder in
+                    ForEach(viewModel.suitableFolders, id: \.self) { folder in
                         VStack(spacing: 13) {
                             //Если индекс четный то во 2, не четный - 1
                             CustomNavigationLink {
-                                FolderStrokeCardView(title: "Зарисовки", description: "Дизайн интерьера", folderImages: ["Azizova"], haveProfileButton: true)
+                                FolderStrokeCardView(title: folder.name,
+                                                     description: "viewModel.folderAuthors(folder)",
+                                                     folderImages: folder.previewPictures,
+                                                     haveProfileButton: true)
                                     .padding(.horizontal, Constants.horizontalInset)
                             } destination: {
                                 UserWorksView(viewModel: UserWorksViewModel())
                             }
                             
                             CustomNavigationLink {
-                                FolderStrokeCardView(title: "Загородные дома", description: "Прокуратура", folderImages: ["Dilan"], haveProfileButton: true)
+                                FolderStrokeCardView(title: folder.name,
+                                                     description: "viewModel.folderAuthors(folder)",
+                                                     folderImages: folder.previewPictures,
+                                                     haveProfileButton: true)
                                     .padding(.horizontal, Constants.horizontalInset)
                             } destination: {
                                 UserWorksView(viewModel: UserWorksViewModel())

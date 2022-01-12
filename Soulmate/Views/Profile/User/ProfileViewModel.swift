@@ -31,8 +31,8 @@ final class ProfileViewModel: ObservableObject {
     
     //MARK: - Fetch
     
-    func fetchUser() {
-        DataFetcherServices.fetchUser(id: 2) { [self] result in
+    func fetchUser(_ userId: Int) {
+        DataFetcherServices.fetchUser(id: userId) { [self] result in
             DispatchQueue.main.async {
                 guard let userData = result else { return }
                 user = userData
@@ -82,6 +82,6 @@ final class ProfileViewModel: ObservableObject {
 
 struct ProfileViewModel_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(viewModel: ProfileViewModel())
+        ProfileView(userId: 2, viewModel: ProfileViewModel())
     }
 }

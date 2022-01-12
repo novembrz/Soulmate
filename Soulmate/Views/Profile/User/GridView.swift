@@ -80,6 +80,6 @@ struct CardView: View {
 
 struct GridView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(viewModel: ProfileViewModel())
+        ProfileView(userId: 2, viewModel: ProfileViewModel())
     }
 }

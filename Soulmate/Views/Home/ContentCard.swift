@@ -17,14 +17,27 @@ struct ContentCard: View {
     var height: CGFloat = 195
     var isColor: Bool = false
     
+    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             if !isColor {
-                Image(imageString) // распарсить 
-                    .resizable()
-                    .frame(height: height)
-                    .aspectRatio(contentMode: .fit)
+                if let urlString = URL(string: imageString) {
+                    AsyncImage(url: urlString) { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 135, height: height)
                     .cornerRadius(15)
+                } else {
+                    Image(Constants.plugImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 135, height: height)
+                        .cornerRadius(15)
+                }
+                
             } else {
                 RoundedRectangle(cornerRadius: 15)
                     .frame(height: height)
@@ -45,9 +58,3 @@ struct ContentCard: View {
         }
     }
 }
-//
-//struct ContentCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentCard(content: "Azizova")
-//    }
-//}

@@ -220,9 +220,7 @@
 			children = (
 				C842574227501F7C009C405C /* Fonts */,
 				C8A6AFF3278D9A5500A3B80D /* Modifiers */,
-				C842575927502973009C405C /* Color + Extension.swift */,
-				C884135D27615F91004C21C3 /* HexColor + Extension.swift */,
-				C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */,
+				C8A6AFF4278DA34500A3B80D /* Extensions */,
 				C842576D275286E3009C405C /* PluralLocalized.swift */,
 				C8A6AFEF278D963B00A3B80D /* Constants.swift */,
 			);
@@ -288,6 +286,16 @@
 				C8A6AFF1278D9A4000A3B80D /* Shadow.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		C8A6AFF4278DA34500A3B80D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C842575927502973009C405C /* Color + Extension.swift */,
+				C884135D27615F91004C21C3 /* HexColor + Extension.swift */,
+				C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C8B06F28275561F000177330 /* Services */ = {

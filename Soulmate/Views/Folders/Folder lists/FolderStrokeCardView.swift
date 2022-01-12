@@ -14,7 +14,7 @@ struct FolderStrokeCardView: View {
     var coauthorCount: Int?
     var folderImages: [String]?
     var haveProfileButton: Bool
-    var mainImage: String { folderImages?[0] ?? "" }
+    var mainImage: String? { folderImages == [] ? nil : folderImages?[0] }
     
 
     var body: some View {
@@ -46,18 +46,25 @@ struct FolderStrokeCardView: View {
     
     
     //MARK: - image
-
+    
     var image: some View {
         VStack {
-            if folderImages != nil {
-                Image(mainImage)
+            if folderImages != nil, let urlString = URL(string: mainImage ?? "") {
+                AsyncImage(url: urlString) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 45, height: 45)
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(8)
+                
+            } else {
+                Image(Constants.plugImage)
                     .resizable()
                     .frame(width: 45, height: 45)
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(8)
-            } else {
-                Rectangle()
-                    .background(.blue)
             }
         }
     }
@@ -97,15 +104,15 @@ struct FolderStrokeCardView: View {
                     print("Перешла к юзеру")
                 }
             } else {
-                Button {
-                    // alert
-                } label: {
+                CustomNavigationLink {
                     Image("more")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
                         .foregroundColor(.blackText)
                         .padding(.trailing, 6)
+                } destination: {
+                   
                 }
             }
         }

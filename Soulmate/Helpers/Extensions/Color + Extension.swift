@@ -18,7 +18,7 @@ extension Color {
     public static let turquoise = Color("turquoise")
     
     public static let elementShadow = Color("shadow")
-    public static let grayForElements = Color("gray")
+    public static let grayForElements = Color("gray1")
     public static let darkForElements = Color("dark")
     
     public static let whiteText = Color("whiteText")

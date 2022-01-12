@@ -27,9 +27,14 @@ struct UserWorksView: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 35) {
                 title
-                BigTextBlock(text: viewModel.folderDescription)
-                works
-                seeOtherButton
+                
+                if viewModel.works != []  {
+                    BigTextBlock(text: viewModel.folderDescription)
+                    works
+                    seeOtherButton
+                } else {
+                    Image("worksPlug")
+                }
             }
             .padding(.bottom, Constants.bottomInset)
             .padding(.horizontal, Constants.horizontalInset)
@@ -58,7 +63,7 @@ struct UserWorksView: View {
                     .scaledToFill()
                     .cornerRadius(10)
             } destination: {
-                ProfileView(viewModel: ProfileViewModel())
+                //ProfileView(viewModel: ProfileViewModel())
             }
             
             if let coauthors = viewModel.coauthors {
@@ -70,7 +75,7 @@ struct UserWorksView: View {
                             .scaledToFill()
                             .cornerRadius(10)
                     } destination: {
-                        ProfileView(viewModel: ProfileViewModel())
+                       // ProfileView(viewModel: ProfileViewModel())
                     }
                 }
             }

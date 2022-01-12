@@ -51,7 +51,7 @@ struct DisplayContentView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                 
-                ProfileView(viewModel: ProfileViewModel())
+                ProfileView(userId: 2, viewModel: ProfileViewModel())
                     .tag(AnimateTab.profile)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)

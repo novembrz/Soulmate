@@ -29,11 +29,15 @@ struct UserFoldersView: View {
                 
                 TitleBlock(viewTitle: viewModel.getFolderName())
                 
-                switch viewModel.currentViewStyle {
-                case .stroke:
-                    strokeList
-                case .rectangle:
-                    rectangleList
+                if viewModel.professionWorks != [] {
+                    switch viewModel.currentViewStyle {
+                    case .stroke:
+                        strokeList
+                    case .rectangle:
+                        rectangleList
+                    }
+                } else {
+                    Image("folderPlug")
                 }
             }
             .padding(.bottom, Constants.bottomInset)

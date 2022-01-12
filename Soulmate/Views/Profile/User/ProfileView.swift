@@ -12,6 +12,7 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    @State var userId: Int
     @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
@@ -27,7 +28,7 @@ struct ProfileView: View {
             
             actionButtons
         }
-        .onAppear { viewModel.fetchUser() }
+        .onAppear { viewModel.fetchUser(userId) }
     }
     
     
@@ -35,12 +36,17 @@ struct ProfileView: View {
     
     var profile: some View {
         GeometryReader { reader in
-            Image(viewModel.user?.username ?? "")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .offset(y: -reader.frame(in: .global).minY)
-                .frame(width: viewModel.width,
-                       height: reader.frame(in: .global).minY + viewModel.maxHeigth)
+            AsyncImage(url: URL(string: viewModel.user?.avatars?
+                                    .filter { $0.main ?? false }
+                                    .first?.link ?? "")) { image in
+                image.resizable()
+            } placeholder: {
+                ProgressView()
+            }
+            .aspectRatio(contentMode: .fill)
+            .offset(y: -reader.frame(in: .global).minY)
+            .frame(width: viewModel.width,
+                   height: reader.frame(in: .global).minY + viewModel.maxHeigth)
             
             Image("blur")
                 .resizable()
@@ -99,7 +105,7 @@ struct ProfileView: View {
                     StandartButton(imageName: "subscribe")
                 }
                 
-                CustomNavigationLink { //MARK: aaaaaaa
+                CustomNavigationLink { //MARK: ;;;; aaaaaaa
                     StandartButton(imageName: "dote")
                 } destination: {
                     AboutUserView(user: viewModel.user ?? MockService.mockUser)
@@ -115,9 +121,9 @@ struct ProfileView: View {
     
     var profileBaseInfo: some View {
         VStack(alignment: .leading, spacing: 7) {
-            ProfileBaseInfoView(icon: "like", number: 1005)
-            ProfileBaseInfoView(icon: "work", number: 436)
-            ProfileBaseInfoView(icon: "people", number: 11537)
+            ProfileBaseInfoView(icon: "like", number: viewModel.user?.totalLikes ?? 0)
+            ProfileBaseInfoView(icon: "work", number: viewModel.user?.totalWorks ?? 0)
+            ProfileBaseInfoView(icon: "people", number: viewModel.user?.totalSubscribers ?? 0)
         }
     }
     
@@ -146,6 +152,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(viewModel: ProfileViewModel())
+        ProfileView(userId: 2, viewModel: ProfileViewModel())
     }
 }
