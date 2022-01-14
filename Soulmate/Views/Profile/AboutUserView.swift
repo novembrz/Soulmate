@@ -19,6 +19,7 @@ struct AboutUserView: View {
             content
             buttons
         }
+        .padding(.top, Constants.topInset)
         .background(Color.defaultBackground.ignoresSafeArea())
     }
     

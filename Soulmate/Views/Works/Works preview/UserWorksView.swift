@@ -36,6 +36,7 @@ struct UserWorksView: View {
                     Image("worksPlug")
                 }
             }
+            .padding(.top, Constants.topInset)
             .padding(.bottom, Constants.bottomInset)
             .padding(.horizontal, Constants.horizontalInset)
         }
@@ -116,8 +117,6 @@ struct UserWorksView: View {
                         }
                     }
                 }
-            } else {
-                Text("Нет инфы")
             }
         }
     }
@@ -146,6 +145,7 @@ struct UserWorksView: View {
                 
             }
         }
+        .padding(.top, Constants.topInset)
         .padding(.horizontal, Constants.horizontalInset)
     }
 }

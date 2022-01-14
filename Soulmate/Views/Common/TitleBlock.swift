@@ -9,16 +9,10 @@ import SwiftUI
 
 struct TitleBlock: View {
     
-    private var viewTitle: String = ""
-    private var subTitle: String? = ""
-    private var titleColor: Color? = .blackText
-    
-    
-    public init(viewTitle: String, subTitle: String? = "", titleColor: Color? = .blackText) {
-        self.viewTitle = viewTitle
-        self.subTitle = subTitle
-        self.titleColor = titleColor
-    }
+    var viewTitle: String = ""
+    var subTitle: String? = ""
+    var titleColor: Color? = .blackText
+    var topPadding: CGFloat? = 77
     
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
@@ -35,6 +29,6 @@ struct TitleBlock: View {
             }
         }
         .frame(maxWidth: 260, alignment: .leading)
-        .padding(.top, 77)
+        .padding(.top, topPadding)
     }
 }

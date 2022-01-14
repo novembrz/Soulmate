@@ -10,7 +10,8 @@ import SwiftUI
 struct UserFoldersView: View {
     
     @ObservedObject var viewModel: UserFoldersViewModel
-    
+    //@State var folders: [FolderModel] //отдаем сразу папки, название как вытащить
+    //@State var professionId: [FolderModel] // чтобы распарсить данные и вытащить все папки из профессии
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -40,6 +41,7 @@ struct UserFoldersView: View {
                     Image("folderPlug")
                 }
             }
+            .padding(.top, Constants.topInset)
             .padding(.bottom, Constants.bottomInset)
             .padding(.horizontal, Constants.horizontalInset)
         }
@@ -60,6 +62,7 @@ struct UserFoldersView: View {
                 StandartButton(imageName: "user", action: viewModel.routeToUserDescription)
             }
         }
+        .padding(.top, Constants.topInset)
         .padding(.horizontal, Constants.horizontalInset)
     }
     
@@ -68,16 +71,16 @@ struct UserFoldersView: View {
     
     var strokeList: some View {
         VStack(alignment: .leading, spacing: 17) {
-            ForEach($viewModel.professionWorks, id: \.self) { work in
-                FolderStrokeCardView(title: work.wrappedValue, description: "Марианна Пелевина", folderImages: viewModel.folderImages, haveProfileButton: false)
+            ForEach(viewModel.professionWorks, id: \.self) { folder in //MARK: замени массив
+                FolderStrokeCardView(folder: folder, haveProfileButton: false)
             }
         }
     }
     
     var  rectangleList: some View {
         VStack(spacing: 17) {
-            ForEach($viewModel.professionWorks, id: \.self) { work in
-                FolderRectangleCardView(title: work.wrappedValue, description: "Марианна Пелевина", folderImages: viewModel.folderImages)
+            ForEach(viewModel.professionWorks, id: \.self) { folder in
+                FolderRectangleCardView(folder: folder)
             }
         }
     }

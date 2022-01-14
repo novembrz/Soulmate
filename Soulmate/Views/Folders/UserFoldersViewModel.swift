@@ -13,7 +13,7 @@ final class UserFoldersViewModel: ObservableObject {
         case stroke, rectangle
     }
     
-    @Published var professionWorks: [String] = ["Концепция феминистического сериала по «1984» Дж. Оруэлла", "Сценарий сериала «Гамбит»", "Фильм «Отверженные»", "Чек-лист «Как создать реалистичного отрицательного персонажа, которому все будут сопережевать»", "Сценарий сериала «Код 13»"]
+    @Published var professionWorks: [FolderModel] = [MockService.mockFolder]//[String] = ["Концепция феминистического сериала по «1984» Дж. Оруэлла", "Сценарий сериала «Гамбит»", "Фильм «Отверженные»", "Чек-лист «Как создать реалистичного отрицательного персонажа, которому все будут сопережевать»", "Сценарий сериала «Код 13»"]
     
     @Published var currentViewStyle: ViewStyle = .stroke
     @Published var folderImages = ["Azizova", "Dilan", "Kasigina"]

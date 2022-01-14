@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct FolderRectangleCardView: View {
-    var title: String
-    var description: String
-    var coauthorCount: Int?
-    var folderImages: [String]?
-    var folderImagesCount: Int { folderImages?.count ?? 0 }
+    var folder: FolderModel
+    //    private var description: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
+    private var description: String { "\(folder.author.lastName) \(folder.author.firstName)" }
+    var folderImagesCount: Int { folder.previewPictures?.count ?? 0 }
     
     var body: some View {
         CustomNavigationLink {
@@ -27,29 +26,40 @@ struct FolderRectangleCardView: View {
     
     
     //MARK: - Preview Images
-
+    
     var previewImages: some View {
         HStack(spacing: 2) {
-            if folderImages != nil {
-                if let image = folderImages?[0] {
-                    Image(image)
-                        .resizable()
-                        .scaledToFill()
+            if folder.previewPictures != nil,
+                let urlString = URL(string: folder.previewPictures?[0] ?? "") {
+                AsyncImage(url: urlString) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
                 }
+                .scaledToFill()
+                
                 
                 VStack(spacing: 2) {
-                    if folderImagesCount > 1 {
-                        Image(folderImages?[1] ?? "")
-                            .resizable()
-                            .frame(width: 100)
-                            .frame(height: folderImagesCount > 2 ? 85 : .infinity)
+                    if folderImagesCount > 1,
+                       let urlString = URL(string: folder.previewPictures?[1] ?? "") {
+                        AsyncImage(url: urlString) { image in
+                            image.resizable()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 100)
+                        .frame(height: folderImagesCount > 2 ? 85 : .infinity)
                     }
                     
-                    if folderImagesCount > 2 {
-                        Image(folderImages?[2] ?? "")
-                            .resizable()
-                            .frame(width: 100)
-                            .frame(height: 85)
+                    if folderImagesCount > 2,
+                       let urlString = URL(string: folder.previewPictures?[2] ?? "") {
+                        AsyncImage(url: urlString) { image in
+                            image.resizable()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 100)
+                        .frame(height: 85)
                     }
                 }
                 
@@ -67,23 +77,11 @@ struct FolderRectangleCardView: View {
     var folderDescription: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 3) {
-                Text(title)
+                Text(description)
                     .boldFont(14)
                     .foregroundColor(.blackText)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
-                
-                HStack(spacing: 4) {
-                    Text(description)
-                        .regularFont(11)
-                        .foregroundColor(.blackText)
-                    
-                    if coauthorCount != nil {
-                        Text("+ \(coauthorCount ?? 0)")
-                            .regularFont(11)
-                            .foregroundColor(.blackText)
-                    }
-                }
             }
             
             Spacer()

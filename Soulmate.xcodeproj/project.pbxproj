@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C803E6B4278F4C56009D4BBE /* SuitableUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803E6B3278F4C56009D4BBE /* SuitableUsersView.swift */; };
+		C803E6B8278F5347009D4BBE /* SuitableUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C803E6B7278F5347009D4BBE /* SuitableUsersViewModel.swift */; };
 		C8135723276354C00072B1F7 /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8135722276354C00072B1F7 /* DisplayView.swift */; };
 		C8135725276354EA0072B1F7 /* DisplayContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8135724276354EA0072B1F7 /* DisplayContentView.swift */; };
 		C81357292763552E0072B1F7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81357282763552E0072B1F7 /* CustomTabBar.swift */; };
 		C813572B276355410072B1F7 /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813572A276355410072B1F7 /* TabButton.swift */; };
 		C813572D276355580072B1F7 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813572C276355580072B1F7 /* TabBarViewModel.swift */; };
+		C819EE7B279201810011676F /* UIScreen + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C819EE7A279201810011676F /* UIScreen + Extension.swift */; };
 		C81F1029277BBB6B006787E0 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F1028277BBB6B006787E0 /* HomeModel.swift */; };
 		C81F102B277BBC65006787E0 /* WorkCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102A277BBC65006787E0 /* WorkCardView.swift */; };
 		C81F102D277BBC81006787E0 /* WorkCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102C277BBC81006787E0 /* WorkCardModel.swift */; };
@@ -71,11 +74,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C803E6B3278F4C56009D4BBE /* SuitableUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuitableUsersView.swift; sourceTree = "<group>"; };
+		C803E6B7278F5347009D4BBE /* SuitableUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuitableUsersViewModel.swift; sourceTree = "<group>"; };
 		C8135722276354C00072B1F7 /* DisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
 		C8135724276354EA0072B1F7 /* DisplayContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayContentView.swift; sourceTree = "<group>"; };
 		C81357282763552E0072B1F7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		C813572A276355410072B1F7 /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
 		C813572C276355580072B1F7 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		C819EE7A279201810011676F /* UIScreen + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen + Extension.swift"; sourceTree = "<group>"; };
 		C81F1028277BBB6B006787E0 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		C81F102A277BBC65006787E0 /* WorkCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCardView.swift; sourceTree = "<group>"; };
 		C81F102C277BBC81006787E0 /* WorkCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCardModel.swift; sourceTree = "<group>"; };
@@ -147,6 +153,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C803E6B0278F4AF7009D4BBE /* Works preview */ = {
+			isa = PBXGroup;
+			children = (
+				C8DB70DE277539810031EF90 /* UserWorksView.swift */,
+				C8DB70E127753A370031EF90 /* UserWorksViewModel.swift */,
+			);
+			path = "Works preview";
+			sourceTree = "<group>";
+		};
+		C803E6B1278F4B02009D4BBE /* Work */ = {
+			isa = PBXGroup;
+			children = (
+				C81F102A277BBC65006787E0 /* WorkCardView.swift */,
+			);
+			path = Work;
+			sourceTree = "<group>";
+		};
+		C803E6B2278F4BAB009D4BBE /* Suitable Users */ = {
+			isa = PBXGroup;
+			children = (
+				C803E6B3278F4C56009D4BBE /* SuitableUsersView.swift */,
+				C803E6B7278F5347009D4BBE /* SuitableUsersViewModel.swift */,
+			);
+			path = "Suitable Users";
+			sourceTree = "<group>";
+		};
 		C8135721276354A70072B1F7 /* Display */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +326,7 @@
 				C842575927502973009C405C /* Color + Extension.swift */,
 				C884135D27615F91004C21C3 /* HexColor + Extension.swift */,
 				C8D8DAF0275C1308009A0552 /* Animate + Extension.swift */,
+				C819EE7A279201810011676F /* UIScreen + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -323,9 +356,8 @@
 		C8DB70DD2775393C0031EF90 /* Works */ = {
 			isa = PBXGroup;
 			children = (
-				C8DB70DE277539810031EF90 /* UserWorksView.swift */,
-				C8DB70E127753A370031EF90 /* UserWorksViewModel.swift */,
-				C81F102A277BBC65006787E0 /* WorkCardView.swift */,
+				C803E6B0278F4AF7009D4BBE /* Works preview */,
+				C803E6B1278F4B02009D4BBE /* Work */,
 			);
 			path = Works;
 			sourceTree = "<group>";
@@ -395,6 +427,7 @@
 				C8F17D8B275697E700BC6A44 /* HomeViewModel.swift */,
 				C8CE4858277A612A001CF60A /* ContentCard.swift */,
 				C8F17D922756BFB300BC6A44 /* Search */,
+				C803E6B2278F4BAB009D4BBE /* Suitable Users */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -506,6 +539,7 @@
 				C8F17D912756BFAE00BC6A44 /* SearchViewModel.swift in Sources */,
 				C8F17D8627568FFB00BC6A44 /* UserFoldersView.swift in Sources */,
 				C842576E275286E3009C405C /* PluralLocalized.swift in Sources */,
+				C819EE7B279201810011676F /* UIScreen + Extension.swift in Sources */,
 				C8D8DAF6275C337C009A0552 /* UserModel.swift in Sources */,
 				C8A6AFEB278CDB9A00A3B80D /* TitleBlock.swift in Sources */,
 				C8864405275A110800BC1B06 /* FolderStrokeCardView.swift in Sources */,
@@ -528,6 +562,7 @@
 				C8D8DAF1275C1308009A0552 /* Animate + Extension.swift in Sources */,
 				C842576C275283FF009C405C /* BackButton.swift in Sources */,
 				C8B06F2527552CF700177330 /* HomeView.swift in Sources */,
+				C803E6B4278F4C56009D4BBE /* SuitableUsersView.swift in Sources */,
 				C8CE4859277A612A001CF60A /* ContentCard.swift in Sources */,
 				C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */,
 				C8E584AB274983F20057B309 /* SoulmateApp.swift in Sources */,
@@ -535,6 +570,7 @@
 				C85AF643278C8DB0008034FE /* CustomNavigationLink.swift in Sources */,
 				C8E584BB27498A7A0057B309 /* ProfileViewModel.swift in Sources */,
 				C8A6AFF0278D963B00A3B80D /* Constants.swift in Sources */,
+				C803E6B8278F5347009D4BBE /* SuitableUsersViewModel.swift in Sources */,
 				C8D8DAF3275C1C2A009A0552 /* NetworkService.swift in Sources */,
 				C8F17D8C275697E700BC6A44 /* HomeViewModel.swift in Sources */,
 			);

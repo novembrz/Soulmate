@@ -26,7 +26,7 @@ struct HomeView: View {
                         
                         VStack(spacing: 48) {
                             sphere
-                            environment
+                            suitableUsers
                             folders
                             works
                         }
@@ -79,7 +79,6 @@ struct HomeView: View {
     //MARK: - sphere
     
     var sphere: some View {
-        
         ContentBlock(title: "Сферы") {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 11) {
@@ -112,9 +111,9 @@ struct HomeView: View {
     }
     
     
-    //MARK: - environment
+    //MARK: - suitable users
     
-    var environment: some View {
+    var suitableUsers: some View {
         ContentBlock(title: "Из твоей среды", buttonTitle: "Все") {
             VStack(spacing: Constants.horizontalInset) {
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -122,13 +121,15 @@ struct HomeView: View {
                         ForEach(viewModel.suitableUsers, id: \.self) { user in
                             CustomNavigationLink {
                                 ContentCard(name: user.firstName,
+                                            lastName: user.lastName,
                                             description: user.userProfessions?
                                                 .filter { $0.main }
                                                 .first?.name ?? "",
                                             imageString: user.avatars?
                                                 .filter { $0.main ?? false }
-                                                .first?.link ?? "")
-                                    .frame(width: 135)
+                                                .first?.link ?? "",
+                                            minWidth: 135, maxWidth: 135
+                                )
                             } destination: {
                                 ProfileView(userId: user.id,
                                             viewModel: ProfileViewModel())
@@ -143,7 +144,7 @@ struct HomeView: View {
                     .padding(.horizontal, Constants.horizontalInset)
             }
         } destination: {
-            //MARK: Все users
+            SuitableUsersView(viewModel: SuitableUsersViewModel())
         }
     }
     
@@ -178,20 +179,14 @@ struct HomeView: View {
                         VStack(spacing: 13) {
                             //Если индекс четный то во 2, не четный - 1
                             CustomNavigationLink {
-                                FolderStrokeCardView(title: folder.name,
-                                                     description: "viewModel.folderAuthors(folder)",
-                                                     folderImages: folder.previewPictures,
-                                                     haveProfileButton: true)
+                                FolderStrokeCardView(folder: folder, haveProfileButton: true)
                                     .padding(.horizontal, Constants.horizontalInset)
                             } destination: {
                                 UserWorksView(viewModel: UserWorksViewModel())
                             }
                             
                             CustomNavigationLink {
-                                FolderStrokeCardView(title: folder.name,
-                                                     description: "viewModel.folderAuthors(folder)",
-                                                     folderImages: folder.previewPictures,
-                                                     haveProfileButton: true)
+                                FolderStrokeCardView(folder: folder, haveProfileButton: true)
                                     .padding(.horizontal, Constants.horizontalInset)
                             } destination: {
                                 UserWorksView(viewModel: UserWorksViewModel())
@@ -218,7 +213,6 @@ struct HomeView: View {
             }
             .padding(.horizontal, Constants.horizontalInset)
         } destination: {}
-        
     }
 }
 

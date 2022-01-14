@@ -15,8 +15,9 @@ struct ContentCard: View {
     var imageString: String
     
     var height: CGFloat = 195
+    var minWidth: CGFloat = 82
+    var maxWidth: CGFloat = 125
     var isColor: Bool = false
-    
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
@@ -28,14 +29,12 @@ struct ContentCard: View {
                         ProgressView()
                     }
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 135, height: height)
+                    .frame(height: height)
+                    .frame(minWidth: minWidth, maxWidth: maxWidth, alignment: .center)
+                    .clipped()
                     .cornerRadius(15)
                 } else {
                     Image(Constants.plugImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 135, height: height)
-                        .cornerRadius(15)
                 }
                 
             } else {
@@ -45,14 +44,22 @@ struct ContentCard: View {
             }
             
             VStack(alignment: .leading) {
-                Text("\(name)\n\(lastName ?? "")")
+                Text("\(name)")
                     .boldFont(12)
                     .foregroundColor(.whiteText)
                     .multilineTextAlignment(.leading)
+                    .lineLimit(1)
+                
+                Text("\(lastName ?? "")")
+                    .boldFont(12)
+                    .foregroundColor(.whiteText)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(1)
                 
                 Text(description)
                     .regularFont(11)
                     .foregroundColor(.whiteText)
+                    .lineLimit(1)
             }
             .padding(10)
         }

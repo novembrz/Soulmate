@@ -28,6 +28,7 @@ struct BackButton: View {
                     .font(.system(size: 14, weight: .bold))
             }
         }
+        .padding(.top, Constants.topInset)
     }
 }
 

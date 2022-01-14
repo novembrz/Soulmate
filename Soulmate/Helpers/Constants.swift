@@ -18,6 +18,10 @@ struct Constants {
         Constants.isPad ? 132 : 70 // 132 заменить
     }
     
+    static var topInset: CGFloat {
+        Constants.isPad ? 132 : 15 // 132 заменить
+    }
+    
     static var plugImage: String { "plug" + ["0", "1", "2", "3", "4"].randomElement()! }
 }
 

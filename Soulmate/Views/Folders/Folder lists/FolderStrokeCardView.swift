@@ -9,13 +9,17 @@ import SwiftUI
 
 struct FolderStrokeCardView: View {
     
-    var title: String
-    var description: String
-    var coauthorCount: Int?
-    var folderImages: [String]?
+    var folder: FolderModel
     var haveProfileButton: Bool
-    var mainImage: String? { folderImages == [] ? nil : folderImages?[0] }
-    
+//
+//    var title: String
+//    var description: String
+//    var coauthorCount: Int?
+//    var folderImages: [String]?
+    private var description: String { "\(folder.author.lastName) \(folder.author.firstName)" }
+    private var mainImage: String? { folder.previewPictures == [] ? nil : folder.previewPictures?[0] }
+//    private var description: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
+
 
     var body: some View {
         CustomNavigationLink {
@@ -49,7 +53,7 @@ struct FolderStrokeCardView: View {
     
     var image: some View {
         VStack {
-            if folderImages != nil, let urlString = URL(string: mainImage ?? "") {
+            if folder.previewPictures != nil, let urlString = URL(string: mainImage ?? "") {
                 AsyncImage(url: urlString) { image in
                     image.resizable()
                 } placeholder: {
@@ -71,26 +75,18 @@ struct FolderStrokeCardView: View {
     
     
     //MARK: - folder Text Information
-
+    
     var folderTextInformation: some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text(title)
+            Text(folder.name)
                 .mediumFont(14)
                 .foregroundColor(.blackText)
                 .multilineTextAlignment(.leading)
                 .lineLimit(2)
             
-            HStack(spacing: 4) {
-                Text(description)
-                    .regularFont(11)
-                    .foregroundColor(.blackText)
-                
-                if coauthorCount != nil {
-                    Text("+ \(coauthorCount ?? 0)")
-                        .regularFont(11)
-                        .foregroundColor(.blackText)
-                }
-            }
+            Text(description)
+                .regularFont(11)
+                .foregroundColor(.blackText)
         }
     }
     

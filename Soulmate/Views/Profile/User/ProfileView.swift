@@ -13,6 +13,7 @@ import SwiftUI
 struct ProfileView: View {
     
     @State var userId: Int
+    @State var authorizedUserProfile: Bool = false
     @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
@@ -22,11 +23,16 @@ struct ProfileView: View {
                     profile
                     GridView(viewModel: viewModel)
                 }
+                .padding(.top, Constants.topInset)
                 .padding(.bottom, Constants.bottomInset)
             }
             .background(Color.defaultBackground.ignoresSafeArea())
             
-            actionButtons
+            if authorizedUserProfile {
+                chartButton
+            } else {
+                actionButtons
+            }
         }
         .onAppear { viewModel.fetchUser(userId) }
     }
@@ -62,10 +68,11 @@ struct ProfileView: View {
     //MARK: - Profile Info
     
     var profileInfo: some View {
-        VStack(alignment: .leading, spacing: 110) {
+        VStack(alignment: .leading, spacing: authorizedUserProfile ? 200 : 130) {
             TitleBlock(viewTitle: viewModel.title,
-                          subTitle: viewModel.description,
-                          titleColor: .whiteText)
+                       subTitle: viewModel.description,
+                       titleColor: .whiteText,
+                       topPadding: authorizedUserProfile ? 0 : 77)
             
             VStack(alignment: .leading, spacing: 40) {
                 profileBaseInfo
@@ -93,6 +100,19 @@ struct ProfileView: View {
     }
     
     
+    //MARK: - Chart Buttons
+    
+    var chartButton: some View {
+        CustomNavigationLink {
+            BigStandartButton(imageName: "chart")
+                .padding(.horizontal, Constants.horizontalInset)
+                .padding(.top, Constants.topInset)
+        } destination: {
+            
+        }
+    }
+    
+    
     //MARK: - Action Buttons
     
     var actionButtons: some View {
@@ -114,6 +134,7 @@ struct ProfileView: View {
             }
         }
         .padding(.horizontal, Constants.horizontalInset)
+        .padding(.top, Constants.topInset)
     }
     
     
@@ -152,6 +173,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(userId: 2, viewModel: ProfileViewModel())
+        ProfileView(userId: 4, viewModel: ProfileViewModel())
     }
 }

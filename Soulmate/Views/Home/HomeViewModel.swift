@@ -11,11 +11,9 @@ import SwiftUI
 final class HomeViewModel: ObservableObject {
 
     @Published var professionalSpheres = MockService.professionalSpheres
-    @Published var friendsData = MockService.friendsData
     
     @Published var suitableUsers: [UserModel] = []
     @Published var suitableFolders: [FolderModel] = []
-    
     
     var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
     
