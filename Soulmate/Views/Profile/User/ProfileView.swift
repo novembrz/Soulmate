@@ -24,7 +24,7 @@ struct ProfileView: View {
                     GridView(viewModel: viewModel)
                 }
                 .padding(.top, Constants.topInset)
-                .padding(.bottom, Constants.bottomInset)
+                .padding(.bottom, 140)
             }
             .background(Color.defaultBackground.ignoresSafeArea())
             
@@ -128,7 +128,7 @@ struct ProfileView: View {
                 CustomNavigationLink { //MARK: ;;;; aaaaaaa
                     StandartButton(imageName: "dote")
                 } destination: {
-                    AboutUserView(user: viewModel.user ?? MockService.mockUser)
+                    AboutUserView(user: viewModel.user ?? MockService.mockUser, viewModel: AboutUserViewModel())
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -173,6 +173,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(userId: 4, viewModel: ProfileViewModel())
+        ProfileView(userId: 2, viewModel: ProfileViewModel())
     }
 }

@@ -18,7 +18,7 @@ final class ProfileViewModel: ObservableObject {
     var description: String { "\(user?.city ?? ""), \(ageString)"}
     var title: String { "\(user?.firstName ?? "")\n\(user?.lastName ?? "")" }
     
-    var personProfessions: [UserProfessions] { user?.userProfessions?.sorted(by: { $0.position < $1.position }) ?? [] }
+    var personProfessions: [UserProfessions] { user?.professions?.sorted(by: { $0.position < $1.position }) ?? [] }
     
     let defaultHex = "9AC5BC"
     

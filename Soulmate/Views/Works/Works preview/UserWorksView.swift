@@ -34,6 +34,8 @@ struct UserWorksView: View {
                     seeOtherButton
                 } else {
                     Image("worksPlug")
+                        .resizable()
+                        .scaledToFit()
                 }
             }
             .padding(.top, Constants.topInset)
@@ -60,11 +62,12 @@ struct UserWorksView: View {
             CustomNavigationLink {
                 Image(viewModel.author)
                     .resizable()
-                    .frame(width: 40, height: 40)
                     .scaledToFill()
+                    .frame(width: 40, height: 40)
+                    .clipped()
                     .cornerRadius(10)
             } destination: {
-                //ProfileView(viewModel: ProfileViewModel())
+                //ProfileView(userId: <#T##Int#>, viewModel: <#T##ProfileViewModel#>)
             }
             
             if let coauthors = viewModel.coauthors {
@@ -95,13 +98,15 @@ struct UserWorksView: View {
                             VStack(alignment: .leading, spacing: 7) {
                                 Image(work)
                                     .resizable()
+                                    .aspectRatio(contentMode: .fill)
                                     .frame(height: 225)
-                                    .aspectRatio(contentMode: .fit)
+                                    .frame(minWidth: 125, maxWidth: 170, alignment: .center)
+                                    .clipped()
                                     .cornerRadius(15)
                                 
                                 HStack {
                                     Text("Анфас здания")
-                                        .mediumFont(12)
+                                        .mediumFont(14)
                                         .foregroundColor(.blackText)
                                         .lineLimit(2)
                                     
@@ -128,7 +133,7 @@ struct UserWorksView: View {
         CustomNavigationLink {
             LongButton(title: "Посмотреть другие проекты автора")
         } destination: {
-            UserFoldersView(viewModel: UserFoldersViewModel())
+            FoldersView(viewModel: FoldersViewModel())
         }
     }
     

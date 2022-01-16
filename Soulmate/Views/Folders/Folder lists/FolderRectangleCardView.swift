@@ -10,7 +10,8 @@ import SwiftUI
 struct FolderRectangleCardView: View {
     var folder: FolderModel
     //    private var description: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
-    private var description: String { "\(folder.author.lastName) \(folder.author.firstName)" }
+    private var description: String { "\(folder.name)" }
+    private var author: String { "\(folder.author.lastName) \(folder.author.firstName)" }
     var folderImagesCount: Int { folder.previewPictures?.count ?? 0 }
     
     var body: some View {
@@ -29,45 +30,54 @@ struct FolderRectangleCardView: View {
     
     var previewImages: some View {
         HStack(spacing: 2) {
-            if folder.previewPictures != nil,
-                let urlString = URL(string: folder.previewPictures?[0] ?? "") {
-                AsyncImage(url: urlString) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
-                }
-                .scaledToFill()
-                
-                
-                VStack(spacing: 2) {
-                    if folderImagesCount > 1,
-                       let urlString = URL(string: folder.previewPictures?[1] ?? "") {
-                        AsyncImage(url: urlString) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .frame(width: 100)
-                        .frame(height: folderImagesCount > 2 ? 85 : .infinity)
+            if folder.previewPictures != nil, folder.previewPictures != [] {
+                if let urlString = URL(string: folder.previewPictures?[0] ?? "") {
+                    AsyncImage(url: urlString) { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
                     }
+                    .scaledToFill()
                     
-                    if folderImagesCount > 2,
-                       let urlString = URL(string: folder.previewPictures?[2] ?? "") {
-                        AsyncImage(url: urlString) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
+                    if folderImagesCount > 1 {
+                        VStack(spacing: 2) {
+                            
+                            if let urlString = URL(string: folder.previewPictures?[1] ?? "") {
+                                AsyncImage(url: urlString) { image in
+                                    image.resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .scaledToFill()
+                                .frame(width: 100)
+                                .frame(height: folderImagesCount > 2 ? 85 : 170)
+                                .clipped()
+                            }
+                            
+                            if folderImagesCount > 2,
+                               let urlString = URL(string: folder.previewPictures?[2] ?? "") {
+                                AsyncImage(url: urlString) { image in
+                                    image.resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .scaledToFill()
+                                .frame(width: 100)
+                                .frame(height: 85)
+                                .clipped()
+                            }
                         }
-                        .frame(width: 100)
-                        .frame(height: 85)
                     }
                 }
-                
             } else {
                 Image(Constants.plugImage)
+                    .resizable()
+                    .scaledToFill()
             }
         }
         .frame(height: 170)
+        .frame(width: UIScreen.width - Constants.horizontalInset*2)
+        .clipped()
         .cornerRadius(15)
     }
 
@@ -105,6 +115,6 @@ struct FolderRectangleCardView: View {
 
 struct FolderRectangleCardView_Previews: PreviewProvider {
     static var previews: some View {
-        UserFoldersView(viewModel: UserFoldersViewModel())
+        FoldersView(viewModel: FoldersViewModel())
     }
 }

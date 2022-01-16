@@ -9,10 +9,16 @@ import SwiftUI
 
 struct ContentCard: View {
     
+    enum ContentType {
+        case user, work
+    }
+    
     var name: String
+    var id: Int
     var lastName: String?
     var description: String
     var imageString: String
+    var contentType: ContentType
     
     var height: CGFloat = 195
     var minWidth: CGFloat = 82
@@ -20,7 +26,26 @@ struct ContentCard: View {
     var isColor: Bool = false
     
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
+        CustomNavigationLink {
+            ZStack(alignment: .bottomLeading) {
+                previewImage
+                informationText
+            }
+        } destination: {
+            switch contentType {
+            case .user:
+                ProfileView(userId: id, viewModel: ProfileViewModel())
+            default:
+                Text("Error")
+            }
+        }
+    }
+    
+    
+    //MARK: - Preview Image
+    
+    var previewImage: some View {
+        VStack {
             if !isColor {
                 if let urlString = URL(string: imageString) {
                     AsyncImage(url: urlString) { image in
@@ -35,6 +60,12 @@ struct ContentCard: View {
                     .cornerRadius(15)
                 } else {
                     Image(Constants.plugImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: height)
+                        .frame(minWidth: minWidth, maxWidth: maxWidth, alignment: .center)
+                        .clipped()
+                        .cornerRadius(15)
                 }
                 
             } else {
@@ -42,26 +73,31 @@ struct ContentCard: View {
                     .frame(height: height)
                     .foregroundColor(.mintGreen)
             }
-            
-            VStack(alignment: .leading) {
-                Text("\(name)")
-                    .boldFont(12)
-                    .foregroundColor(.whiteText)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(1)
-                
-                Text("\(lastName ?? "")")
-                    .boldFont(12)
-                    .foregroundColor(.whiteText)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(1)
-                
-                Text(description)
-                    .regularFont(11)
-                    .foregroundColor(.whiteText)
-                    .lineLimit(1)
-            }
-            .padding(10)
         }
+    }
+    
+    
+    //MARK: - Information Text
+    
+    var informationText: some View {
+        VStack(alignment: .leading) {
+            Text("\(name)")
+                .boldFont(12)
+                .foregroundColor(.whiteText)
+                .multilineTextAlignment(.leading)
+                .lineLimit(1)
+            
+            Text("\(lastName ?? "")")
+                .boldFont(12)
+                .foregroundColor(.whiteText)
+                .multilineTextAlignment(.leading)
+                .lineLimit(1)
+            
+            Text(description)
+                .regularFont(11)
+                .foregroundColor(.whiteText)
+                .lineLimit(1)
+        }
+        .padding(10)
     }
 }

@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AboutUserView: View {
     
-    @State var isAllowWritingMessages = true //будет внутри юзера
     @State var user: UserModel
+    @ObservedObject var viewModel: AboutUserViewModel
     
     var ageString: String { user.age == nil ? "" : "\(user.age ?? 0)" }
+    
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -21,6 +22,9 @@ struct AboutUserView: View {
         }
         .padding(.top, Constants.topInset)
         .background(Color.defaultBackground.ignoresSafeArea())
+        .onAppear {
+            viewModel.fetchWorkPlaces(user.id)
+        }
     }
     
     
@@ -30,7 +34,7 @@ struct AboutUserView: View {
         HStack(spacing: 12) {
             Spacer()
             
-            if isAllowWritingMessages {
+            if viewModel.isAllowWritingMessages {
                 StandartButton(imageName: "send")
             }
             
@@ -52,8 +56,9 @@ struct AboutUserView: View {
             }
             .padding(.horizontal, Constants.horizontalInset)
             
-            //MARK: if workPlaces != nil
-            workPlaces
+            if viewModel.userWorkPlaces != nil {
+                workPlaces
+            }
             
             Spacer()
         }
@@ -85,32 +90,35 @@ struct AboutUserView: View {
     var workPlaces: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 13) {
-                ForEach(0...3, id: \.self) { item in
-                    VStack {
-                        VStack(spacing: 11) {
-                            Image(systemName: "ivfluid.bag")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 55)
-                                .foregroundColor(.blackToWhite)
+                if let workPlaces = viewModel.userWorkPlaces {
+                    ForEach(workPlaces, id: \.self) { place in
+                        VStack {
+                            VStack(spacing: 13) {
+                                Image(systemName: "ivfluid.bag")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 55)
+                                    .foregroundColor(.blackToWhite)
+                                
+                                Text(place.name)
+                                    .mediumFont(13)
+                                    .foregroundColor(.blackText)
+                                    .multilineTextAlignment(.center)
+                            }
+                            .padding(.top, 20)
                             
-                            Text("sdsdfadf")
-                                .mediumFont(13)
+                            Spacer()
+                            
+                            Text("fff")
+                                .regularFont(12)
                                 .foregroundColor(.blackText)
+                                .padding(.bottom, 10)
+                                .multilineTextAlignment(.center)
                         }
-                        .padding(.top, 20)
-                        
-                        Spacer()
-                        
-                        Text("ssdv")
-                            .regularFont(12)
-                            .foregroundColor(.blackText)
-                            .padding(.bottom, 10)
-                        
+                        .frame(width: 115, height: 163)
+                        .background(Color.whiteToDark)
+                        .cornerRadius(15)
                     }
-                    .frame(width: 115, height: 163)
-                    .background(Color.whiteToDark)
-                    .cornerRadius(15)
                 }
             }
             .padding(.horizontal, Constants.horizontalInset)
@@ -124,6 +132,8 @@ struct AboutUserView: View {
 
 struct AboutUserView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutUserView(user: MockService.mockUser)
+        CustomNavigationView {
+            ProfileView(userId: 1, authorizedUserProfile: true, viewModel: ProfileViewModel())
+        }
     }
 }

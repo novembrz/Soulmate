@@ -37,19 +37,23 @@ struct SuitableUsersView: View {
                 LazyVGrid(columns: viewModel.columnsArray, spacing: 12) {
                     ForEach(suitableUsers, id: \.self) { user in
                         ContentCard(name: user.firstName,
+                                    id: user.id,
                                     lastName: user.lastName,
-                                    description: user.userProfessions?
+                                    description: user.professions?
                                         .filter { $0.main }
                                         .first?.name ?? "",
                                     imageString: user.avatars?
                                         .filter { $0.main ?? false }
                                         .first?.link ?? "",
-                                    height: UIScreen.height / 5.2
+                                    contentType: .user,
+                                    height: UIScreen.height / 5.3
                         )
                     }
                 }
             } else {
                 Image("errorPlug")
+                    .resizable()
+                    .scaledToFit()
                     .padding(.top, 70)
             }
         }

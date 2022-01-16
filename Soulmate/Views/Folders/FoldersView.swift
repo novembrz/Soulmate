@@ -1,5 +1,5 @@
 //
-//  UserFoldersView.swift
+//  FoldersView.swift
 //  Soulmate
 //
 //  Created by dasha on 30.11.2021.
@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-struct UserFoldersView: View {
+struct FoldersView: View {
     
-    @ObservedObject var viewModel: UserFoldersViewModel
-    //@State var folders: [FolderModel] //отдаем сразу папки, название как вытащить
-    //@State var professionId: [FolderModel] // чтобы распарсить данные и вытащить все папки из профессии
+    @ObservedObject var viewModel: FoldersViewModel
+    @State var userProfessionId: Int?
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -19,6 +18,9 @@ struct UserFoldersView: View {
             moreButtons
         }
         .background(Color.defaultBackground.ignoresSafeArea())
+        .onAppear {
+            viewModel.fetchData(userProfessionId: userProfessionId)
+        }
     }
     
     
@@ -30,15 +32,18 @@ struct UserFoldersView: View {
                 
                 TitleBlock(viewTitle: viewModel.getFolderName())
                 
-                if viewModel.professionWorks != [] {
+                if viewModel.folders != [] {
                     switch viewModel.currentViewStyle {
                     case .stroke:
+                        //rectangleList
                         strokeList
                     case .rectangle:
                         rectangleList
                     }
                 } else {
                     Image("folderPlug")
+                        .resizable()
+                        .scaledToFit()
                 }
             }
             .padding(.top, Constants.topInset)
@@ -71,7 +76,7 @@ struct UserFoldersView: View {
     
     var strokeList: some View {
         VStack(alignment: .leading, spacing: 17) {
-            ForEach(viewModel.professionWorks, id: \.self) { folder in //MARK: замени массив
+            ForEach(viewModel.folders, id: \.self) { folder in 
                 FolderStrokeCardView(folder: folder, haveProfileButton: false)
             }
         }
@@ -79,7 +84,7 @@ struct UserFoldersView: View {
     
     var  rectangleList: some View {
         VStack(spacing: 17) {
-            ForEach(viewModel.professionWorks, id: \.self) { folder in
+            ForEach(viewModel.folders, id: \.self) { folder in
                 FolderRectangleCardView(folder: folder)
             }
         }
@@ -89,8 +94,8 @@ struct UserFoldersView: View {
 
 //MARK: - Previews
 
-struct UserFoldersView_Previews: PreviewProvider {
+struct FoldersView_Previews: PreviewProvider {
     static var previews: some View {
-        UserFoldersView(viewModel: UserFoldersViewModel())
+        FoldersView(viewModel: FoldersViewModel())
     }
 }

@@ -11,14 +11,10 @@ struct FolderStrokeCardView: View {
     
     var folder: FolderModel
     var haveProfileButton: Bool
-//
-//    var title: String
-//    var description: String
-//    var coauthorCount: Int?
-//    var folderImages: [String]?
+
+    //    private var description: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
     private var description: String { "\(folder.author.lastName) \(folder.author.firstName)" }
     private var mainImage: String? { folder.previewPictures == [] ? nil : folder.previewPictures?[0] }
-//    private var description: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
 
 
     var body: some View {
@@ -96,8 +92,10 @@ struct FolderStrokeCardView: View {
     var folderButton: some View {
         VStack {
             if haveProfileButton {
-                StandartButton(imageName: "user", bgColor: .mintGreen, iconColor: .whiteToDark, buttonSize: 30, imageWidth: 12, imageHeight: 13) {
-                    print("Перешла к юзеру")
+                CustomNavigationLink {
+                    StandartButton(imageName: "user", bgColor: .mintGreen, iconColor: .whiteToDark, buttonSize: 30, imageWidth: 12, imageHeight: 13, routing: true)
+                } destination: {
+                    ProfileView(userId: folder.author.id, viewModel: ProfileViewModel())
                 }
             } else {
                 CustomNavigationLink {
@@ -120,6 +118,6 @@ struct FolderStrokeCardView: View {
 
 struct FolderCard_Previews: PreviewProvider {
     static var previews: some View {
-        UserFoldersView(viewModel: UserFoldersViewModel())
+        FoldersView(viewModel: FoldersViewModel())
     }
 }

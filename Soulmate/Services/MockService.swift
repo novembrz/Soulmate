@@ -25,7 +25,7 @@ class MockService {
     ]
     
     
-    static var mockUser: UserModel = UserModel(id: 1, username: "username", firstName: "username", lastName: "username", city: "username", age: 16, color: "#FF0000", description: "username", views: 16, userProfessions: professionArray, avatars: [Avatars(link: "", main: true)], totalWorks: 16, totalSubscribers: 16, totalLikes: 16)
+    static var mockUser: UserModel = UserModel(id: 1, username: "username", firstName: "username", lastName: "username", city: "username", age: 16, color: "#FF0000", description: "username", views: 16, professions: professionArray, avatars: [Avatars(link: "", main: true)], totalWorks: 16, totalSubscribers: 16, totalLikes: 16)
     
     
     static var mockFolder: FolderModel = FolderModel(previewPictures: ["Petrov, Dilan, Azizova"], name: "Концепция феминистического сериала по «1984» Дж. Оруэлла", author: mockUser)

@@ -16,25 +16,45 @@ struct StandartButton: View {
     var imageWidth: CGFloat = 15
     var imageHeight: CGFloat = 15
     var action: (() -> ())?
+    var routing: Bool = false
+    
     
     var body: some View {
+        if routing {
+            buttonView
+        } else {
+            actionButton
+        }
+    }
+    
+    
+    //MARK: - Action Button
+    
+    var actionButton: some View {
         Button {
             if action != nil {
                 action!()
             }
         } label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .frame(width: buttonSize, height: buttonSize)
-                    .foregroundColor(bgColor)
-                    .buttonShadow()
-                
-                Image(imageName)
-                    .resizable()
-                    .frame(width: imageWidth, height: imageHeight)
-                    .foregroundColor(iconColor)
-                    .font(.system(size: imageHeight, weight: .medium))
-            }
+            buttonView
+        }
+    }
+    
+    
+    //MARK: - Button View
+    
+    var buttonView: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .frame(width: buttonSize, height: buttonSize)
+                .foregroundColor(bgColor)
+                .buttonShadow()
+            
+            Image(imageName)
+                .resizable()
+                .frame(width: imageWidth, height: imageHeight)
+                .foregroundColor(iconColor)
+                .font(.system(size: imageHeight, weight: .medium))
         }
     }
 }

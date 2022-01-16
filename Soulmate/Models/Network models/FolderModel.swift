@@ -8,11 +8,22 @@
 import Foundation
 
 
+struct FoldersDataModel: Decodable {
+    var profession: ProfessionInfoModel
+    var folders: [FolderModel]
+}
+
 //Папка с работами
 struct FolderModel: Decodable {
     var previewPictures: [String]? //3 photo for folder preview
     var name: String
     var author: UserModel // future [UserModel] because coathors
+}
+
+
+struct ProfessionInfoModel: Decodable {
+    var id: Int
+    var name: String
 }
 
 
@@ -22,3 +33,4 @@ extension FolderModel: Hashable {
         && lhs.author == rhs.author
     }
 }
+

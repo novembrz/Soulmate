@@ -69,7 +69,7 @@ struct CardView: View {
                     .padding(.horizontal, 15)
                 }
             } destination: {
-                AboutUserView(user: user ?? MockService.mockUser)
+                AboutUserView(user: user ?? MockService.mockUser, viewModel: AboutUserViewModel())
             }
         }
     }

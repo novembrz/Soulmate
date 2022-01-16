@@ -121,13 +121,15 @@ struct HomeView: View {
                         ForEach(viewModel.suitableUsers, id: \.self) { user in
                             CustomNavigationLink {
                                 ContentCard(name: user.firstName,
+                                            id: user.id,
                                             lastName: user.lastName,
-                                            description: user.userProfessions?
+                                            description: user.professions?
                                                 .filter { $0.main }
                                                 .first?.name ?? "",
                                             imageString: user.avatars?
                                                 .filter { $0.main ?? false }
                                                 .first?.link ?? "",
+                                            contentType: .user,
                                             minWidth: 135, maxWidth: 135
                                 )
                             } destination: {
@@ -152,7 +154,7 @@ struct HomeView: View {
     //MARK: - seeAllUser
     
     var seeAllUser: some View {
-        Button {} label: {
+        CustomNavigationLink {
             VStack(spacing: 15) {
                 Text("А можно всех посмотреть?")
                     .boldFont(14)
@@ -160,11 +162,16 @@ struct HomeView: View {
                     .multilineTextAlignment(.center)
                     .frame(width: 100)
                 
-                Image("seeAll")
+                Image("key")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 46)
             }
             .frame(width: 135, height: 195)
             .background(Color.mintGreen)
             .cornerRadius(15)
+        } destination: {
+            SuitableUsersView(viewModel: SuitableUsersViewModel())
         }
     }
     
@@ -197,7 +204,7 @@ struct HomeView: View {
                 }
             }
         } destination: {
-            UserFoldersView(viewModel: UserFoldersViewModel())
+            FoldersView(viewModel: FoldersViewModel())
         }
     }
     
@@ -208,7 +215,7 @@ struct HomeView: View {
         ContentBlock(title: "Топ работ") {
             LazyVGrid(columns: viewModel.columns, spacing: 18) {
                 ForEach(0...15, id: \.self) { work in
-                    ContentCard(name: "work", lastName: "work", description: "work", imageString: "", height: 137, isColor: true)
+                    ContentCard(name: "work", id: 1, lastName: "work", description: "work", imageString: "", contentType: .work, height: 137, isColor: true)
                 }
             }
             .padding(.horizontal, Constants.horizontalInset)
