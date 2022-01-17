@@ -29,22 +29,8 @@ struct FoldersView: View {
     var content: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 34) {
-                
                 TitleBlock(viewTitle: viewModel.getFolderName())
-                
-                if viewModel.folders != [] {
-                    switch viewModel.currentViewStyle {
-                    case .stroke:
-                        //rectangleList
-                        strokeList
-                    case .rectangle:
-                        rectangleList
-                    }
-                } else {
-                    Image("folderPlug")
-                        .resizable()
-                        .scaledToFit()
-                }
+                contentList
             }
             .padding(.top, Constants.topInset)
             .padding(.bottom, Constants.bottomInset)
@@ -74,18 +60,25 @@ struct FoldersView: View {
     
     //MARK: - List
     
-    var strokeList: some View {
+    var contentList: some View {
         VStack(alignment: .leading, spacing: 17) {
-            ForEach(viewModel.folders, id: \.self) { folder in 
-                FolderStrokeCardView(folder: folder, haveProfileButton: false)
-            }
-        }
-    }
-    
-    var  rectangleList: some View {
-        VStack(spacing: 17) {
             ForEach(viewModel.folders, id: \.self) { folder in
-                FolderRectangleCardView(folder: folder)
+                CustomNavigationLink {
+                    if viewModel.folders != [] {
+                        switch viewModel.currentViewStyle {
+                        case .stroke:
+                            FolderStrokeCardView(folder: folder, haveProfileButton: false)
+                        case .rectangle:
+                            FolderRectangleCardView(folder: folder)
+                        }
+                    } else {
+                        Image("folderPlug")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                } destination: {
+                    UserWorksView(folderId: folder.id, viewModel: UserWorksViewModel())
+                }
             }
         }
     }
@@ -96,6 +89,8 @@ struct FoldersView: View {
 
 struct FoldersView_Previews: PreviewProvider {
     static var previews: some View {
-        FoldersView(viewModel: FoldersViewModel())
+        CustomNavigationView {
+            FoldersView(viewModel: FoldersViewModel())
+        }
     }
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct UserWorksView: View {
     
+    @State var folderId: Int
     @ObservedObject var viewModel: UserWorksViewModel
-    
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -18,6 +18,9 @@ struct UserWorksView: View {
             moreButton
         }
         .background(Color.defaultBackground.ignoresSafeArea())
+        .onAppear {
+            viewModel.fetchWorks(folderId)
+        }
     }
     
     
@@ -160,6 +163,6 @@ struct UserWorksView: View {
 
 struct WorksView_Previews: PreviewProvider {
     static var previews: some View {
-        UserWorksView(viewModel: UserWorksViewModel())
+        UserWorksView(folderId: 1, viewModel: UserWorksViewModel())
     }
 }

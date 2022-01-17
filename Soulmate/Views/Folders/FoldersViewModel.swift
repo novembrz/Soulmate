@@ -27,7 +27,7 @@ final class FoldersViewModel: ObservableObject {
                 self.checkAndAssignData(foldersArray?.folders)
             }
         } else {
-            DataFetcherServices.fetchFolders { foldersArray in
+            DataFetcherServices.fetchAllFolders { foldersArray in
                 self.checkAndAssignData(foldersArray)
             }
         }

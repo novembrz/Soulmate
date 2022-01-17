@@ -16,6 +16,7 @@ struct DataFetcherServices {
     static var foldersURL = "http://192.168.1.66:8082/api/folders"
     static var workPlacesURL = "http://localhost:8082/api/was-work"
     
+    
     static func fetchHomePage(completion: @escaping (HomeModel?) -> Void) {
         NetworkService.fetchData(urlString: homePageURL, completion: completion)
     }
@@ -25,15 +26,19 @@ struct DataFetcherServices {
         NetworkService.fetchData(urlString: urlString, completion: completion)
     }
     
-    
     // folders
     
-    static func fetchFolders(completion: @escaping ([FolderModel]?) -> Void) {
+    static func fetchAllFolders(completion: @escaping ([FolderModel]?) -> Void) {
         NetworkService.fetchData(urlString: foldersURL, completion: completion)
     }
     
     static func fetchUserProfessionFolders(id: Int, completion: @escaping (FoldersDataModel?) -> Void) {
         let urlString = foldersURL + "/user-profession/\(id)"
+        NetworkService.fetchData(urlString: urlString, completion: completion)
+    }
+    
+    static func fetchFolder(id: Int, completion: @escaping (FoldersDataModel?) -> Void) {
+        let urlString = foldersURL + "/\(id)"
         NetworkService.fetchData(urlString: urlString, completion: completion)
     }
     

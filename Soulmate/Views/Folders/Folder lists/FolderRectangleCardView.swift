@@ -9,19 +9,15 @@ import SwiftUI
 
 struct FolderRectangleCardView: View {
     var folder: FolderModel
-    //    private var description: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
+    //    private var author: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
     private var description: String { "\(folder.name)" }
     private var author: String { "\(folder.author.lastName) \(folder.author.firstName)" }
     var folderImagesCount: Int { folder.previewPictures?.count ?? 0 }
     
     var body: some View {
-        CustomNavigationLink {
-            VStack(spacing: 9) {
-                previewImages
-                folderDescription
-            }
-        } destination: {
-            UserWorksView(viewModel: UserWorksViewModel())
+        VStack(spacing: 9) {
+            previewImages
+            folderDescription
         }
     }
     
@@ -38,34 +34,11 @@ struct FolderRectangleCardView: View {
                         ProgressView()
                     }
                     .scaledToFill()
-                    
+
                     if folderImagesCount > 1 {
                         VStack(spacing: 2) {
-                            
-                            if let urlString = URL(string: folder.previewPictures?[1] ?? "") {
-                                AsyncImage(url: urlString) { image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .scaledToFill()
-                                .frame(width: 100)
-                                .frame(height: folderImagesCount > 2 ? 85 : 170)
-                                .clipped()
-                            }
-                            
-                            if folderImagesCount > 2,
-                               let urlString = URL(string: folder.previewPictures?[2] ?? "") {
-                                AsyncImage(url: urlString) { image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .scaledToFill()
-                                .frame(width: 100)
-                                .frame(height: 85)
-                                .clipped()
-                            }
+                            secondImage
+                            thirdImage
                         }
                     }
                 }
@@ -80,18 +53,63 @@ struct FolderRectangleCardView: View {
         .clipped()
         .cornerRadius(15)
     }
-
+    
+    
+    //MARK: - Second Image
+    
+    var secondImage: some View {
+        Group {
+            if let urlString = URL(string: folder.previewPictures?[1] ?? "") {
+                AsyncImage(url: urlString) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .scaledToFill()
+                .frame(width: 100)
+                .frame(height: folderImagesCount > 2 ? 85 : 170)
+                .clipped()
+            }
+        }
+    }
+    
+    
+    //MARK: - Third Image
+    
+    var thirdImage: some View {
+        Group {
+            if folderImagesCount > 2,
+               let urlString = URL(string: folder.previewPictures?[2] ?? "") {
+                AsyncImage(url: urlString) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .scaledToFill()
+                .frame(width: 100)
+                .frame(height: 85)
+                .clipped()
+            }
+        }
+    }
+    
     
     //MARK: - Project Description
-
+    
     var folderDescription: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 3) {
                 Text(description)
-                    .boldFont(14)
+                    .boldFont(16)
                     .foregroundColor(.blackText)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
+                
+                Text(author)
+                    .regularFont(11)
+                    .foregroundColor(.blackText)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(1)
             }
             
             Spacer()

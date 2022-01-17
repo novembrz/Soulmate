@@ -16,19 +16,8 @@ struct FolderStrokeCardView: View {
     private var description: String { "\(folder.author.lastName) \(folder.author.firstName)" }
     private var mainImage: String? { folder.previewPictures == [] ? nil : folder.previewPictures?[0] }
 
-
+    
     var body: some View {
-        CustomNavigationLink {
-            content
-        } destination: {
-            UserWorksView(viewModel: UserWorksViewModel())
-        }
-    }
-    
-    
-    //MARK: - content
-    
-    var content: some View {
         HStack(spacing: 13) {
             image
             folderTextInformation

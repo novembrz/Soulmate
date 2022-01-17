@@ -26,12 +26,14 @@ struct UserModel: Decodable {
 }
 
 struct UserProfessions: Decodable, Identifiable, Equatable {
+    var id: Int
     var name: String
     var main: Bool
-    var id: Int
     var position: Int
+    var userProfessionId: Int
+    var worksCount: Int
+    var folderCount: Int
 }
-
 
 struct Avatars: Decodable {
     var link: String?

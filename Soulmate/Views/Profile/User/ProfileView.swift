@@ -173,6 +173,8 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(userId: 2, viewModel: ProfileViewModel())
+        CustomNavigationView {
+            ProfileView(userId: 5, viewModel: ProfileViewModel())
+        }
     }
 }

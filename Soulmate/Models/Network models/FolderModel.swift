@@ -15,6 +15,7 @@ struct FoldersDataModel: Decodable {
 
 //Папка с работами
 struct FolderModel: Decodable {
+    var id: Int
     var previewPictures: [String]? //3 photo for folder preview
     var name: String
     var author: UserModel // future [UserModel] because coathors

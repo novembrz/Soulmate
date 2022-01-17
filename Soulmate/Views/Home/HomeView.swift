@@ -162,7 +162,7 @@ struct HomeView: View {
                     .multilineTextAlignment(.center)
                     .frame(width: 100)
                 
-                Image("key")
+                Image("seeAll")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 46)
@@ -189,14 +189,14 @@ struct HomeView: View {
                                 FolderStrokeCardView(folder: folder, haveProfileButton: true)
                                     .padding(.horizontal, Constants.horizontalInset)
                             } destination: {
-                                UserWorksView(viewModel: UserWorksViewModel())
+                                UserWorksView(folderId: folder.id, viewModel: UserWorksViewModel())
                             }
                             
                             CustomNavigationLink {
                                 FolderStrokeCardView(folder: folder, haveProfileButton: true)
                                     .padding(.horizontal, Constants.horizontalInset)
                             } destination: {
-                                UserWorksView(viewModel: UserWorksViewModel())
+                                UserWorksView(folderId: folder.id, viewModel: UserWorksViewModel())
                             }
                         }
                         .frame(width: 370)

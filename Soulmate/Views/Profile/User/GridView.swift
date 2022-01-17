@@ -56,11 +56,11 @@ struct CardView: View {
                         Spacer()
                         
                         HStack(spacing: 6) {
-                            Text("\(5)")
+                            Text("\(grid.worksCount)")
                                 .boldFont(16)
                                 .foregroundColor(grid.main ? .whiteText : .blackText)
                                  
-                            Text("работа".pluralLocalized(number: 5))
+                            Text("работа".pluralLocalized(number: grid.worksCount))
                                 .regularFont(16)
                                 .foregroundColor(grid.main ? .whiteText : .blackText)
                         }
@@ -69,7 +69,7 @@ struct CardView: View {
                     .padding(.horizontal, 15)
                 }
             } destination: {
-                AboutUserView(user: user ?? MockService.mockUser, viewModel: AboutUserViewModel())
+                FoldersView(viewModel: FoldersViewModel(), userProfessionId: grid.userProfessionId)
             }
         }
     }
@@ -80,6 +80,8 @@ struct CardView: View {
 
 struct GridView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(userId: 2, viewModel: ProfileViewModel())
+        CustomNavigationView {
+            ProfileView(userId: 2, viewModel: ProfileViewModel())
+        }
     }
 }

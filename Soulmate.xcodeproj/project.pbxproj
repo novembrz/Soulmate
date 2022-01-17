@@ -18,7 +18,7 @@
 		C819EE7D279380150011676F /* AboutUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C819EE7C279380150011676F /* AboutUserViewModel.swift */; };
 		C819EE80279381600011676F /* WorkPlacesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C819EE7F279381600011676F /* WorkPlacesModel.swift */; };
 		C81F1029277BBB6B006787E0 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F1028277BBB6B006787E0 /* HomeModel.swift */; };
-		C81F102B277BBC65006787E0 /* WorkCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102A277BBC65006787E0 /* WorkCardView.swift */; };
+		C81F102B277BBC65006787E0 /* ContentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102A277BBC65006787E0 /* ContentCardView.swift */; };
 		C81F102D277BBC81006787E0 /* ContentCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102C277BBC81006787E0 /* ContentCardModel.swift */; };
 		C81F1030277BC2A0006787E0 /* FolderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F102F277BC2A0006787E0 /* FolderModel.swift */; };
 		C81F1032277BCAB2006787E0 /* DataFetcherServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F1031277BCAB2006787E0 /* DataFetcherServices.swift */; };
@@ -38,6 +38,8 @@
 		C842576C275283FF009C405C /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C842576B275283FF009C405C /* BackButton.swift */; };
 		C842576E275286E3009C405C /* PluralLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = C842576D275286E3009C405C /* PluralLocalized.swift */; };
 		C851BC0B2763E606007A725E /* FoldersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C851BC0A2763E606007A725E /* FoldersViewModel.swift */; };
+		C8523CFE2794CC5800FF6536 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8523CFD2794CC5800FF6536 /* AuthenticationView.swift */; };
+		C8523D002794CD9600FF6536 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8523CFF2794CD9600FF6536 /* CustomTextField.swift */; };
 		C85AF643278C8DB0008034FE /* CustomNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AF642278C8DB0008034FE /* CustomNavigationLink.swift */; };
 		C85AF645278CC034008034FE /* AboutUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AF644278CC034008034FE /* AboutUserView.swift */; };
 		C85AF647278CC0A9008034FE /* BigTextBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AF646278CC0A9008034FE /* BigTextBlock.swift */; };
@@ -87,7 +89,7 @@
 		C819EE7C279380150011676F /* AboutUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserViewModel.swift; sourceTree = "<group>"; };
 		C819EE7F279381600011676F /* WorkPlacesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkPlacesModel.swift; sourceTree = "<group>"; };
 		C81F1028277BBB6B006787E0 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
-		C81F102A277BBC65006787E0 /* WorkCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCardView.swift; sourceTree = "<group>"; };
+		C81F102A277BBC65006787E0 /* ContentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCardView.swift; sourceTree = "<group>"; };
 		C81F102C277BBC81006787E0 /* ContentCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCardModel.swift; sourceTree = "<group>"; };
 		C81F102F277BC2A0006787E0 /* FolderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderModel.swift; sourceTree = "<group>"; };
 		C81F1031277BCAB2006787E0 /* DataFetcherServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherServices.swift; sourceTree = "<group>"; };
@@ -108,6 +110,8 @@
 		C842576B275283FF009C405C /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		C842576D275286E3009C405C /* PluralLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalized.swift; sourceTree = "<group>"; };
 		C851BC0A2763E606007A725E /* FoldersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersViewModel.swift; sourceTree = "<group>"; };
+		C8523CFD2794CC5800FF6536 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		C8523CFF2794CD9600FF6536 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C85AF642278C8DB0008034FE /* CustomNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationLink.swift; sourceTree = "<group>"; };
 		C85AF644278CC034008034FE /* AboutUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserView.swift; sourceTree = "<group>"; };
 		C85AF646278CC0A9008034FE /* BigTextBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTextBlock.swift; sourceTree = "<group>"; };
@@ -169,7 +173,7 @@
 		C803E6B1278F4B02009D4BBE /* Work */ = {
 			isa = PBXGroup;
 			children = (
-				C81F102A277BBC65006787E0 /* WorkCardView.swift */,
+				C81F102A277BBC65006787E0 /* ContentCardView.swift */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -234,6 +238,7 @@
 		C842574127501CEC009C405C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8523CFC2794CBC800FF6536 /* Sign In & Register */,
 				C8135721276354A70072B1F7 /* Display */,
 				C8F17D8D2756986700BC6A44 /* Home */,
 				C842576427527E16009C405C /* Profile */,
@@ -298,8 +303,17 @@
 				C85AF646278CC0A9008034FE /* BigTextBlock.swift */,
 				C8D8DAD0275A9D4C009A0552 /* Animation + Extension.swift */,
 				C8864403275A065000BC1B06 /* Buttons */,
+				C8523CFF2794CD9600FF6536 /* CustomTextField.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C8523CFC2794CBC800FF6536 /* Sign In & Register */ = {
+			isa = PBXGroup;
+			children = (
+				C8523CFD2794CC5800FF6536 /* AuthenticationView.swift */,
+			);
+			path = "Sign In & Register";
 			sourceTree = "<group>";
 		};
 		C8864403275A065000BC1B06 /* Buttons */ = {
@@ -539,6 +553,7 @@
 				C81F1029277BBB6B006787E0 /* HomeModel.swift in Sources */,
 				C8F17D8F2756BFA400BC6A44 /* SearchView.swift in Sources */,
 				C851BC0B2763E606007A725E /* FoldersViewModel.swift in Sources */,
+				C8523D002794CD9600FF6536 /* CustomTextField.swift in Sources */,
 				C819EE7D279380150011676F /* AboutUserViewModel.swift in Sources */,
 				C81F1030277BC2A0006787E0 /* FolderModel.swift in Sources */,
 				C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */,
@@ -572,7 +587,8 @@
 				C8864400275979E600BC1B06 /* ContentBlock.swift in Sources */,
 				C8A6AFEE278D8EEC00A3B80D /* BigStandartButton.swift in Sources */,
 				C8864402275A064800BC1B06 /* LongButton.swift in Sources */,
-				C81F102B277BBC65006787E0 /* WorkCardView.swift in Sources */,
+				C8523CFE2794CC5800FF6536 /* AuthenticationView.swift in Sources */,
+				C81F102B277BBC65006787E0 /* ContentCardView.swift in Sources */,
 				C8A6AFF2278D9A4000A3B80D /* Shadow.swift in Sources */,
 				C819EE80279381600011676F /* WorkPlacesModel.swift in Sources */,
 				C8D8DAF1275C1308009A0552 /* Animate + Extension.swift in Sources */,
