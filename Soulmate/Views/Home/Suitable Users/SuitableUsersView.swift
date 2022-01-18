@@ -36,7 +36,7 @@ struct SuitableUsersView: View {
             if let suitableUsers = viewModel.suitableUsers {
                 LazyVGrid(columns: viewModel.columnsArray, spacing: 12) {
                     ForEach(suitableUsers, id: \.self) { user in
-                        ContentCard(name: user.firstName,
+                        ContentCard(name: user.firstName, //отдаем работу или юзера а потом свитчером вызываем либо одну функцию заполнения либо другую
                                     id: user.id,
                                     lastName: user.lastName,
                                     description: user.professions?

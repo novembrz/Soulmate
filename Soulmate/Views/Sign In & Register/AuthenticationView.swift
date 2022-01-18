@@ -8,23 +8,109 @@
 import SwiftUI
 
 struct AuthenticationView: View {
+    
+    @ObservedObject var viewModel: AuthenticationViewModel
+    
     var body: some View {
         VStack {
-            Image("soulmate")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 130)
-                
-                
+            VStack(spacing: 53) {
+                VStack(spacing: 71) {
+                    Image("soulmate")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 130)
+                    
+                    switch viewModel.authenticationType {
+                    case .register:
+                        register
+                    case .signIn:
+                        signIn
+                    }
+                }
+                authButton
+            }
+            
+            Spacer()
+            
+            switchViewButton
         }
         .padding(.top, 98)
         .padding(.horizontal, Constants.horizontalInset)
+        .padding(.bottom, Constants.bottomInset)
         .background(Color.defaultBackground)
+    }
+    
+
+//MARK: - Sign In
+    
+    var signIn: some View {
+        VStack(alignment: .trailing, spacing: 14) {
+            CustomTextField(field: $viewModel.login,icon: "userLight", placeholder: "Логин")
+            CustomTextField(field: $viewModel.password,icon: "key", placeholder: "Пароль", isPassword: true)
+            
+            CustomNavigationLink {
+                Text("забыли пароль?")
+                    .mediumFont(14)
+                    .foregroundColor(.blackText)
+            } destination: {
+            }
+        }
+    }
+    
+    
+    //MARK: - Register
+    
+    var register: some View {
+        VStack(spacing: 12) {
+            CustomTextField(field: $viewModel.login,icon: "userLight", placeholder: "Логин")
+            CustomTextField(field: $viewModel.email,icon: "mail", placeholder: "Почта")
+                .keyboardType(.emailAddress)
+            CustomTextField(field: $viewModel.password,icon: "key", placeholder: "Пароль", isPassword: true)
+            CustomTextField(field: $viewModel.password,icon: "key", placeholder: "Повторите пароль", isPassword: true)
+        }
+    }
+    
+    
+    //MARK: - Auth button
+    
+    var authButton: some View {
+        Button {
+            //selected.toggle
+            viewModel.authentication()
+        } label: {
+            LongButton(title: viewModel.authButtonText, rigthIcon: "rigth", isGradient: true)
+        }
+        .modifier(ShakeEffect(shakes: viewModel.selected ? 2 : 0))
+        .animation(.goodRipple(), value: viewModel.selected)
+    }
+    
+    
+    //MARK: - Switch View Button
+    
+    var switchViewButton: some View {
+        VStack(spacing: 4) {
+            Text(viewModel.descriptionText)
+                .regularFont(16)
+                .foregroundColor(.placeholder)
+            
+            Button {
+                withAnimation {
+                    viewModel.authenticationType = viewModel.authenticationType == .signIn ? .register : .signIn
+                }
+            } label: {
+                Text(viewModel.switchButtonText)
+                    .regularFont(17)
+                    .foregroundColor(.blackText)
+            }
+        }
     }
 }
 
+
+//MARK: - Previews
+
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationView()
+        AuthenticationView(viewModel: AuthenticationViewModel())
     }
 }

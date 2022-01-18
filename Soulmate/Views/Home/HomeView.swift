@@ -70,6 +70,7 @@ struct HomeView: View {
                     Image("filter")
                         .resizable()
                         .frame(width: 14, height: 18)
+                        .foregroundColor(.whiteText)
                 }
             }
         }
@@ -166,6 +167,7 @@ struct HomeView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 46)
+                    .foregroundColor(.whiteText)
             }
             .frame(width: 135, height: 195)
             .background(Color.mintGreen)

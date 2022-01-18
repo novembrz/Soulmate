@@ -29,18 +29,17 @@ struct SearchView: View {
                 viewModel.isSearching = true
             }
             .overlay(
-                xmarkButton
+                xmarkButtonAndIcon
             )
             .transition(.move(edge: .trailing))
             .animation(.easeOut, value: 0.5)
         }
-        
     }
     
     
     //MARK: - xmark Button
     
-    var xmarkButton: some View {
+    var xmarkButtonAndIcon: some View {
         HStack {
             Image("search")
             Spacer()

@@ -11,9 +11,13 @@ struct LongButton: View {
     
     var title: String
     var iconName: String?
+    var rigthIcon: String?
+    var isGradient = false
     
     var body: some View {
-        VStack {
+        ZStack {
+            backgrounView
+            
             HStack(spacing: 11) {
                 if iconName != nil {
                     Image(iconName!)
@@ -25,15 +29,38 @@ struct LongButton: View {
                     .foregroundColor(.whiteText)
             }
             .padding(.vertical, 15)
-            .frame(maxWidth: .infinity)
+            
+            HStack {
+                Spacer()
+                Image(rigthIcon != nil ? rigthIcon! : "")
+                    .foregroundColor(.whiteText)
+                    .padding(.trailing, Constants.horizontalInset)
+            }
         }
-        .background(Color.mintGreen)
-        .cornerRadius(15)
+        .frame(width: .infinity, height: 47)
+    }
+    
+    
+    //MARK: - backgrounView
+    
+    var backgrounView: some View {
+        Group {
+            if isGradient {
+                LinearGradient(colors: [.lightPurple, .turquoise], startPoint: .leading, endPoint: .trailing)
+                    .cornerRadius(15)
+            } else {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.mintGreen)
+            }
+        }
     }
 }
 
+
+//MARK: - Previews
+
 struct LongButton_Previews: PreviewProvider {
     static var previews: some View {
-        LongButton(title: "Найти на карте", iconName: "map")
+        LongButton(title: "Найти на карте", iconName: "map", rigthIcon: "rigth")
     }
 }
