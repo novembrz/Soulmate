@@ -27,6 +27,37 @@ final class NetworkService {
         task.resume()
     }
     
+    static func postData(param: [String: Any], urlString: String, completion: @escaping (Result) -> Void) {
+        let urlString = "http://localhost:8082/api/auth/signin"
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: param, options: []),
+              let url = URL(string: urlString)
+        else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")        // the expected response is also JSON
+        request.addValue("Basic \(jsonData)", forHTTPHeaderField: "Authorization") //мб только его надо
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil || (response as! HTTPURLResponse).statusCode != 200 {
+                print("💔", (response as! HTTPURLResponse).statusCode)
+                completion(.failure(AuthError.serverError))
+                return
+            }
+            
+            if let decode = NetworkService.decodeJSON(type: SignInResponse.self, from: data) {
+                print("✅", decode)
+                KeychainHelper.standard.save(data, service: "access-token", account: "soulmate")
+                
+                completion(.success)
+            }
+        }
+        task.resume()
+    }
+    
     
     static func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()

@@ -11,8 +11,8 @@ import Foundation
 struct UserModel: Decodable {
     var id: Int
     var username: String
-    var firstName: String
-    var lastName: String
+    var firstName: String?
+    var lastName: String?
     var city: String?
     var age: Int?
     var color: String?
@@ -25,16 +25,6 @@ struct UserModel: Decodable {
     var totalLikes: Int?
 }
 
-struct UserProfessions: Decodable, Identifiable, Equatable {
-    var id: Int
-    var name: String
-    var main: Bool
-    var position: Int
-    var userProfessionId: Int
-    var worksCount: Int
-    var folderCount: Int
-}
-
 struct Avatars: Decodable {
     var link: String?
     var main: Bool?
@@ -43,12 +33,6 @@ struct Avatars: Decodable {
 
 extension UserModel: Hashable {
     static func == (lhs: UserModel, rhs: UserModel) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
-extension UserProfessions: Hashable {
-    static func == (lhs: UserProfessions, rhs: UserProfessions) -> Bool {
         return lhs.id == rhs.id
     }
 }

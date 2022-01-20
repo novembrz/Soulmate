@@ -121,7 +121,7 @@ struct HomeView: View {
                     HStack(spacing: 11) {
                         ForEach(viewModel.suitableUsers, id: \.self) { user in
                             CustomNavigationLink {
-                                ContentCard(name: user.firstName,
+                                ContentCard(name: user.firstName ?? "",
                                             id: user.id,
                                             lastName: user.lastName,
                                             description: user.professions?

@@ -24,6 +24,8 @@ extension Color {
     public static let whiteText = Color("whiteText")
     public static let blackText = Color("black")
     public static let placeholder = Color("placeholder")
+    
+    public static let error = Color("error")
 }
 
 

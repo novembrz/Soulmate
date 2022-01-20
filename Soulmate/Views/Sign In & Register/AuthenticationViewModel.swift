@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 final class AuthenticationViewModel: ObservableObject {
@@ -15,12 +16,14 @@ final class AuthenticationViewModel: ObservableObject {
     }
     
     @Published var authenticationType: AuthenticationType = .signIn
-    @Published var selected = false
+    @Published var isErrorAuth = false
+    @Published var errorText: String?
+    @Published var isSignInSuccses = false
     
-    @Published var login: String?
-    @Published var email: String?
-    @Published var password: String?
-    @Published var confirmPassword: String?
+    @Published var login: String = ""
+    @Published var email: String = ""
+    @Published var password: String = ""
+    @Published var confirmPassword: String = ""
     
     
     var descriptionText: String { authenticationType == .signIn ? "Нет аккаунта?" : "Уже есть аккаунт?" }
@@ -30,27 +33,58 @@ final class AuthenticationViewModel: ObservableObject {
     func authentication() {
         switch authenticationType {
         case .register:
-            
+            register()
         case .signIn:
-            
-            signIn(username: login, password: password)
+            signInValidation()
         }
     }
     
     
+    //MARK: - SignIn
     
-    private func signIn(username: String, password: String) {
-        AuthService.postData(param: ["username": username, "password": password]) { result in
+    private func signInValidation() {
+        //is Loading = true
+        Validators.canRegister(login: login, email: email, password: password, confirmPassword: confirmPassword) { result in
             switch result {
-            case .success(let string):
-                
-                print("🧀", string)
-            case .failure(let error):
-                print(error.localizedDescription)
-                // покажи опвещение об ошибке
+            case .success:
+                self.signIn()
+            case .failure(let authError):
+                self.errorText = authError.errorDescription
+                self.isErrorAuth = true
+                //is Loading = false
             }
         }
     }
     
-
+    
+    private func signIn() {
+        AuthFetcherServices.signIn(login: login, password: password) { result in
+            switch result {
+            case .success:
+                print("🧀", "string")
+                if let readData = KeychainHelper.standard.read(service: "access-token", account: "soulmate") {
+                    if let readAccessToken = String(data: readData, encoding: .utf8) {
+                        print("🔑", readAccessToken)
+                    }
+                }
+                //is Loading = false
+                self.isSignInSuccses = true //- for Routing
+                
+            case .failure(let authError):
+                self.errorText = authError.errorDescription
+                self.isErrorAuth = true
+                //is Loading = false
+            }
+        }
+    }
+    
+    
+    
+    //MARK: - Register
+    
+    private func register() {
+        Validators.canRegister(login: login, email: email, password: password, confirmPassword: confirmPassword) { _ in
+            
+        }
+    }
 }

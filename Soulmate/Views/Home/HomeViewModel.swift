@@ -21,7 +21,7 @@ final class HomeViewModel: ObservableObject {
         DataFetcherServices.fetchHomePage { home in
             DispatchQueue.main.async {
                 guard let suitableUsers = home?.users, let suitableFolders = home?.folders else { return }
-                self.suitableUsers = suitableUsers
+                self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
                 self.suitableFolders = suitableFolders
             }
         }

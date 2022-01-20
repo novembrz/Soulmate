@@ -10,10 +10,10 @@ import SwiftUI
 
 struct DataFetcherServices {
     
-    static var homePageURL = "http://192.168.1.66:8082/api/home"
-    static var userURL = "http://192.168.1.66:8082/api/user"
-    static var professionURL = "http://192.168.1.66:8082/api/profession"
-    static var foldersURL = "http://192.168.1.66:8082/api/folders"
+    static var homePageURL = "http://localhost:8082/api/home"
+    static var userURL = "http://localhost:8082/api/user"
+    static var professionURL = "http://localhost:8082/api/profession"
+    static var foldersURL = "http://localhost:8082/api/folders"
     static var workPlacesURL = "http://localhost:8082/api/was-work"
     
     
@@ -41,7 +41,6 @@ struct DataFetcherServices {
         let urlString = foldersURL + "/\(id)"
         NetworkService.fetchData(urlString: urlString, completion: completion)
     }
-    
     
     // user works
     

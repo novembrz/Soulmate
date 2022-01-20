@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CustomTextField: View {
     
-    @Binding var field: String?
+    @Binding var field: String
     var icon: String
     var placeholder: String
     var isPassword: Bool = false
     
     @State private var passwordVisibility = false
-    @State var searchText: String = ""
+    //@State var searchText: String = ""
     
     var text: (() -> ())?
     
@@ -47,7 +47,7 @@ struct CustomTextField: View {
     //MARK: - Text Field
     
     var textField: some View {
-        TextField(placeholder.lowercased(), text: $searchText)
+        TextField(placeholder.lowercased(), text: $field)
             .frame(height: 47)
             .padding(.leading, 40)
             .disableAutocorrection(true)
@@ -63,7 +63,7 @@ struct CustomTextField: View {
     //MARK: - Secure Field
     
     var secureField: some View {
-        SecureField(placeholder.lowercased(), text: $searchText)
+        SecureField(placeholder.lowercased(), text: $field)
             .frame(height: 47)
             .padding(.leading, 40)
             .disableAutocorrection(true)
@@ -100,9 +100,9 @@ struct CustomTextField: View {
         HStack {
             Spacer()
             
-            if searchText != "" {
+            if field != "" {
                 Button {
-                    searchText = ""
+                    field = ""
                 } label: {
                     Image(systemName: "xmark.circle")
                         .padding(.vertical)
@@ -119,7 +119,7 @@ struct CustomTextField: View {
         HStack {
             Spacer()
             
-            if searchText != "" {
+            if field != "" {
                 Button {
                     passwordVisibility.toggle()
                 } label: {

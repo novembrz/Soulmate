@@ -29,7 +29,6 @@ struct AuthenticationView: View {
                 }
                 authButton
             }
-            
             Spacer()
             
             switchViewButton
@@ -66,7 +65,7 @@ struct AuthenticationView: View {
             CustomTextField(field: $viewModel.email,icon: "mail", placeholder: "Почта")
                 .keyboardType(.emailAddress)
             CustomTextField(field: $viewModel.password,icon: "key", placeholder: "Пароль", isPassword: true)
-            CustomTextField(field: $viewModel.password,icon: "key", placeholder: "Повторите пароль", isPassword: true)
+            CustomTextField(field: $viewModel.confirmPassword,icon: "key", placeholder: "Повторите пароль", isPassword: true)
         }
     }
     
@@ -77,11 +76,13 @@ struct AuthenticationView: View {
         Button {
             //selected.toggle
             viewModel.authentication()
+            viewModel.isSignInSuccses = true
         } label: {
             LongButton(title: viewModel.authButtonText, rigthIcon: "rigth", isGradient: true)
         }
-        .modifier(ShakeEffect(shakes: viewModel.selected ? 2 : 0))
-        .animation(.goodRipple(), value: viewModel.selected)
+        .modifier(ShakeEffect(shakes: viewModel.isErrorAuth ? 2 : 0))
+        .animation(.goodRipple(), value: viewModel.isErrorAuth)
+        .showBanner(isShowing: $viewModel.isErrorAuth, message: viewModel.errorText ?? "", notificationType: .error)
     }
     
     
