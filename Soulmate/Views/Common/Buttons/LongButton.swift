@@ -37,7 +37,7 @@ struct LongButton: View {
                     .padding(.trailing, Constants.horizontalInset)
             }
         }
-        .frame(width: .infinity, height: 47)
+        .frame(height: 47)
     }
     
     

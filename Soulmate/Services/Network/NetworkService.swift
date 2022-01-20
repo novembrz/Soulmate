@@ -10,6 +10,9 @@ import Foundation
 
 final class NetworkService {
     
+    
+    //MARK: - fetchData
+    
     static func fetchData<T: Decodable>(urlString: String, completion: @escaping (T?) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
@@ -26,6 +29,9 @@ final class NetworkService {
         }
         task.resume()
     }
+    
+    
+    //MARK: - postData
     
     static func postData(param: [String: Any], urlString: String, completion: @escaping (Result) -> Void) {
         let urlString = "http://localhost:8082/api/auth/signin"
@@ -50,7 +56,7 @@ final class NetworkService {
             
             if let decode = NetworkService.decodeJSON(type: SignInResponse.self, from: data) {
                 print("✅", decode)
-                KeychainHelper.standard.save(data, service: "access-token", account: "soulmate")
+                KeychainHelper.standard.save(decode, service: "access-token", account: "soulmate")
                 
                 completion(.success)
             }
@@ -58,6 +64,8 @@ final class NetworkService {
         task.resume()
     }
     
+    
+    //MARK: - decode
     
     static func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()

@@ -37,21 +37,24 @@ struct AuthenticationView: View {
         .padding(.horizontal, Constants.horizontalInset)
         .padding(.bottom, Constants.bottomInset)
         .background(Color.defaultBackground)
+        .showBanner(isShowing: $viewModel.forgotPassword, message: viewModel.forgorPasswordMessage, notificationType: .message)
+        .showBanner(isShowing: $viewModel.isErrorAuth, message: viewModel.errorText ?? "", notificationType: .error)
     }
     
-
-//MARK: - Sign In
+    
+    //MARK: - Sign In
     
     var signIn: some View {
         VStack(alignment: .trailing, spacing: 14) {
             CustomTextField(field: $viewModel.login,icon: "userLight", placeholder: "Логин")
             CustomTextField(field: $viewModel.password,icon: "key", placeholder: "Пароль", isPassword: true)
             
-            CustomNavigationLink {
+            Button {
+                viewModel.forgotPassword = true
+            } label: {
                 Text("забыли пароль?")
                     .mediumFont(14)
                     .foregroundColor(.blackText)
-            } destination: {
             }
         }
     }
@@ -74,15 +77,12 @@ struct AuthenticationView: View {
     
     var authButton: some View {
         Button {
-            //selected.toggle
             viewModel.authentication()
-            viewModel.isSignInSuccses = true
         } label: {
             LongButton(title: viewModel.authButtonText, rigthIcon: "rigth", isGradient: true)
         }
         .modifier(ShakeEffect(shakes: viewModel.isErrorAuth ? 2 : 0))
         .animation(.goodRipple(), value: viewModel.isErrorAuth)
-        .showBanner(isShowing: $viewModel.isErrorAuth, message: viewModel.errorText ?? "", notificationType: .error)
     }
     
     

@@ -18,7 +18,7 @@ enum Result {
 //    case failure(AuthError)
 //}
 
-struct SignInResponse: Decodable { //вернет при сайн ин только токен, если еще что-то надо - расширяй
+struct SignInResponse: Decodable, Encodable { //вернет при сайн ин только токен, если еще что-то надо - расширяй
     let accessToken: String
 }
 

@@ -21,28 +21,28 @@ class Validators {
         completion(.success)
     }
     
-    
-    //MARK: - isFilled - можно ли в олну функцию
-    
-    static private func isProfileDataFilled(firstName: String?, lastName: String?, profession: [UserProfessions]?) -> Bool {
-        guard !(firstName ?? "").isEmpty,
-              !(lastName ?? "").isEmpty,
-              !(profession ?? []).isEmpty else { return false }
-        return true
-    }
-    
-    static func isSignInFilled(login: String, password: String) -> Bool {
+    static func canSignIn(login: String, password: String, completion: @escaping (Result) -> Void) {
         guard !login.isEmpty,
               !password.isEmpty
-        else { return false }
-        return true
+        else { return completion(.failure(AuthError.notFilled)) }
+        completion(.success)
     }
+    
+    
+    //MARK: - isFilled - можно ли в олну функцию
     
     static private func isRegisterFilled(login: String, email: String, password: String, confirmPassword: String) -> Bool {
         guard !login.isEmpty,
               !email.isEmpty,
               !password.isEmpty,
               !confirmPassword.isEmpty else { return false }
+        return true
+    }
+    
+    static private func isProfileDataFilled(firstName: String?, lastName: String?, profession: [UserProfessions]?) -> Bool {
+        guard !(firstName ?? "").isEmpty,
+              !(lastName ?? "").isEmpty,
+              !(profession ?? []).isEmpty else { return false }
         return true
     }
     
@@ -71,6 +71,9 @@ class Validators {
         // Яр скажет свободен ли такой на бэке
         return true
     }
+    
+    
+    //MARK: - Success data
     
     static private func isDifficultPassword(_ password: String) -> Bool {
         return true

@@ -24,8 +24,8 @@ struct BannerModifier: ViewModifier {
     
     @State var isMove = false
     let bannerHeight: CGFloat = 53
-    var bannerShowOffset: CGFloat { -(UIScreen.height / 2) + 30 }
-    var bannerHideOffset: CGFloat { -(UIScreen.height / 2) - 30  }
+    var bannerShowOffset: CGFloat { -(UIScreen.height / 2) + bannerHeight + 15 }
+    var bannerHideOffset: CGFloat { -(UIScreen.height / 2) - bannerHeight - 15 }
     
     
     func body(content: Content) -> some View {
@@ -43,11 +43,16 @@ struct BannerModifier: ViewModifier {
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
                             withAnimation {
-                                isShowing = false
                                 isMove = false
                             }
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + duration + 1) {
+                            withAnimation {
+                                isShowing = false
+                            }
+                        }
                     }
-                }
             }
         }
     }
@@ -78,6 +83,7 @@ struct BannerModifier: ViewModifier {
                 .frame(maxWidth: .infinity)
                 .background(notificationType == .error ? Color.error : Color.mintGreen)
                 .cornerRadius(15)
+                .padding(.horizontal, Constants.horizontalInset)
                 .elementShadow()
             }
             .offset(y: isMove ? bannerShowOffset : bannerHideOffset )
@@ -90,7 +96,7 @@ struct BannerModifier: ViewModifier {
 //MARK: - View Extension
 
 extension View {
-    func showBanner(isShowing: Binding<Bool>, duration: TimeInterval = 3, message: String, imageName: String? = "", notificationType: BannerModifier.NotificationType = .message) -> some View {
+    func showBanner(isShowing: Binding<Bool>, duration: TimeInterval = 2.5, message: String, imageName: String? = "", notificationType: BannerModifier.NotificationType = .message) -> some View {
         
         modifier(BannerModifier(isShowing: isShowing,
                              duration: duration,
@@ -115,7 +121,7 @@ struct TestView: View {
     }
 }
 
-struct WTFView_Previews: PreviewProvider {
+struct BannerView_Previews: PreviewProvider {
     static var previews: some View {
         TestView()
     }

@@ -16,7 +16,7 @@ final class KeychainHelper {
     
     //MARK: - save
     
-    func save<T>(_ item: T, service: String, account: String) where T : Codable {
+    func save<T: Encodable>(_ item: T, service: String, account: String) {
         do {
             let data = try JSONEncoder().encode(item) // Encode as JSON data and save in keychain
             save(data, service: service, account: account)
