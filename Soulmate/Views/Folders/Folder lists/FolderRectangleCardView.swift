@@ -11,7 +11,7 @@ struct FolderRectangleCardView: View {
     var folder: FolderModel
     //    private var author: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
     private var description: String { "\(folder.name)" }
-    private var author: String { "\(folder.author.lastName) \(folder.author.firstName)" }
+    private var author: String { "\(folder.author.firstName ?? "") \(folder.author.lastName ?? "")" }
     var folderImagesCount: Int { folder.previewPictures?.count ?? 0 }
     
     var body: some View {

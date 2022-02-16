@@ -13,7 +13,7 @@ struct FolderStrokeCardView: View {
     var haveProfileButton: Bool
 
     //    private var description: String { if coauthorCount != nil : "\(folder.author) + \(folder.coauthor.count)" ? "\(folder.author)"}
-    private var description: String { "\(folder.author.lastName) \(folder.author.firstName)" }
+    private var description: String { "\(folder.author.firstName ?? "") \(folder.author.lastName ?? "")" }
     private var mainImage: String? { folder.previewPictures == [] ? nil : folder.previewPictures?[0] }
 
     

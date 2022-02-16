@@ -44,7 +44,7 @@ final class NetworkService {
         request.httpMethod = "POST"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")        // the expected response is also JSON
-        request.addValue("Basic \(jsonData)", forHTTPHeaderField: "Authorization") //мб только его надо
+//        request.addValue("Basic \(jsonData)", forHTTPHeaderField: "Authorization") //мб только его надо
         request.httpBody = jsonData
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -56,7 +56,7 @@ final class NetworkService {
             
             if let decode = NetworkService.decodeJSON(type: SignInResponse.self, from: data) {
                 print("✅", decode)
-                KeychainHelper.standard.save(decode, service: "access-token", account: "soulmate")
+                KeychainService.standard.save(decode, account: "access-token")
                 
                 completion(.success)
             }

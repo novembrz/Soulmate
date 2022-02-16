@@ -48,6 +48,7 @@
 		C86A8F482772155100CEBCC8 /* WalkthroughModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */; };
 		C86C556627971C4B000710DD /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C556527971C4B000710DD /* Validators.swift */; };
 		C86C556827975674000710DD /* AuthResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C556727975674000710DD /* AuthResult.swift */; };
+		C875324527BBCD36004DED24 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C875324427BBCD36004DED24 /* KeychainService.swift */; };
 		C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */; };
 		C884135E27615F91004C21C3 /* HexColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C884135D27615F91004C21C3 /* HexColor + Extension.swift */; };
 		C8864400275979E600BC1B06 /* ContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88643FF275979E600BC1B06 /* ContentBlock.swift */; };
@@ -58,7 +59,6 @@
 		C8A6AFEE278D8EEC00A3B80D /* BigStandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFED278D8EEC00A3B80D /* BigStandartButton.swift */; };
 		C8A6AFF0278D963B00A3B80D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFEF278D963B00A3B80D /* Constants.swift */; };
 		C8A6AFF2278D9A4000A3B80D /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFF1278D9A4000A3B80D /* Shadow.swift */; };
-		C8AE9C8E279868A3000B6D72 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE9C8D279868A3000B6D72 /* KeychainHelper.swift */; };
 		C8AE9C902798945B000B6D72 /* UserProfession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE9C8F2798945B000B6D72 /* UserProfession.swift */; };
 		C8AE9C9227989932000B6D72 /* AuthFetcherServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE9C9127989932000B6D72 /* AuthFetcherServices.swift */; };
 		C8B06F2527552CF700177330 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B06F2427552CF700177330 /* HomeView.swift */; };
@@ -127,6 +127,7 @@
 		C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughModel.swift; sourceTree = "<group>"; };
 		C86C556527971C4B000710DD /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		C86C556727975674000710DD /* AuthResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResult.swift; sourceTree = "<group>"; };
+		C875324427BBCD36004DED24 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		C884135B27614C26004C21C3 /* ProfileBaseInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseInfoView.swift; sourceTree = "<group>"; };
 		C884135D27615F91004C21C3 /* HexColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HexColor + Extension.swift"; sourceTree = "<group>"; };
 		C88643FF275979E600BC1B06 /* ContentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlock.swift; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 		C8A6AFED278D8EEC00A3B80D /* BigStandartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigStandartButton.swift; sourceTree = "<group>"; };
 		C8A6AFEF278D963B00A3B80D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C8A6AFF1278D9A4000A3B80D /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
-		C8AE9C8D279868A3000B6D72 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		C8AE9C8F2798945B000B6D72 /* UserProfession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfession.swift; sourceTree = "<group>"; };
 		C8AE9C9127989932000B6D72 /* AuthFetcherServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFetcherServices.swift; sourceTree = "<group>"; };
 		C8B06F2427552CF700177330 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -405,7 +405,7 @@
 		C8AE9C8C279866E1000B6D72 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				C8AE9C8D279868A3000B6D72 /* KeychainHelper.swift */,
+				C875324427BBCD36004DED24 /* KeychainService.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -634,6 +634,7 @@
 				C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */,
 				C8D8DAD1275A9D4C009A0552 /* Animation + Extension.swift in Sources */,
 				C842576327527DF5009C405C /* ColumnModel.swift in Sources */,
+				C875324527BBCD36004DED24 /* KeychainService.swift in Sources */,
 				C81357292763552E0072B1F7 /* CustomTabBar.swift in Sources */,
 				C8DB70DF277539810031EF90 /* UserWorksView.swift in Sources */,
 				C8F17D88275692E100BC6A44 /* MockService.swift in Sources */,
@@ -652,7 +653,6 @@
 				C842576C275283FF009C405C /* BackButton.swift in Sources */,
 				C8AE9C9227989932000B6D72 /* AuthFetcherServices.swift in Sources */,
 				C8B06F2527552CF700177330 /* HomeView.swift in Sources */,
-				C8AE9C8E279868A3000B6D72 /* KeychainHelper.swift in Sources */,
 				C803E6B4278F4C56009D4BBE /* SuitableUsersView.swift in Sources */,
 				C8CE4859277A612A001CF60A /* ContentCard.swift in Sources */,
 				C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */,
@@ -799,11 +799,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Soulmate/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "To allow you to unlock your note without entering your password.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -829,11 +831,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Soulmate/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "To allow you to unlock your note without entering your password.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

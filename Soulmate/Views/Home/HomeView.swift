@@ -35,8 +35,12 @@ struct HomeView: View {
                 .padding(.top, 30)
                 .padding(.bottom, Constants.bottomInset)
             }
+            .fullScreenCover(isPresented: $viewModel.notAnAuthorizedUser) {
+                AuthenticationView(viewModel: AuthenticationViewModel())
+            }
             .background(Color.defaultBackground.ignoresSafeArea())
             .onAppear { viewModel.fetchHomePage() }
+            //.onAppear { viewModel.checkUserToken() }
         }
     }
     
