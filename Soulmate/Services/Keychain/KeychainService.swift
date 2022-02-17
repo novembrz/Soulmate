@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Auth: Codable {
-    let accessToken: String
+struct AuthToken: Codable {
+    let accessToken: SignInResponse
     //let refreshToken: String
 }
 
@@ -86,7 +86,7 @@ extension KeychainService {
     
     func save<T: Codable>(_ item: T, account: String) {
         do {
-            let data = try JSONEncoder().encode(item) // Закодировать as JSON data and save in keychain
+            let data = try JSONEncoder().encode(item)
             save(data, account: account)
         } catch {
             assertionFailure("Fail to encode item for keychain: \(error)")
@@ -94,7 +94,7 @@ extension KeychainService {
     }
     
     func read<T: Codable>(account: String, type: T.Type) -> T? {
-        guard let data = read(account: service) else {
+        guard let data = read(account: account) else {
             return nil
         }
         

@@ -11,9 +11,9 @@ import SwiftUI
 struct SoulmateApp: App {
     var body: some Scene {
         WindowGroup<DisplayView> {
-       // WindowGroup<AuthenticationView> {
+        //WindowGroup<AuthenticationView> {
             DisplayView()
-            //AuthenticationView(viewModel: AuthenticationViewModel())
+           // AuthenticationView(viewModel: AuthenticationViewModel())
         }
     }
 }

@@ -119,10 +119,10 @@ final class AuthenticationViewModel: ObservableObject {
     //MARK: - Auth Result
     
     private func successAuth() {
-        print("🧀", "string")
-        if let readData = KeychainService.standard.read(account: "access-token", type: String.self) {
+        if let readData = KeychainService.standard.read(account: "access-token", type: AuthToken.self) {
             print("🔑", readData)
         }
+        
         self.isLoading = false
         self.isSignInSuccses = true //- for Routing
     }

@@ -34,19 +34,30 @@ final class NetworkService {
     //MARK: - postData
     
     static func postData(param: [String: Any], urlString: String, completion: @escaping (Result) -> Void) {
-        let urlString = "http://localhost:8082/api/auth/signin"
-        
         guard let jsonData = try? JSONSerialization.data(withJSONObject: param, options: []),
               let url = URL(string: urlString)
         else { return }
         
+        let request = createRequest(url: url, jsonData: jsonData)
+        sendRequest(request, completion: completion)
+    }
+    
+    
+    //MARK: - create request
+    
+    static private func createRequest(url: URL, jsonData: Data) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")        // the expected response is also JSON
-//        request.addValue("Basic \(jsonData)", forHTTPHeaderField: "Authorization") //мб только его надо
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
         request.httpBody = jsonData
-        
+        return request
+    }
+    
+    
+    //MARK: - send Request
+    
+    static private func sendRequest(_ request: URLRequest, completion: @escaping (Result) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil || (response as! HTTPURLResponse).statusCode != 200 {
                 print("💔", (response as! HTTPURLResponse).statusCode)
@@ -55,9 +66,7 @@ final class NetworkService {
             }
             
             if let decode = NetworkService.decodeJSON(type: SignInResponse.self, from: data) {
-                print("✅", decode)
-                KeychainService.standard.save(decode, account: "access-token")
-                
+                KeychainService.standard.save(AuthToken(accessToken: decode), account: "access-token")
                 completion(.success)
             }
         }
@@ -67,7 +76,7 @@ final class NetworkService {
     
     //MARK: - decode
     
-    static func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
+    static private func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()
         guard let data = from else { return nil }
         

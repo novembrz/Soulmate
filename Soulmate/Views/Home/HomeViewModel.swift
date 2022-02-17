@@ -21,22 +21,8 @@ final class HomeViewModel: ObservableObject {
     var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
     
     
-    func checkUserToken() {
-//        fetchHomePage()
-        isLoading = true
+    func fetchHomePage() {
         testToken()
-        
-        if KeychainService.standard.read(account: "access-token", type: String.self) == nil {
-            isLoading = false
-            notAnAuthorizedUser = true
-        } else {
-            notAnAuthorizedUser = false
-            fetchHomePage()
-        }
-    }
-    
-    
-     func fetchHomePage() {
         DataFetcherServices.fetchHomePage { home in
             DispatchQueue.main.async {
                 guard let suitableUsers = home?.users, let suitableFolders = home?.folders else { return }
@@ -49,8 +35,7 @@ final class HomeViewModel: ObservableObject {
     
     //для теста
     private func testToken() {
-        print("🌈")
-        if let readData = KeychainService.standard.read(account: "access-token", type: String.self) {
+        if let readData = KeychainService.standard.read(account: "access-token", type: AuthToken.self) {
             print("🉐", readData)
             notAnAuthorizedUser = false
         }

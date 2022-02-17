@@ -13,7 +13,10 @@ struct AuthFetcherServices {
     
     static func signIn(login: String, password: String, completion: @escaping (Result) -> Void) {
         let urlString = authURL + "signin"
-        NetworkService.postData(param: ["username": login.lowercased(), "password": password], urlString: urlString, completion: completion)
+        NetworkService.postData(param: ["username": login.lowercased(),
+                                        "password": password],
+                                urlString:urlString,
+                                completion: completion)
     }
     
     static func register(login: String, email: String, password: String, completion: @escaping (Result) -> Void) {

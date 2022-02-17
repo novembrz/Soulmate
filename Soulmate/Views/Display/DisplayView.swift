@@ -8,7 +8,17 @@
 import SwiftUI
 
 struct DisplayView: View {
+    
+    
     var body: some View {
+        if KeychainService.standard.read(account: "access-token", type: AuthToken.self) == nil {
+            AuthenticationView(viewModel: AuthenticationViewModel())
+        } else {
+            home
+        }
+    }
+    
+    var home: some View {
         GeometryReader { proxy in
             let size = proxy.size
             let bottomEdje = proxy.safeAreaInsets.bottom
