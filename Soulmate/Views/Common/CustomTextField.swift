@@ -123,7 +123,7 @@ struct CustomTextField: View {
                 Button {
                     passwordVisibility.toggle()
                 } label: {
-                    Image(passwordVisibility ? "eye-off" : "eye")
+                    Image(passwordVisibility ? "eye-off" : "eye-on")
                         .padding(.vertical)
                         .foregroundColor(.placeholder)
                 }

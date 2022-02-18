@@ -20,7 +20,7 @@ final class UserWorksViewModel: ObservableObject {
     func fetchWorks(_ folderId: Int) {
         DataFetcherServices.fetchFolder(id: folderId) { result in
             DispatchQueue.main.async {
-                guard let folder = result else { return }
+                //guard let folder = result else { return }
                 
             }
         }

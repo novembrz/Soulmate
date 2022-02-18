@@ -7,16 +7,6 @@
 
 import Foundation
 
-struct AuthToken: Codable {
-    let accessToken: SignInResponse
-    //let refreshToken: String
-}
-
-struct Credentials: Codable {
-    var username: String
-    var password: String
-}
-
 
 final class KeychainService {
     

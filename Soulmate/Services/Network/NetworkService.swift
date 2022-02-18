@@ -10,7 +10,6 @@ import Foundation
 
 final class NetworkService {
     
-    
     //MARK: - fetchData
     
     static func fetchData<T: Decodable>(urlString: String, completion: @escaping (T?) -> Void) {

@@ -8,21 +8,6 @@
 import Foundation
 
 
-enum Result {
-    case success //можно пустой, просто сукес
-    case failure(AuthError)
-}
-//
-//enum AuthResult {
-//    case success(SignInResponse) //можно пустой, просто сукес
-//    case failure(AuthError)
-//}
-
-struct SignInResponse: Decodable, Encodable { //вернет при сайн ин только токен, если еще что-то надо - расширяй
-    let accessToken: String
-}
-
-
 enum AuthError {
     case notFilled
     case invalidEmail

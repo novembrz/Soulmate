@@ -71,7 +71,7 @@ struct DisplayContentView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        DisplayView()
+        HomeView(viewModel: HomeViewModel())
     }
 }
 

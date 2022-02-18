@@ -16,16 +16,17 @@ final class AboutUserViewModel: ObservableObject {
     //MARK: - Fetch
     
     func fetchWorkPlaces(_ userId: Int) {
-        DataFetcherServices.fetchUserWorkPlaces(id: userId) { result in
+        DataFetcherServices.fetchUserWorkPlaces(id: userId) { [weak self] result in
             DispatchQueue.main.async {
                 guard let userWorkPlaces = result else { return }
-                self.userWorkPlaces = userWorkPlaces
-                self.dateFormatter2(dateString: userWorkPlaces[0].startDate)
+                self?.userWorkPlaces = userWorkPlaces
+                //self.dateFormatter2(dateString: userWorkPlaces[0].startDate)
             }
         }
     }
     
-    
+    //MARK: Check
+    /*
     private func dateFormatter(dateString: String) { //"2020-10-01T00:00:00.000+0000"
         
         let dateFormatter = DateFormatter()
@@ -43,6 +44,6 @@ final class AboutUserViewModel: ObservableObject {
         let date = dateFormatter.date(from: dateString)
         print("🧊 \(date)")
     }
-    
+    */
 }
 

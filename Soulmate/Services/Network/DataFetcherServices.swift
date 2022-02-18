@@ -6,46 +6,38 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct DataFetcherServices {
     
-    static var homePageURL = "http://localhost:8082/api/home"
-    static var userURL = "http://localhost:8082/api/user"
-    static var professionURL = "http://localhost:8082/api/profession"
-    static var foldersURL = "http://localhost:8082/api/folders"
-    static var workPlacesURL = "http://localhost:8082/api/was-work"
-    
-    
     static func fetchHomePage(completion: @escaping (HomeModel?) -> Void) {
-        NetworkService.fetchData(urlString: homePageURL, completion: completion)
+        NetworkService.fetchData(urlString: ServiceUrl.homePageURL, completion: completion)
     }
     
     static func fetchUser(id: Int, completion: @escaping (UserModel?) -> Void) {
-        let urlString = userURL + "/\(id)"
+        let urlString = ServiceUrl.userURL.withId(id)
         NetworkService.fetchData(urlString: urlString, completion: completion)
     }
     
     // folders
     
     static func fetchAllFolders(completion: @escaping ([FolderModel]?) -> Void) {
-        NetworkService.fetchData(urlString: foldersURL, completion: completion)
+        NetworkService.fetchData(urlString: ServiceUrl.Folder.base, completion: completion)
     }
     
     static func fetchUserProfessionFolders(id: Int, completion: @escaping (FoldersDataModel?) -> Void) {
-        let urlString = foldersURL + "/user-profession/\(id)"
+        let urlString = ServiceUrl.Folder.userProfession.withId(id)
         NetworkService.fetchData(urlString: urlString, completion: completion)
     }
     
     static func fetchFolder(id: Int, completion: @escaping (FoldersDataModel?) -> Void) {
-        let urlString = foldersURL + "/\(id)"
+        let urlString = ServiceUrl.Folder.base.withId(id) 
         NetworkService.fetchData(urlString: urlString, completion: completion)
     }
     
     // user works
     
     static func fetchUserWorkPlaces(id: Int, completion: @escaping ([WorkPlacesModel]?) -> Void) {
-        let urlString = workPlacesURL + "/by-user/\(id)"
+        let urlString = ServiceUrl.WorkPlace.byUser.withId(id) 
         NetworkService.fetchData(urlString: urlString, completion: completion)
     }
 }

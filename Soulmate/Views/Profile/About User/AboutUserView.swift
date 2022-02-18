@@ -70,7 +70,7 @@ struct AboutUserView: View {
     
     var title: some View {
         VStack(alignment: .leading, spacing: 23) {
-            TitleBlock(viewTitle: "\(user.firstName)\n\(user.lastName)", subTitle: "\(user.city ?? ""), \(ageString)")
+            TitleBlock(viewTitle: "\(user.firstName ?? "")\n\(user.lastName ?? "")", subTitle: "\(user.city ?? ""), \(ageString)")
             
             //MARK: if social != nil
             HStack {
