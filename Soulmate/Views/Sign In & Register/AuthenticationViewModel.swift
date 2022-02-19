@@ -46,14 +46,6 @@ final class AuthenticationViewModel: ObservableObject {
         }
     }
     
-    func checkSavedUserData() {
-//        if authenticationType == .signIn {
-//            if let creadent = KeychainService.standard.read(account: "", type: Credentials.self) {
-//                login = creadent.username
-//                password = creadent.password
-//            }
-//        }
-    }
     
     //MARK: - SignIn
     

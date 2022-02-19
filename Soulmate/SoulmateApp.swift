@@ -13,7 +13,7 @@ struct SoulmateApp: App {
         WindowGroup<DisplayView> {
         //WindowGroup<AuthenticationView> {
             DisplayView()
-           // AuthenticationView(viewModel: AuthenticationViewModel())
+            //AuthenticationView(viewModel: AuthenticationViewModel())
         }
     }
 }

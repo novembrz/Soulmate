@@ -39,7 +39,6 @@ struct AuthenticationView: View {
         .background(Color.defaultBackground)
         .showBanner(isShowing: $viewModel.forgotPassword, message: viewModel.forgorPasswordMessage, notificationType: .message)
         .showBanner(isShowing: $viewModel.isErrorAuth, message: viewModel.errorText ?? "", notificationType: .error)
-        .onAppear { viewModel.checkSavedUserData() }
     }
     
     
@@ -98,7 +97,6 @@ struct AuthenticationView: View {
             Button {
                 withAnimation {
                     viewModel.authenticationType = viewModel.authenticationType == .signIn ? .register : .signIn
-                    viewModel.checkSavedUserData()
                 }
             } label: {
                 Text(viewModel.switchButtonText)

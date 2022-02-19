@@ -32,11 +32,11 @@ final class ProfileViewModel: ObservableObject {
     //MARK: - Fetch
     
     func fetchUser(_ userId: Int) {
-        DataFetcherServices.fetchUser(id: userId) { [self] result in
+        DataFetcherServices.fetchUser(id: userId) { [weak self] result in
             DispatchQueue.main.async {
                 guard let userData = result else { return }
-                user = userData
-                self.createColumns()
+                self?.user = userData
+                self?.createColumns()
             }
         }
     }

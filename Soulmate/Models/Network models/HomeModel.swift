@@ -10,6 +10,6 @@ import Foundation
 
 struct HomeModel: Decodable {
     var users: [UserModel] //exelent
-   // var cards: [WorkCardModel]?
+//    var cards: [WorkPlacesModel]?
     var folders: [FolderModel]
 }

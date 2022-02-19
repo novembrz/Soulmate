@@ -22,6 +22,10 @@ enum AnimateTab: String, CaseIterable {
 
 struct DisplayContentView: View {
     @State var currentTab: AnimateTab = .home
+    @State var contentType: ContentType
+    @State var bottomSheetShown = false
+    @State var isOpenUploadContent = false
+    
     @Namespace var animation
     
     var size: CGSize
@@ -31,6 +35,7 @@ struct DisplayContentView: View {
         UITabBar.appearance().isHidden = true
         self.size = size
         self.bottomEdje = bottomEdje
+        contentType = .music
     }
     
     var body: some View {
@@ -46,11 +51,6 @@ struct DisplayContentView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
                 
-                Text("Add Content")
-                    .tag(AnimateTab.addContent)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.white)
-                
                 ProfileView(userId: 2, authorizedUserProfile: true, viewModel: ProfileViewModel())
                     .tag(AnimateTab.profile)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -63,15 +63,47 @@ struct DisplayContentView: View {
             }
             
             CustomTabBar(viewModel: TabBarViewModel(size: size, bottomEdje: bottomEdje, animation: animation), currentTab: $currentTab)
+            
+            bottomSheetAction
+        }
+    }
+    
+    
+    //MARK: - BottomSheet Action
+    
+    var bottomSheetAction: some View {
+        Group {
+            BottomSheetView(
+                isOpen: $bottomSheetShown,
+                maxHeight: 389) {
+                    SelectContentView(title: "Опубликовать") { contentType in
+                        self.contentType = contentType
+                        self.bottomSheetShown.toggle()
+                        self.isOpenUploadContent.toggle()
+                    }
+                }
+            
+            Button {
+                bottomSheetShown.toggle()
+            } label: {
+                Rectangle()
+                    .frame(width: 70, height: 65)
+                    .padding(.bottom, 10)
+                    .foregroundColor(.clear)
+            }
+            
+        }.sheet(isPresented: $isOpenUploadContent) {
+            UploadContentView(contentType: $contentType)
         }
     }
 }
+
 
 //MARK: - HomeView_Previews
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel())
+        DisplayView()
     }
 }
 

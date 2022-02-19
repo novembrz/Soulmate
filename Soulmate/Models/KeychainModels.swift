@@ -8,8 +8,8 @@
 import Foundation
 
 struct AuthToken: Codable {
-    let accessToken: SignInResponse
-    //let refreshToken: String
+    let token: String
+    let refreshToken: String
 }
 
 //MARK: Зачем

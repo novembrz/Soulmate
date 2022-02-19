@@ -22,13 +22,13 @@ final class HomeViewModel: ObservableObject {
     
     
     func fetchHomePage() {
-        testToken()
-        DataFetcherServices.fetchHomePage { home in
+        //testToken()
+        DataFetcherServices.fetchHomePage { [weak self] home in
             DispatchQueue.main.async {
                 guard let suitableUsers = home?.users, let suitableFolders = home?.folders else { return }
-                self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
-                self.suitableFolders = suitableFolders
-                self.isLoading = false
+                self?.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
+                self?.suitableFolders = suitableFolders
+                self?.isLoading = false
             }
         }
     }

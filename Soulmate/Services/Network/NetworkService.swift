@@ -59,13 +59,14 @@ final class NetworkService {
     static private func sendRequest(_ request: URLRequest, completion: @escaping (Result) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil || (response as! HTTPURLResponse).statusCode != 200 {
-                print("💔", (response as! HTTPURLResponse).statusCode)
+                print("💔💔💔", (response as! HTTPURLResponse).statusCode)
                 completion(.failure(AuthError.serverError))
                 return
             }
             
-            if let decode = NetworkService.decodeJSON(type: SignInResponse.self, from: data) {
-                KeychainService.standard.save(AuthToken(accessToken: decode), account: "access-token")
+            if let decode = NetworkService.decodeJSON(type: AuthToken.self, from: data) {
+                print("🥦", decode, "🍑", decode.token, "🍒", decode.refreshToken)
+                //KeychainService.standard.save(AuthToken(accessToken: decode), account: "access-token")
                 completion(.success)
             }
         }

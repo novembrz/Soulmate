@@ -22,13 +22,13 @@ final class FoldersViewModel: ObservableObject {
     
     func fetchData(userProfessionId: Int?) {
         if userProfessionId != nil {
-            DataFetcherServices.fetchUserProfessionFolders(id: userProfessionId!) { foldersArray in
-                self.projectName = foldersArray?.profession.name
-                self.checkAndAssignData(foldersArray?.folders)
+            DataFetcherServices.fetchUserProfessionFolders(id: userProfessionId!) { [weak self] foldersArray in
+                self?.projectName = foldersArray?.profession.name
+                self?.checkAndAssignData(foldersArray?.folders)
             }
         } else {
-            DataFetcherServices.fetchAllFolders { foldersArray in
-                self.checkAndAssignData(foldersArray)
+            DataFetcherServices.fetchAllFolders { [weak self] foldersArray in
+                self?.checkAndAssignData(foldersArray)
             }
         }
     }

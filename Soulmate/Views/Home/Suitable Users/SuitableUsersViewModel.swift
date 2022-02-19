@@ -15,10 +15,10 @@ final class SuitableUsersViewModel: ObservableObject {
     var columnsArray: [GridItem] = Array(repeating: .init(.flexible(minimum: 82, maximum: 125), spacing: 12, alignment: .leading), count: 3)
     
     func fetchAllPeople() { //MARK: Временный метод
-        DataFetcherServices.fetchHomePage { home in
+        DataFetcherServices.fetchHomePage { [weak self] home in
             DispatchQueue.main.async {
                 guard let suitableUsers = home?.users else { return }
-                self.suitableUsers = suitableUsers
+                self?.suitableUsers = suitableUsers
             }
         }
     }
