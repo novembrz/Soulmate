@@ -8,17 +8,34 @@
 import SwiftUI
 
 struct AuthenticationView: View {
-
+    
     @ObservedObject var viewModel: AuthenticationViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        authView
+            .padding(.top, 98)
+            .padding(.horizontal, Constants.horizontalInset)
+            .padding(.bottom, Constants.bottomInset)
+            .background(Color.defaultBackground)
+            .showBanner(isShowing: $viewModel.forgotPassword, message: viewModel.forgorPasswordMessage, notificationType: .message)
+            .showBanner(isShowing: $viewModel.isErrorAuth, message: viewModel.errorText ?? "", notificationType: .error)
+            .onChange(of: viewModel.isSignInSuccses) { _ in dismiss() }
+            .fullScreenCover(isPresented: $viewModel.isRegisterSuccses) {
+                RegisterView(viewModel: RegisterViewModel())
+            }
+    }
+    
+    
+    //MARK: - Auth View
+    
+    var authView: some View {
         VStack {
             VStack(spacing: 53) {
                 VStack(spacing: 71) {
                     Image("soulmate")
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: 130)
+                        .frame(width: 129, height: 59)
                     
                     switch viewModel.authenticationType {
                     case .register:
@@ -33,12 +50,6 @@ struct AuthenticationView: View {
             
             switchViewButton
         }
-        .padding(.top, 98)
-        .padding(.horizontal, Constants.horizontalInset)
-        .padding(.bottom, Constants.bottomInset)
-        .background(Color.defaultBackground)
-        .showBanner(isShowing: $viewModel.forgotPassword, message: viewModel.forgorPasswordMessage, notificationType: .message)
-        .showBanner(isShowing: $viewModel.isErrorAuth, message: viewModel.errorText ?? "", notificationType: .error)
     }
     
     

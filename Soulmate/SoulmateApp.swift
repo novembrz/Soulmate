@@ -10,10 +10,9 @@ import SwiftUI
 @main
 struct SoulmateApp: App {
     var body: some Scene {
-        WindowGroup<DisplayView> {
-        //WindowGroup<AuthenticationView> {
-            DisplayView()
-            //AuthenticationView(viewModel: AuthenticationViewModel())
+        WindowGroup {
+            //DisplayView()
+            RegisterView(viewModel: RegisterViewModel())
         }
     }
 }

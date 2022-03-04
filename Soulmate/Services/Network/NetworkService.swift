@@ -32,7 +32,7 @@ final class NetworkService {
     
     //MARK: - postData
     
-    static func postData(param: [String: Any], urlString: String, completion: @escaping (Result) -> Void) {
+    static func postData<T: Decodable>(param: [String: Any], urlString: String, completion: @escaping (Result, T?) -> Void) {
         guard let jsonData = try? JSONSerialization.data(withJSONObject: param, options: []),
               let url = URL(string: urlString)
         else { return }
@@ -56,18 +56,16 @@ final class NetworkService {
     
     //MARK: - send Request
     
-    static private func sendRequest(_ request: URLRequest, completion: @escaping (Result) -> Void) {
+    static private func sendRequest<T: Decodable>(_ request: URLRequest, completion: @escaping (Result, T?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil || (response as! HTTPURLResponse).statusCode != 200 {
                 print("💔💔💔", (response as! HTTPURLResponse).statusCode)
-                completion(.failure(AuthError.serverError))
+                completion(.failure(AuthError.serverError), nil)
                 return
             }
             
-            if let decode = NetworkService.decodeJSON(type: AuthToken.self, from: data) {
-                print("🥦", decode, "🍑", decode.token, "🍒", decode.refreshToken)
-                //KeychainService.standard.save(AuthToken(accessToken: decode), account: "access-token")
-                completion(.success)
+            if let decode = NetworkService.decodeJSON(type: T.self, from: data) {
+                completion(.success, decode)
             }
         }
         task.resume()

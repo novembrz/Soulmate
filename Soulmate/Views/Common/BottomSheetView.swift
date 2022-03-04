@@ -95,14 +95,15 @@ struct BottomSheetView<Content: View>: View {
                 )
             }
         }
+        .zIndex(99)
     }
 }
 
 
 //MARK: - Previews
 
-struct BottomSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayView()
-    }
-}
+//struct BottomSheetView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DisplayView()
+//    }
+//}

@@ -9,14 +9,16 @@ import SwiftUI
 
 struct AuthFetcherServices {
     
-    static func signIn(login: String, password: String, completion: @escaping (Result) -> Void) {
+    static func signIn(login: String, password: String, completion: @escaping (Result, AuthToken?) -> Void) {
         NetworkService.postData(param: ["username": login.lowercased(),
                                         "password": password],
                                 urlString: ServiceUrl.Auth.signIn,
-                                completion: completion)
+                                completion: completion) 
+        
+        //Keychain
     }
     
-    static func register(login: String, email: String, password: String, completion: @escaping (Result) -> Void) {
+    static func register(login: String, email: String, password: String, completion: @escaping (Result, AuthToken?) -> Void) {
         NetworkService.postData(param: ["username": login.lowercased(),
                                         "email": email.lowercased(),
                                         "password": password],
@@ -24,3 +26,6 @@ struct AuthFetcherServices {
                                 completion: completion)
     }
 }
+
+
+

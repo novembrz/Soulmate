@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct BackButton: View {
-    
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         Button {
             withAnimation {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }
         } label: {
             ZStack {

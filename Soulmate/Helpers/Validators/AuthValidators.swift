@@ -1,5 +1,5 @@
 //
-//  Validators.swift
+//  AuthValidators.swift
 //  Soulmate
 //
 //  Created by dasha on 18.01.2022.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-class Validators {
+final class AuthValidators {
     
     static func canRegister(login: String, email: String, password: String, confirmPassword: String, completion: @escaping (Result) -> Void) {
         guard isRegisterFilled(login: login, email: email, password: password, confirmPassword: confirmPassword) else { return completion(.failure(AuthError.notFilled)) }
@@ -28,8 +28,14 @@ class Validators {
         completion(.success)
     }
     
+    static func canFinishRegistration(name: String, lastName: String, birthDay: String, city: String, completion: @escaping (Result) -> Void) {
+        guard isRegisterFilled(login: name, email: lastName, password: city, confirmPassword: birthDay) else { return completion(.failure(AuthError.notFilled)) }
+        // Корректно ли имя, корректна ли фамилия, возраст ограничь еще в пикере
+    }
     
-    //MARK: - isFilled - можно ли в олну функцию
+    
+    
+    //MARK: - isFilled - можно ли в одну функцию
     
     static private func isRegisterFilled(login: String, email: String, password: String, confirmPassword: String) -> Bool {
         guard !login.isEmpty,
@@ -83,6 +89,4 @@ class Validators {
         // проверяем нет ли запрещенных символов в имени и фамилии
         return true
     }
-   
-    // закрыть доступ выбирать др завтра
 }

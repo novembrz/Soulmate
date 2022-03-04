@@ -24,6 +24,7 @@ final class AuthenticationViewModel: ObservableObject {
     
     @Published var isLoading = false
     @Published var isSignInSuccses = false
+    @Published var isRegisterSuccses = false
     @Published var isErrorAuth = false
     @Published var errorText: String?
     
@@ -50,7 +51,7 @@ final class AuthenticationViewModel: ObservableObject {
     //MARK: - SignIn
     
     private func signInValidation() {
-        Validators.canSignIn(login: login, password: password) { result in
+        AuthValidators.canSignIn(login: login, password: password) { result in
             switch result {
             case .success:
                 self.signIn()
@@ -63,11 +64,15 @@ final class AuthenticationViewModel: ObservableObject {
     
     private func signIn() {
         isLoading = true
-        AuthFetcherServices.signIn(login: login, password: password) { result in
+        AuthFetcherServices.signIn(login: login, password: password) { result, authToken in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    self.successAuth()
+                    guard let token = authToken else { return }
+                    print("🥦", token)
+                    KeychainService.standard.save(AuthToken(accessToken: token.accessToken, refreshToken: token.refreshToken), account: "token")
+                    self.isLoading = false
+                    self.isSignInSuccses = true
                 case .failure(let authError):
                     self.failureAuth(authError)
                 }
@@ -79,7 +84,7 @@ final class AuthenticationViewModel: ObservableObject {
     //MARK: - Register
     
     private func registerValidation() {
-        Validators.canRegister(login: login, email: email, password: password, confirmPassword: confirmPassword) { result in
+        AuthValidators.canRegister(login: login, email: email, password: password, confirmPassword: confirmPassword) { result in
             switch result {
             case .success:
                 self.register()
@@ -93,13 +98,14 @@ final class AuthenticationViewModel: ObservableObject {
     private func register() {
         isLoading = true
         print("🐝", password)
-        AuthFetcherServices.register(login: login, email: email, password: password) { result in
+        AuthFetcherServices.register(login: login, email: email, password: password) { result, _ in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
                     let credentials = Credentials(username: self.login, password: self.password)
                     KeychainService.standard.save(credentials, account: credentials.username)
-                    self.successAuth()
+                    self.isLoading = false
+                    self.isRegisterSuccses = true
                 case .failure(let authError):
                     self.failureAuth(authError)
                 }
@@ -110,66 +116,10 @@ final class AuthenticationViewModel: ObservableObject {
     
     //MARK: - Auth Result
     
-    private func successAuth() {
-        if let readData = KeychainService.standard.read(account: "access-token", type: AuthToken.self) {
-            print("🔑", readData)
-        }
-        
-        self.isLoading = false
-        self.isSignInSuccses = true //- for Routing
-    }
-    
     private func failureAuth(_ authError: AuthError) {
         self.errorText = authError.errorDescription
         self.isLoading = false
         self.isErrorAuth = true
     }
     
-    
-    //MARK: - Biometric
-    
-    //НАДО ЛИ
-//    func getBiometricType() -> String {
-//        let context = LAContext()
-//        _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
-//
-//        switch context.biometryType {
-//        case .faceID:
-//            return "faceid"
-//        case .touchID:
-//            return "lock"
-//        case .none:
-//            return "lock"
-//        @unknown default:
-//            return "lock"
-//        }
-//    }
-//
-//    func tryBiometricAuthentication() {
-//        let context = LAContext() //получаете доступ к биометрической аутентификации
-//        var error: NSError?
-//
-//        //проверяете, доступна ли аутентификация
-//        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-//            let reason = "Authenticate to unlock your note." //причина
-//            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { authenticated, error in
-//
-//                DispatchQueue.main.async {
-//                    if authenticated {
-//                        self.isSignInSuccses = true //авторизировались, иди дальше
-//                    } else {
-//                        if let errorString = error?.localizedDescription {
-//                            print("Error in biometric policy evaluation: \(errorString)")
-//                        }
-//                        //MARK: ERROR
-//                    }
-//                }
-//            }
-//        } else { //вообще аутенфикация не доступна
-//            if let errorString = error?.localizedDescription {
-//                print("Error in biometric policy evaluation: \(errorString)")
-//            }
-//            //MARK: ERROR
-//        }
-//    }
 }

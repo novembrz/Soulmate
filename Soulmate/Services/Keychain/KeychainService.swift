@@ -70,7 +70,9 @@ final class KeychainService {
     }
 }
 
-//MARK: extension
+
+//MARK: - Extension
+
 extension KeychainService {
     //newAccountName(Dasha), item(password, token), service("Soulmate")
     

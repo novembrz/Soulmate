@@ -70,8 +70,8 @@ struct CustomTabBar: View {
 
 //MARK: - AnimateTabBar_Previews
 
-struct AnimateTabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayView()
-    }
-}
+//struct AnimateTabBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DisplayView()
+//    }
+//}

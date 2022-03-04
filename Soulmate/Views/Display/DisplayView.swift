@@ -9,15 +9,19 @@ import SwiftUI
 
 struct DisplayView: View {
     
-//    var body: some View {
-//        if KeychainService.standard.read(account: "access-token", type: AuthToken.self) == nil {
-//            AuthenticationView(viewModel: AuthenticationViewModel())
-//        } else {
-//            home
-//        }
-//    }
+    @State var tokensDoesntMatch: Bool = false
     
     var body: some View {
+        Group {
+            home
+                .fullScreenCover(isPresented: $tokensDoesntMatch) {
+                    AuthenticationView(viewModel: AuthenticationViewModel())
+                }
+        }
+        .onAppear() { didRefreshTokensMatch() }
+    }
+    
+    var home: some View {
         GeometryReader { proxy in
             let size = proxy.size
             let bottomEdje = proxy.safeAreaInsets.bottom
@@ -26,11 +30,31 @@ struct DisplayView: View {
                 .ignoresSafeArea(.all, edges: .bottom)
         }
     }
-}
-
-
-struct HomeContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayView()
+    
+    
+    private func didRefreshTokensMatch() {
+        if TokenService.standard.accessToken == nil {
+            TokenService.standard.didRefreshTokensMatch { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success:
+                        self.tokensDoesntMatch = false
+                    case .failure(_):
+                        self.tokensDoesntMatch = true
+                    }
+                }
+            }
+        } else {
+            print("🌈", TokenService.standard.accessToken)
+            tokensDoesntMatch = false
+        }
     }
+    
 }
+//
+//
+//struct HomeContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DisplayView()
+//    }
+//}

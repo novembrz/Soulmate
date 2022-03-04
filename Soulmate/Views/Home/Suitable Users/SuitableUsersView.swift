@@ -24,7 +24,7 @@ struct SuitableUsersView: View {
             .background(Color.defaultBackground.ignoresSafeArea())
         }
         .onAppear {
-            viewModel.fetchAllPeople()
+            //viewModel.fetchAllPeople()
         }
     }
     

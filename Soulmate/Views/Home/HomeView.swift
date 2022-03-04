@@ -10,34 +10,50 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewModel
+    @State var appears = false
     
     var body: some View {
         CustomNavigationView {
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 8) {
-                    title
-                    
-                    VStack(alignment: .leading, spacing: 25) {
-                        HStack(spacing: 11) {
-                            SearchView(viewModel: SearchViewModel())
-                            filterButton
-                        }
-                        .padding(.horizontal, Constants.horizontalInset)
-                        
-                        VStack(spacing: 48) {
-                            sphere
-                            suitableUsers
-                            folders
-                            works
-                        }
-                    }
+                ZStack {
+                    homePage
                 }
-                .padding(.top, 30)
-                .padding(.bottom, Constants.bottomInset)
             }
             .background(Color.defaultBackground.ignoresSafeArea())
-            .onAppear { viewModel.fetchHomePage() }
+            .onAppear(perform: {
+                if !appears {
+                    appears = !appears
+                } else {
+                    viewModel.fetchHomePage()
+                }
+            })
         }
+    }
+    
+    
+    //MARK: - home page
+    
+    var homePage: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            title
+            
+            VStack(alignment: .leading, spacing: 25) {
+                HStack(spacing: 11) {
+                    SearchView(viewModel: SearchViewModel())
+                    filterButton
+                }
+                .padding(.horizontal, Constants.horizontalInset)
+                
+                VStack(spacing: 48) {
+                    sphere
+                    suitableUsers
+                    folders
+                    works
+                }
+            }
+        }
+        .padding(.top, 30)
+        .padding(.bottom, Constants.bottomInset)
     }
     
     
@@ -85,23 +101,7 @@ struct HomeView: View {
                 HStack(spacing: 11) {
                     ForEach(viewModel.professionalSpheres, id: \.self) { sphere in
                         Button {} label: {
-                            HStack {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .frame(width: 45, height: 45)
-                                        .foregroundColor(.grayForElements)
-                                    
-                                    Text(sphere.icon)
-                                }
-                                
-                                Text(sphere.sphereName)
-                                    .regularFont(16)
-                                    .foregroundColor(.blackText)
-                            }
-                            .padding([.vertical, .leading], 9)
-                            .padding(.trailing, 20)
-                            .background(Color.whiteToDark)
-                            .cornerRadius(15)
+                            SphereCell(title: sphere.sphereName, icon: sphere.icon, sphereType: .pictureCell)
                         }
                     }
                 }
@@ -230,6 +230,7 @@ struct HomeView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-       DisplayView()
+       //DisplayView()
+        HomeView(viewModel: HomeViewModel())
     }
 }

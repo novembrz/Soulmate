@@ -58,9 +58,9 @@ struct NavigationCircle: View {
 
 //MARK: - AnimateTabBar_Previews
 
-struct TabButton_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayView()
-    }
-}
+//struct TabButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DisplayView()
+//    }
+//}
 

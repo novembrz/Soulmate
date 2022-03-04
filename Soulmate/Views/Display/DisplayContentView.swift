@@ -91,8 +91,9 @@ struct DisplayContentView: View {
                     .padding(.bottom, 10)
                     .foregroundColor(.clear)
             }
-            
-        }.sheet(isPresented: $isOpenUploadContent) {
+            .disabled(bottomSheetShown)
+        }
+        .sheet(isPresented: $isOpenUploadContent) {
             UploadContentView(contentType: $contentType)
         }
     }
@@ -101,9 +102,9 @@ struct DisplayContentView: View {
 
 //MARK: - HomeView_Previews
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayView()
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DisplayView()
+//    }
+//}
 

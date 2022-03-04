@@ -15,29 +15,47 @@ final class HomeViewModel: ObservableObject {
     @Published var suitableUsers: [UserModel] = []
     @Published var suitableFolders: [FolderModel] = []
     
-    @Published var notAnAuthorizedUser = true
+    @Published var notAnAuthorizedUser = false //Это не авториз пользовать
     @Published var isLoading = false
     
     var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
     
     
-    func fetchHomePage() {
-        //testToken()
+//    func checkToken() {
+//        isLoading = true
+//        if TokenService.didRefreshTokensMatch() {
+//            notAnAuthorizedUser = false
+//            fetchHomePage()
+//        } else {
+//            print("☎️")
+//            notAnAuthorizedUser = true
+//            isLoading = false
+//        }
+//    }
+    
+    
+     func fetchHomePage() {
         DataFetcherServices.fetchHomePage { [weak self] home in
-            DispatchQueue.main.async {
-                guard let suitableUsers = home?.users, let suitableFolders = home?.folders else { return }
-                self?.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
-                self?.suitableFolders = suitableFolders
-                self?.isLoading = false
-            }
+            guard let suitableUsers = home?.users, let suitableFolders = home?.folders else { return }
+            self?.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
+            self?.suitableFolders = suitableFolders
+            self?.isLoading = false
         }
     }
     
-    //для теста
-    private func testToken() {
-        if let readData = KeychainService.standard.read(account: "access-token", type: AuthToken.self) {
-            print("🉐", readData)
-            notAnAuthorizedUser = false
+    
+    //MARK: - Zhopka
+    @Published var didApper: Bool = false
+    @Published var apperCount = 0
+    
+    func onLoad() {
+        if !didApper {
+            apperCount += 1
+        }
+        didApper = true
+        
+        if didApper {
+            //checkToken()
         }
     }
 }

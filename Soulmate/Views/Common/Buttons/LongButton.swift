@@ -46,7 +46,7 @@ struct LongButton: View {
     var backgrounView: some View {
         Group {
             if isGradient {
-                LinearGradient(colors: [.lightPurple, .turquoise], startPoint: .leading, endPoint: .trailing)
+                LinearGradient.horizontalGradient
                     .cornerRadius(15)
             } else {
                 RoundedRectangle(cornerRadius: 15)

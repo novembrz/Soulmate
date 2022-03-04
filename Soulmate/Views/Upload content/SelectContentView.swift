@@ -66,8 +66,8 @@ struct ContentRow: View {
 
 //MARK: - Previews
 
-struct SelectContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplayView()
-    }
-}
+//struct SelectContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DisplayView()
+//    }
+//}

@@ -5,10 +5,13 @@
 //  Created by dasha on 30.11.2021.
 //
 
-import Foundation
+import SwiftUI
 
 
-struct ProfessionalSpheres: Hashable {
+struct ProfessionalSpheres: Hashable, Identifiable {
     var sphereName: String
     var icon: String
+    
+    var id = UUID().uuidString
+    var size: CGFloat = 0
 }

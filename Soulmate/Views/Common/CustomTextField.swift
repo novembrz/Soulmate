@@ -15,7 +15,6 @@ struct CustomTextField: View {
     var isPassword: Bool = false
     
     @State private var passwordVisibility = false
-    //@State var searchText: String = ""
     
     var text: (() -> ())?
     
@@ -56,7 +55,7 @@ struct CustomTextField: View {
             .background(Color.whiteToDark)
             .accentColor(.mintGreen)
             .cornerRadius(15)
-            .elementShadow()
+            //.elementShadow()
     }
     
     
@@ -72,7 +71,7 @@ struct CustomTextField: View {
             .background(Color.whiteToDark)
             .accentColor(.mintGreen)
             .cornerRadius(15)
-            .elementShadow()
+            //.elementShadow()
     }
     
     
@@ -83,7 +82,7 @@ struct CustomTextField: View {
             Image(icon)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 11)
+                .frame(width: 11)
                 .foregroundColor(.placeholder)
             
            
@@ -134,9 +133,9 @@ struct CustomTextField: View {
 
 
 //MARK: - Previews
-
-struct CustomTextField_Previews: PreviewProvider {
-    static var previews: some View {
-       AuthenticationView(viewModel: AuthenticationViewModel())
-    }
-}
+//
+//struct CustomTextField_Previews: PreviewProvider {
+//    static var previews: some View {
+//       AuthenticationView(viewModel: AuthenticationViewModel())
+//    }
+//}
