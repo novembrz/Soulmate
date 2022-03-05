@@ -10,6 +10,7 @@ import SwiftUI
 struct RegisterView: View {
     
     @ObservedObject var viewModel: RegisterViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -20,15 +21,16 @@ struct RegisterView: View {
                 }
                 textFields
                 professions
-                Spacer()
                 registerButton
             }
         }
         .padding(.horizontal, Constants.horizontalInset)
         .padding(.top, Constants.topInset)
         .background(Color.defaultBackground)
+        //.onChange(of: viewModel.isSuccessReg) { _ in dismiss() }
         .showBanner(isShowing: $viewModel.isErrorAuth, message: viewModel.errorText ?? "", notificationType: .error)
         .showBanner(isShowing: $viewModel.isSuccessReg, message: viewModel.successRegMessage, notificationType: .message)
+        .showLoading(isShowing: $viewModel.isLoading)
     }
     
     
@@ -128,27 +130,68 @@ struct RegisterView: View {
     //MARK: - Professions
     
     var professions: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            HStack {
-                if viewModel.profession == [] {
+        VStack(alignment: .leading, spacing: 25) {
+            VStack(alignment: .leading, spacing: 3) {
+                HStack {
                     Text("Экспертные области")
                         .mediumFont(18)
                         .foregroundColor(.blackText)
-                } else {
                     
+                    Button {
+                        withAnimation {
+                            viewModel.usersMockProf[viewModel.usersMockProf.count - 1].append(Profession(id: viewModel.usersMockProf.count, name: "Олень", main: false))
+                        }
+                    } label: {
+                        Image("plusBold")
+                            .resizable()
+                            .foregroundColor(.blackText)
+                            .frame(width: 20, height: 20)
+                    }
                 }
                 
-                Button {} label: {
-                    Image("plusBold")
-                        .resizable()
-                        .foregroundColor(.blackText)
-                        .frame(width: 20, height: 20)
-                }
+                Text("Галочкой отметьте основную профессию")
+                    .mediumFont(12)
+                    .foregroundColor(.mintGreen)
             }
             
-            Text("Галочкой отметьте основную профессию")
-                .mediumFont(12)
-                .foregroundColor(.mintGreen)
+            if viewModel.usersMockProf != [] {
+                chips
+            }
+        }
+    }
+    
+    
+    //MARK: - Chips
+    //Удаление профессии(зажатием и свайпом), кто главный, меню профессий, проверка на 4 (сложить каунты всех массивов в массиве)
+    
+    var chips: some View {
+        LazyVStack(alignment: .leading) {
+            ForEach(viewModel.usersMockProf.indices, id: \.self) { index in
+                HStack {
+                    ForEach(viewModel.usersMockProf[index].indices, id: \.self) { cellIndex in
+                        var profession = viewModel.usersMockProf[index][cellIndex]
+                        
+                        SphereCell(title: profession.name,
+                                   isChoose: profession.main,
+                                   sphereType: .checkmarkCell)
+                            .overlay(
+                                GeometryReader() { reader -> Color in
+                                    let maxX = reader.frame(in: .global).maxX
+                                    if maxX > UIScreen.width - 32 && !profession.isExceeded {
+                                        DispatchQueue.global().async {
+                                            profession.isExceeded = true
+                                            viewModel.usersMockProf.append([profession])
+                                            viewModel.usersMockProf[index].remove(at: cellIndex)
+                                        }
+                                    }
+                                    return .clear
+                                }
+                                , alignment: .leading
+                            )
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                }
+            }
         }
     }
     

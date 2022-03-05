@@ -20,6 +20,7 @@ struct AuthenticationView: View {
             .background(Color.defaultBackground)
             .showBanner(isShowing: $viewModel.forgotPassword, message: viewModel.forgorPasswordMessage, notificationType: .message)
             .showBanner(isShowing: $viewModel.isErrorAuth, message: viewModel.errorText ?? "", notificationType: .error)
+            .showLoading(isShowing: $viewModel.isLoading)
             .onChange(of: viewModel.isSignInSuccses) { _ in dismiss() }
             .fullScreenCover(isPresented: $viewModel.isRegisterSuccses) {
                 RegisterView(viewModel: RegisterViewModel())

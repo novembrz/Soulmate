@@ -45,7 +45,7 @@ final class AuthValidators {
         return true
     }
     
-    static private func isProfileDataFilled(firstName: String?, lastName: String?, profession: [UserProfessions]?) -> Bool {
+    static private func isProfileDataFilled(firstName: String?, lastName: String?, profession: [Profession]?) -> Bool {
         guard !(firstName ?? "").isEmpty,
               !(lastName ?? "").isEmpty,
               !(profession ?? []).isEmpty else { return false }

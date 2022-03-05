@@ -16,12 +16,12 @@ final class RegisterViewModel: ObservableObject {
     @Published var city = ""
     @Published var birthDay = ""
     @Published var birthDate = Date()
-    @Published var profession: [Int] = []
-    @Published var usersMockProf: [ProfessionalSpheres] = [
-        ProfessionalSpheres(sphereName: "Фотография", icon: "📸"),
-        ProfessionalSpheres(sphereName: "Писательство", icon: "✍🏼"),
-        ProfessionalSpheres(sphereName: "Музыка", icon: "🎸")
-    ] //MARK: deplicated
+    //@Published var profession: [Int] = []
+    @Published var usersMockProf: [[Profession]] = [[
+        Profession(id: 0, name: "Музыкант", main: true),
+        Profession(id: 1, name: "Певец jjjjjjj", main: false),
+        Profession(id: 2, name: "Продюссер", main: false)
+    ]] //MARK: deplicated
     
     @Published var isPhotoPickerOpened = false
     @Published var isLoading = false
@@ -46,9 +46,18 @@ final class RegisterViewModel: ObservableObject {
     }
     
     private func saveUserData() {
-        self.isLoading = false
-        isSuccessReg = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.isLoading = false
+            self.isSuccessReg = true
+        }
     }
+    
+    func checkManyProfessions() {
+        errorText = "Можно добавить не больше 4 профессий!"
+        isErrorAuth = true
+    }
+    
+    //MARK: Chips
     
     
     

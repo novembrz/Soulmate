@@ -69,7 +69,6 @@ final class AuthenticationViewModel: ObservableObject {
                 switch result {
                 case .success:
                     guard let token = authToken else { return }
-                    print("🥦", token)
                     KeychainService.standard.save(AuthToken(accessToken: token.accessToken, refreshToken: token.refreshToken), account: "token")
                     self.isLoading = false
                     self.isSignInSuccses = true
@@ -97,7 +96,6 @@ final class AuthenticationViewModel: ObservableObject {
     
     private func register() {
         isLoading = true
-        print("🐝", password)
         AuthFetcherServices.register(login: login, email: email, password: password) { result, _ in
             DispatchQueue.main.async {
                 switch result {
@@ -123,3 +121,4 @@ final class AuthenticationViewModel: ObservableObject {
     }
     
 }
+

@@ -66,6 +66,8 @@
 		C8864402275A064800BC1B06 /* LongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864401275A064800BC1B06 /* LongButton.swift */; };
 		C8864405275A110800BC1B06 /* FolderStrokeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8864404275A110800BC1B06 /* FolderStrokeCardView.swift */; };
 		C888EF8827CE63930012AE64 /* loadingLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = C888EF8727CE63930012AE64 /* loadingLottie.json */; };
+		C899129627D3487A003180BB /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C899129527D3487A003180BB /* LottieView.swift */; };
+		C899129A27D34E57003180BB /* LoadingViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C899129927D34E57003180BB /* LoadingViewModifier.swift */; };
 		C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */; };
 		C8A6AFEB278CDB9A00A3B80D /* TitleBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFEA278CDB9A00A3B80D /* TitleBlock.swift */; };
 		C8A6AFEE278D8EEC00A3B80D /* BigStandartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6AFED278D8EEC00A3B80D /* BigStandartButton.swift */; };
@@ -160,6 +162,8 @@
 		C8864401275A064800BC1B06 /* LongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongButton.swift; sourceTree = "<group>"; };
 		C8864404275A110800BC1B06 /* FolderStrokeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderStrokeCardView.swift; sourceTree = "<group>"; };
 		C888EF8727CE63930012AE64 /* loadingLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingLottie.json; sourceTree = "<group>"; };
+		C899129527D3487A003180BB /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		C899129927D34E57003180BB /* LoadingViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModifier.swift; sourceTree = "<group>"; };
 		C8A3F26F277A3CC400C6435A /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		C8A6AFEA278CDB9A00A3B80D /* TitleBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBlock.swift; sourceTree = "<group>"; };
 		C8A6AFED278D8EEC00A3B80D /* BigStandartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigStandartButton.swift; sourceTree = "<group>"; };
@@ -352,8 +356,6 @@
 		C842575827502776009C405C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				C888EF8627CE63790012AE64 /* Contents */,
-				C8A6AFF3278D9A5500A3B80D /* Modifiers */,
 				C8A6AFF4278DA34500A3B80D /* Extensions */,
 				C83D80F527C9118100704709 /* Validators */,
 				C86C556727975674000710DD /* AuthErrors.swift */,
@@ -386,13 +388,8 @@
 		C842576A275283EB009C405C /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				C81F8A662795F0C70085A641 /* Animation */,
-				C8864403275A065000BC1B06 /* Buttons */,
-				C83D80F427C9086100704709 /* Blocks */,
-				C8523CFF2794CD9600FF6536 /* CustomTextField.swift */,
-				C819194127C031DC009AC7C6 /* BottomSheetView.swift */,
-				C83D80F827CA427B00704709 /* SphereCell.swift */,
-				C83D80F227C9082C00704709 /* PhotoPickerView.swift */,
+				C8A6AFF3278D9A5500A3B80D /* Modifiers */,
+				C899129C27D358B3003180BB /* Views */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -425,13 +422,29 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
-		C888EF8627CE63790012AE64 /* Contents */ = {
+		C888EF8627CE63790012AE64 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				C8E584AE274983F30057B309 /* Assets.xcassets */,
 				C888EF8427CE63670012AE64 /* Lottie */,
 				C842574227501F7C009C405C /* Fonts */,
 			);
-			path = Contents;
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		C899129C27D358B3003180BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C81F8A662795F0C70085A641 /* Animation */,
+				C8864403275A065000BC1B06 /* Buttons */,
+				C83D80F427C9086100704709 /* Blocks */,
+				C8523CFF2794CD9600FF6536 /* CustomTextField.swift */,
+				C83D80F827CA427B00704709 /* SphereCell.swift */,
+				C819194127C031DC009AC7C6 /* BottomSheetView.swift */,
+				C83D80F227C9082C00704709 /* PhotoPickerView.swift */,
+				C899129527D3487A003180BB /* LottieView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C8A6AFEC278D7D6D00A3B80D /* User */ = {
@@ -448,6 +461,7 @@
 		C8A6AFF3278D9A5500A3B80D /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				C899129927D34E57003180BB /* LoadingViewModifier.swift */,
 				C8EB7B2327997EA300883493 /* BannerModifier.swift */,
 				C842575627502473009C405C /* ThemeFont.swift */,
 				C8A6AFF1278D9A4000A3B80D /* Shadow.swift */,
@@ -553,7 +567,7 @@
 				C842575F27527DB5009C405C /* Models */,
 				C842574127501CEC009C405C /* Views */,
 				C842575827502776009C405C /* Helpers */,
-				C8E584AE274983F30057B309 /* Assets.xcassets */,
+				C888EF8627CE63790012AE64 /* Assets */,
 				C8425755275021F2009C405C /* Info.plist */,
 				C8E584B0274983F30057B309 /* Preview Content */,
 			);
@@ -731,6 +745,7 @@
 				C883A3E327C2E07B00EA9CC2 /* TokenService.swift in Sources */,
 				C819193A27BEEE49009AC7C6 /* ServiceUrl.swift in Sources */,
 				C842575727502473009C405C /* ThemeFont.swift in Sources */,
+				C899129627D3487A003180BB /* LottieView.swift in Sources */,
 				C8F8866127C905EB000C3E13 /* RegisterViewModel.swift in Sources */,
 				C813572D276355580072B1F7 /* TabBarViewModel.swift in Sources */,
 				C8F17D912756BFAE00BC6A44 /* SearchViewModel.swift in Sources */,
@@ -763,6 +778,7 @@
 				C8523CFE2794CC5800FF6536 /* AuthenticationView.swift in Sources */,
 				C8CA119027C127E9009ED143 /* ContentType.swift in Sources */,
 				C81F102B277BBC65006787E0 /* WorkCardView.swift in Sources */,
+				C899129A27D34E57003180BB /* LoadingViewModifier.swift in Sources */,
 				C8A6AFF2278D9A4000A3B80D /* Shadow.swift in Sources */,
 				C819EE80279381600011676F /* WorkPlacesModel.swift in Sources */,
 				C883A3E127C2B03E00EA9CC2 /* LinearGradient + Extension.swift in Sources */,
@@ -910,6 +926,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Soulmate/Preview Content\"";
 				DEVELOPMENT_TEAM = R367V6SP7Z;
 				ENABLE_PREVIEWS = YES;
@@ -942,6 +959,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Soulmate/Preview Content\"";
 				DEVELOPMENT_TEAM = R367V6SP7Z;
 				ENABLE_PREVIEWS = YES;

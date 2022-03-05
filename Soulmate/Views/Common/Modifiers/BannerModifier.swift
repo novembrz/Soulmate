@@ -14,19 +14,20 @@ struct BannerModifier: ViewModifier {
         case message, content, error
     }
     
-    
     @Binding var isShowing: Bool
+    @State var isMove = false
     let duration: TimeInterval
     
     var message: String
     var imageName: String?
     var notificationType: NotificationType = .message
     
-    @State var isMove = false
     let bannerHeight: CGFloat = 53
     var bannerShowOffset: CGFloat { -(UIScreen.height / 2) + bannerHeight + 15 }
     var bannerHideOffset: CGFloat { -(UIScreen.height / 2) - bannerHeight - 15 }
     
+    
+    //MARK: - Body
     
     func body(content: Content) -> some View {
         ZStack {
@@ -56,6 +57,7 @@ struct BannerModifier: ViewModifier {
             }
         }
     }
+    
     
     //MARK: - Banner
     
@@ -99,17 +101,17 @@ extension View {
     func showBanner(isShowing: Binding<Bool>, duration: TimeInterval = 2.5, message: String, imageName: String? = "", notificationType: BannerModifier.NotificationType = .message) -> some View {
         
         modifier(BannerModifier(isShowing: isShowing,
-                             duration: duration,
-                             message: message,
-                             imageName: imageName,
-                             notificationType: notificationType))
+                                duration: duration,
+                                message: message,
+                                imageName: imageName,
+                                notificationType: notificationType))
     }
 }
 
 
 //MARK: - Previews
 
-struct TestView: View {
+struct TestBannerView: View {
     @State private var isShowing: Bool = false
     
     var body: some View {
@@ -123,6 +125,6 @@ struct TestView: View {
 
 struct BannerView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView()
+        TestBannerView()
     }
 }

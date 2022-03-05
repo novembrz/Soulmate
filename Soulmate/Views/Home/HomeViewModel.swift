@@ -21,20 +21,8 @@ final class HomeViewModel: ObservableObject {
     var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
     
     
-//    func checkToken() {
-//        isLoading = true
-//        if TokenService.didRefreshTokensMatch() {
-//            notAnAuthorizedUser = false
-//            fetchHomePage()
-//        } else {
-//            print("☎️")
-//            notAnAuthorizedUser = true
-//            isLoading = false
-//        }
-//    }
-    
-    
-     func fetchHomePage() {
+    func fetchHomePage() {
+        isLoading = true
         DataFetcherServices.fetchHomePage { [weak self] home in
             guard let suitableUsers = home?.users, let suitableFolders = home?.folders else { return }
             self?.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
@@ -45,17 +33,18 @@ final class HomeViewModel: ObservableObject {
     
     
     //MARK: - Zhopka
-    @Published var didApper: Bool = false
-    @Published var apperCount = 0
     
-    func onLoad() {
-        if !didApper {
-            apperCount += 1
-        }
-        didApper = true
-        
-        if didApper {
-            //checkToken()
-        }
-    }
+//    @Published var didApper: Bool = false
+//    @Published var apperCount = 0
+//    
+//    func onLoad() {
+//        if !didApper {
+//            apperCount += 1
+//        }
+//        didApper = true
+//        
+//        if didApper {
+//            //checkToken()
+//        }
+//    }
 }
