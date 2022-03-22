@@ -20,6 +20,7 @@ final class ServiceUrl {
         static var signIn = base + "/signin"
         static var register = base + "/signup"
         static var refreshToken = base + "/refreshtoken"
+        static var isFreeData = base + "is-free/"
     }
     
     final class Folder {

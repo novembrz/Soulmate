@@ -13,9 +13,7 @@ struct AuthFetcherServices {
         NetworkService.postData(param: ["username": login.lowercased(),
                                         "password": password],
                                 urlString: ServiceUrl.Auth.signIn,
-                                completion: completion) 
-        
-        //Keychain
+                                completion: completion)
     }
     
     static func register(login: String, email: String, password: String, completion: @escaping (Result, AuthToken?) -> Void) {
@@ -23,6 +21,13 @@ struct AuthFetcherServices {
                                         "email": email.lowercased(),
                                         "password": password],
                                 urlString: ServiceUrl.Auth.register,
+                                completion: completion)
+    }
+    
+    static func isFreeRegisterData(type: String, textData: String, completion: @escaping (Result, isFree?) -> Void) {
+        NetworkService.postData(param: ["type": type,
+                                        "text": textData],
+                                urlString: ServiceUrl.Auth.isFreeData,
                                 completion: completion)
     }
 }

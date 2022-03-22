@@ -11,3 +11,8 @@ enum Result {
     case success 
     case failure(AuthError)
 }
+
+
+struct isFree: Decodable {
+    var success: Bool
+}

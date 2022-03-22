@@ -69,13 +69,35 @@ final class AuthValidators {
     //MARK: - Free data
     
     static private func freeLogin(_ login: String) -> Bool {
-        // Яр скажет свободен ли такой на бэке
-        return true
+        var isFree: Bool?
+        AuthFetcherServices.isFreeRegisterData(type: "USERNAME", textData: login) { result, isFreeResult in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    guard let isFreeResult = isFreeResult else { return }
+                    isFree = isFreeResult.success
+                case .failure(_):
+                    isFree = false
+                }
+            }
+        }
+        return isFree ?? false
     }
     
     static private func freeEmail(_ email: String) -> Bool {
-        // Яр скажет свободен ли такой на бэке
-        return true
+        var isFree: Bool?
+        AuthFetcherServices.isFreeRegisterData(type: "EMAIL", textData: email) { result, isFreeResult in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    guard let isFreeResult = isFreeResult else { return }
+                    isFree = isFreeResult.success
+                case .failure(_):
+                    isFree = false
+                }
+            }
+        }
+        return isFree ?? false
     }
     
     
