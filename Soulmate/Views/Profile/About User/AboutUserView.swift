@@ -132,8 +132,7 @@ struct AboutUserView: View {
 
 struct AboutUserView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomNavigationView {
-            ProfileView(userId: 1, authorizedUserProfile: true, viewModel: ProfileViewModel())
-        }
+        AboutUserView(user: MockService.mockUser, viewModel: AboutUserViewModel())
+            .preferredColorScheme(.dark)
     }
 }

@@ -229,6 +229,11 @@ struct HomeView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
        //DisplayView()
-        HomeView(viewModel: HomeViewModel())
+        Group {
+            HomeView(viewModel: HomeViewModel())
+                .preferredColorScheme(.dark)
+            HomeView(viewModel: HomeViewModel())
+                .preferredColorScheme(.dark)
+        }
     }
 }

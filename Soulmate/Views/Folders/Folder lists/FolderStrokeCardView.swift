@@ -82,7 +82,7 @@ struct FolderStrokeCardView: View {
         VStack {
             if haveProfileButton {
                 CustomNavigationLink {
-                    StandartButton(imageName: "user", bgColor: .mintGreen, iconColor: .whiteToDark, buttonSize: 30, imageWidth: 12, imageHeight: 13, routing: true)
+                    StandartButton(imageName: "user", bgColor: .mintGreen, iconColor: .whiteText, buttonSize: 30, imageWidth: 12, imageHeight: 13, routing: true)
                 } destination: {
                     ProfileView(userId: folder.author.id, viewModel: ProfileViewModel())
                 }

@@ -47,7 +47,8 @@ struct ProfileView: View {
                                     .first?.link ?? "")) { image in
                 image.resizable()
             } placeholder: {
-                ProgressView()
+                LottieView(filename: "loadingLottie", isLooping: true)
+                    .frame(width: 200, height: 200)
             }
             .aspectRatio(contentMode: .fill)
             .offset(y: -reader.frame(in: .global).minY)
@@ -173,8 +174,15 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomNavigationView {
-            ProfileView(userId: 5, viewModel: ProfileViewModel())
+        Group {
+            CustomNavigationView {
+                ProfileView(userId: 5, viewModel: ProfileViewModel())
+            }
+            .preferredColorScheme(.light)
+            CustomNavigationView {
+                ProfileView(userId: 5, viewModel: ProfileViewModel())
+            }
+            .preferredColorScheme(.dark)
         }
     }
 }

@@ -125,5 +125,6 @@ struct AuthenticationView: View {
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
         AuthenticationView(viewModel: AuthenticationViewModel())
+            .preferredColorScheme(.dark)
     }
 }

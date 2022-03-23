@@ -51,7 +51,8 @@ struct ContentCard: View {
                 AsyncImage(url: urlString) { image in
                     image.resizable()
                 } placeholder: {
-                    ProgressView()
+                     LottieView(filename: "loadingLottie", isLooping: true)
+                         .frame(width: 180, height: 180)
                 }
                 .aspectRatio(contentMode: .fill)
                 .frame(height: height)

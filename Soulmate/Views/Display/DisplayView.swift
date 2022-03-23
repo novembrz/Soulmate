@@ -55,6 +55,11 @@ struct DisplayView: View {
 
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
-        DisplayView()
+        Group {
+            DisplayView()
+                .preferredColorScheme(.light)
+            DisplayView()
+                .preferredColorScheme(.dark)
+        }
     }
 }

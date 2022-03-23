@@ -119,6 +119,7 @@ struct UserWorksView: View {
                                         Image("more")
                                             .resizable()
                                             .frame(width: 14, height: 14)
+                                            .foregroundColor(.mintGreen)
                                     }
                                 }
                             }
@@ -164,5 +165,6 @@ struct UserWorksView: View {
 struct WorksView_Previews: PreviewProvider {
     static var previews: some View {
         UserWorksView(folderId: 1, viewModel: UserWorksViewModel())
+            .preferredColorScheme(.dark)
     }
 }
