@@ -51,10 +51,10 @@ struct DisplayView: View {
     }
     
 }
-//
-//
-//struct HomeContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DisplayView()
-//    }
-//}
+
+
+struct HomeContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        DisplayView()
+    }
+}

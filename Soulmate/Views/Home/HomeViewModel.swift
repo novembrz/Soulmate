@@ -14,20 +14,29 @@ final class HomeViewModel: ObservableObject {
     
     @Published var suitableUsers: [UserModel] = []
     @Published var suitableFolders: [FolderModel] = []
+    @Published var suitableCards: [CardModel] = []
     
     @Published var notAnAuthorizedUser = false //Это не авториз пользовать
     @Published var isLoading = false
     
-    var columns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
+    var cardColumns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
+    var folderColumns: [GridItem] = Array(repeating: .init(.fixed(65), spacing: 13, alignment: .topLeading), count: 2)
     
     
     func fetchHomePage() {
         isLoading = true
         DataFetcherServices.fetchHomePage { [weak self] home in
-            guard let suitableUsers = home?.users, let suitableFolders = home?.folders else { return }
-            self?.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
-            self?.suitableFolders = suitableFolders
-            self?.isLoading = false
+            DispatchQueue.main.async {
+                guard let suitableUsers = home?.users,
+                        let suitableCards = home?.cards,
+                        let suitableFolders = home?.folders
+                else { return }
+                
+                self?.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
+                self?.suitableFolders = suitableFolders
+                self?.suitableCards = suitableCards
+                self?.isLoading = false
+            }
         }
     }
     

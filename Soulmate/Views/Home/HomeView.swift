@@ -74,7 +74,7 @@ struct HomeView: View {
     }
     
     
-    //MARK: - filterButton
+    //MARK: - filter Button
     
     var filterButton: some View {
         VStack {
@@ -102,7 +102,9 @@ struct HomeView: View {
                 HStack(spacing: 11) {
                     ForEach(viewModel.professionalSpheres, id: \.self) { sphere in
                         Button {} label: {
-                            SphereCell(title: sphere.sphereName, icon: sphere.icon, sphereType: .pictureCell)
+                            SphereCell(title: sphere.sphereName,
+                                       icon: sphere.icon,
+                                       sphereType: .pictureCell)
                         }
                     }
                 }
@@ -180,33 +182,22 @@ struct HomeView: View {
     
     
     //MARK: - folders
-  
+    
     var folders: some View {
         ContentBlock(title: "Проекты", buttonTitle: "Все") {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: -35) {
+                LazyHGrid(rows: viewModel.folderColumns, alignment: .top, spacing: 18) {
                     ForEach(viewModel.suitableFolders, id: \.self) { folder in
-                        VStack(spacing: 13) {
-                            //Если индекс четный то во 2, не четный - 1
-                            CustomNavigationLink {
-                                FolderStrokeCardView(folder: folder, haveProfileButton: true)
-                                    .padding(.horizontal, Constants.horizontalInset)
-                            } destination: {
-                                UserWorksView(folderId: folder.id, viewModel: UserWorksViewModel())
-                            }
-                            
-                            CustomNavigationLink {
-                                FolderStrokeCardView(folder: folder, haveProfileButton: true)
-                                    .padding(.horizontal, Constants.horizontalInset)
-                            } destination: {
-                                UserWorksView(folderId: folder.id, viewModel: UserWorksViewModel())
-                            }
+                        CustomNavigationLink {
+                            FolderStrokeCardView(folder: folder, haveProfileButton: true)
+                        } destination: {
+                            UserWorksView(folderId: folder.id, viewModel: UserWorksViewModel())
                         }
-                        .frame(width: 370)
                     }
                 }
+                .padding(.horizontal, Constants.horizontalInset)
             }
-        } destination: {
+        }  destination: {
             FoldersView(viewModel: FoldersViewModel())
         }
     }
@@ -216,9 +207,15 @@ struct HomeView: View {
     
     var works: some View {
         ContentBlock(title: "Топ работ") {
-            LazyVGrid(columns: viewModel.columns, spacing: 18) {
-                ForEach(0...15, id: \.self) { work in
-                    ContentCard(name: "work", id: 1, lastName: "work", description: "work", imageString: "", contentType: .work, height: 137, isColor: true)
+            LazyVGrid(columns: viewModel.cardColumns, spacing: 18) {
+                ForEach(viewModel.suitableCards, id: \.self) { card in
+                    ContentCard(name: card.name,
+                                id: card.id,
+                                description: (card.author.firstName ?? "") + " " + (card.author.lastName ?? ""),
+                                imageString: card.contentLink ?? "",
+                                contentType: .work,
+                                height: 137,
+                                smallText: true)
                 }
             }
             .padding(.horizontal, Constants.horizontalInset)

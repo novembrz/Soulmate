@@ -9,7 +9,7 @@ import SwiftUI
 
 extension View {
     public func elementShadow() -> some View {
-        self.shadow(color: .elementShadow.opacity(0.3), radius: 30, x: 4, y: 4)
+        self.shadow(color: .elementShadow.opacity(0.1), radius: 30, x: 4, y: 4)
     }
     
     public func textShadow(opacity: Double = 0.3, radius: CGFloat = 2) -> some View {

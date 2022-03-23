@@ -23,7 +23,8 @@ struct ContentCard: View {
     var height: CGFloat = 195
     var minWidth: CGFloat = 82
     var maxWidth: CGFloat = 125
-    var isColor: Bool = false
+    
+    var smallText: Bool = false
     
     var body: some View {
         CustomNavigationLink {
@@ -46,32 +47,25 @@ struct ContentCard: View {
     
     var previewImage: some View {
         VStack {
-            if !isColor {
-                if let urlString = URL(string: imageString) {
-                    AsyncImage(url: urlString) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }
+            if let urlString = URL(string: imageString) {
+                AsyncImage(url: urlString) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .aspectRatio(contentMode: .fill)
+                .frame(height: height)
+                .frame(minWidth: minWidth, maxWidth: maxWidth, alignment: .center)
+                .clipped()
+                .cornerRadius(15)
+            } else {
+                Image(Constants.plugImage)
+                    .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(height: height)
                     .frame(minWidth: minWidth, maxWidth: maxWidth, alignment: .center)
                     .clipped()
                     .cornerRadius(15)
-                } else {
-                    Image(Constants.plugImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(height: height)
-                        .frame(minWidth: minWidth, maxWidth: maxWidth, alignment: .center)
-                        .clipped()
-                        .cornerRadius(15)
-                }
-                
-            } else {
-                RoundedRectangle(cornerRadius: 15)
-                    .frame(height: height)
-                    .foregroundColor(.mintGreen)
             }
         }
     }
@@ -82,19 +76,21 @@ struct ContentCard: View {
     var informationText: some View {
         VStack(alignment: .leading) {
             Text("\(name)")
-                .boldFont(12)
+                .boldFont(smallText ? 9 : 12)
                 .foregroundColor(.whiteText)
                 .multilineTextAlignment(.leading)
                 .lineLimit(1)
             
-            Text("\(lastName ?? "")")
-                .boldFont(12)
-                .foregroundColor(.whiteText)
-                .multilineTextAlignment(.leading)
-                .lineLimit(1)
+            if lastName != nil {
+                Text("\(lastName ?? "")")
+                    .boldFont(12)
+                    .foregroundColor(.whiteText)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(1)
+            }
             
             Text(description)
-                .regularFont(11)
+                .regularFont(smallText ? 7 : 11)
                 .foregroundColor(.whiteText)
                 .lineLimit(1)
         }

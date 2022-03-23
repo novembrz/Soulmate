@@ -8,7 +8,7 @@
 import Foundation
 
 final class ServiceUrl {
-    static var host = "http://localhost:8082/api"
+    static var host = "https://soulmade.herokuapp.com/api"
     static var userURL = host + "/user"
     static var professionURL = host + "/profession"
     static var homePageURL = host + "/home"

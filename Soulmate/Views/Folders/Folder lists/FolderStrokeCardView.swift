@@ -29,7 +29,7 @@ struct FolderStrokeCardView: View {
         .padding(10)
         .background(Color.whiteToDark)
         .cornerRadius(15)
-        .frame(maxWidth: .infinity)
+        .frame(minWidth: UIScreen.width - Constants.horizontalInset*2 - 15, maxWidth: .infinity)
         .elementShadow()
     }
     

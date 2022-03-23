@@ -30,7 +30,13 @@ struct FoldersView: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 34) {
                 TitleBlock(viewTitle: viewModel.getFolderName())
-                contentList
+                if viewModel.folders != [] {
+                    contentList
+                } else {
+                    Image("folderPlug")
+                        .resizable()
+                        .scaledToFit()
+                }
             }
             .padding(.top, Constants.topInset)
             .padding(.bottom, Constants.bottomInset)
