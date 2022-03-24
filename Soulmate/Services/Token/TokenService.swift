@@ -15,7 +15,7 @@ final class TokenService {
     
     func didRefreshTokensMatch(completion: @escaping (Result) -> Void) {
         guard let readData = KeychainService.standard.read(account: "token", type: AuthToken.self)
-        else { return completion(.failure(.dataError)) }
+        else { return completion(.failure(KeychainServiceError.readError)) }
 
         checkRefreshToken(readData.refreshToken) { result, authToken in
             switch result {
@@ -26,8 +26,8 @@ final class TokenService {
                 print("🔋", token.accessToken)
                 completion(.success)
             case .failure(let authError):
-                print("☎️", authError.localizedDescription)
-                completion(.failure(.dataError))
+                print("☎️", KeychainServiceError.checkRefreshToken, authError.localizedDescription)
+                completion(.failure(KeychainServiceError.checkRefreshToken))
             }
         }
     }

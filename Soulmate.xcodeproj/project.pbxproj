@@ -58,6 +58,8 @@
 		C875324527BBCD36004DED24 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C875324427BBCD36004DED24 /* KeychainService.swift */; };
 		C87609B227EB4AF7004040F2 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87609B127EB4AF7004040F2 /* CardModel.swift */; };
 		C87609B427EB4FB9004040F2 /* Avatars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87609B327EB4FB9004040F2 /* Avatars.swift */; };
+		C8787BF227ECA18D00E11926 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8787BF127ECA18D00E11926 /* ResponseError.swift */; };
+		C8787BF527ECA6D100E11926 /* KeychainServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8787BF427ECA6D100E11926 /* KeychainServiceError.swift */; };
 		C883A3DF27C2AFDE00EA9CC2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883A3DE27C2AFDE00EA9CC2 /* RegisterView.swift */; };
 		C883A3E127C2B03E00EA9CC2 /* LinearGradient + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883A3E027C2B03E00EA9CC2 /* LinearGradient + Extension.swift */; };
 		C883A3E327C2E07B00EA9CC2 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883A3E227C2E07B00EA9CC2 /* TokenService.swift */; };
@@ -155,6 +157,8 @@
 		C875324427BBCD36004DED24 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		C87609B127EB4AF7004040F2 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		C87609B327EB4FB9004040F2 /* Avatars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatars.swift; sourceTree = "<group>"; };
+		C8787BF127ECA18D00E11926 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
+		C8787BF427ECA6D100E11926 /* KeychainServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainServiceError.swift; path = ../Token/KeychainServiceError.swift; sourceTree = "<group>"; };
 		C883A3DE27C2AFDE00EA9CC2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		C883A3E027C2B03E00EA9CC2 /* LinearGradient + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LinearGradient + Extension.swift"; sourceTree = "<group>"; };
 		C883A3E227C2E07B00EA9CC2 /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				C8D8DAF2275C1C2A009A0552 /* NetworkService.swift */,
 				C81F1031277BCAB2006787E0 /* DataFetcherServices.swift */,
 				C8AE9C9127989932000B6D72 /* AuthFetcherServices.swift */,
+				C8787BF127ECA18D00E11926 /* ResponseError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -307,12 +312,13 @@
 			path = Blocks;
 			sourceTree = "<group>";
 		};
-		C83D80F527C9118100704709 /* Validators */ = {
+		C83D80F527C9118100704709 /* Auth Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C86C556727975674000710DD /* AuthErrors.swift */,
 				C86C556527971C4B000710DD /* AuthValidators.swift */,
 			);
-			path = Validators;
+			path = "Auth Helpers";
 			sourceTree = "<group>";
 		};
 		C841CA4C2777AF6B00AC6610 /* Navigation */ = {
@@ -359,8 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				C8A6AFF4278DA34500A3B80D /* Extensions */,
-				C83D80F527C9118100704709 /* Validators */,
-				C86C556727975674000710DD /* AuthErrors.swift */,
+				C83D80F527C9118100704709 /* Auth Helpers */,
 				C842576D275286E3009C405C /* PluralLocalized.swift */,
 				C8A6AFEF278D963B00A3B80D /* Constants.swift */,
 			);
@@ -403,6 +408,14 @@
 				C8F8866227C90619000C3E13 /* Register */,
 			);
 			path = "Sign In & Register";
+			sourceTree = "<group>";
+		};
+		C8787BF327ECA6C500E11926 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				C883A3E227C2E07B00EA9CC2 /* TokenService.swift */,
+			);
+			path = Token;
 			sourceTree = "<group>";
 		};
 		C8864403275A065000BC1B06 /* Buttons */ = {
@@ -487,6 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				C875324427BBCD36004DED24 /* KeychainService.swift */,
+				C8787BF427ECA6D100E11926 /* KeychainServiceError.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -496,7 +510,7 @@
 			children = (
 				C8AE9C8C279866E1000B6D72 /* Keychain */,
 				C81F8A692795F8F30085A641 /* Network */,
-				C883A3E227C2E07B00EA9CC2 /* TokenService.swift */,
+				C8787BF327ECA6C500E11926 /* Token */,
 				C8F17D87275692E100BC6A44 /* MockService.swift */,
 				C819193927BEEE49009AC7C6 /* ServiceUrl.swift */,
 			);
@@ -773,6 +787,7 @@
 				C8DB70E227753A370031EF90 /* UserWorksViewModel.swift in Sources */,
 				C87609B427EB4FB9004040F2 /* Avatars.swift in Sources */,
 				C8DB70DC2774DA430031EF90 /* FolderRectangleCardView.swift in Sources */,
+				C8787BF227ECA18D00E11926 /* ResponseError.swift in Sources */,
 				C86A8F482772155100CEBCC8 /* WalkthroughModel.swift in Sources */,
 				C8E584AD274983F20057B309 /* ProfileView.swift in Sources */,
 				C8864400275979E600BC1B06 /* ContentBlock.swift in Sources */,
@@ -793,6 +808,7 @@
 				C8A3F270277A3CC400C6435A /* CustomNavigationView.swift in Sources */,
 				C8E584AB274983F20057B309 /* SoulmateApp.swift in Sources */,
 				C842576727527E2D009C405C /* GridView.swift in Sources */,
+				C8787BF527ECA6D100E11926 /* KeychainServiceError.swift in Sources */,
 				C85AF643278C8DB0008034FE /* CustomNavigationLink.swift in Sources */,
 				C8E584BB27498A7A0057B309 /* ProfileViewModel.swift in Sources */,
 				C8A6AFF0278D963B00A3B80D /* Constants.swift in Sources */,

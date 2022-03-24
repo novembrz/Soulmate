@@ -15,9 +15,7 @@ enum AuthError {
     case registeredLogin
     case notEqualPasswords
     case easyPassword
-    case serverError //мб не надо
     case dataError
-    case internetConnectError
 }
 
 
@@ -36,12 +34,8 @@ extension AuthError: LocalizedError {
             return NSLocalizedString("Пароли не совпадают", comment: "")
         case .easyPassword:
             return NSLocalizedString("Пароль должен быть длиннее 8 символов и содержать буквы в верхнем и нижнем регистре, спец символы и цифры", comment: "")
-        case .serverError:
-            return NSLocalizedString("Ошибка выполнения запроса, пожалуйста, попробуйте снова!", comment: "")
         case .dataError:
             return NSLocalizedString("Неверное имя пользователя или пароль", comment: "")
-        case .internetConnectError:
-            return NSLocalizedString("Ошибка подключения, проверьте свое интернет соединение и попробуйте снова!", comment: "")
         }
     }
 }

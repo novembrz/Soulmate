@@ -98,5 +98,6 @@ struct FoldersView_Previews: PreviewProvider {
         CustomNavigationView {
             FoldersView(viewModel: FoldersViewModel())
         }
+        .preferredColorScheme(.dark)
     }
 }

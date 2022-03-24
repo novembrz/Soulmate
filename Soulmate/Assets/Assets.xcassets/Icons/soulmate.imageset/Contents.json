@@ -1,7 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "Group 189-2.svg",
+      "filename" : "Group 193.svg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Group 192-2.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -11,7 +22,29 @@
       "scale" : "2x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Group 192-1.svg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
       "filename" : "Group 189.svg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Group 192.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

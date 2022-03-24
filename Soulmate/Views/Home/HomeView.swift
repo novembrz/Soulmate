@@ -231,7 +231,7 @@ struct MainView_Previews: PreviewProvider {
        //DisplayView()
         Group {
             HomeView(viewModel: HomeViewModel())
-                .preferredColorScheme(.dark)
+                .preferredColorScheme(.light)
             HomeView(viewModel: HomeViewModel())
                 .preferredColorScheme(.dark)
         }

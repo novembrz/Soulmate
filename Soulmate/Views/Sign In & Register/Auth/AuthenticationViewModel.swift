@@ -73,7 +73,7 @@ final class AuthenticationViewModel: ObservableObject {
                     self.isLoading = false
                     self.isSignInSuccses = true
                 case .failure(let authError):
-                    self.failureAuth(authError)
+                    self.failureAuth(authError.localizedDescription)
                 }
             }
         }
@@ -105,7 +105,7 @@ final class AuthenticationViewModel: ObservableObject {
                     self.isLoading = false
                     self.isRegisterSuccses = true
                 case .failure(let authError):
-                    self.failureAuth(authError)
+                    self.failureAuth(authError.localizedDescription)
                 }
             }
         }
@@ -114,8 +114,8 @@ final class AuthenticationViewModel: ObservableObject {
     
     //MARK: - Auth Result
     
-    private func failureAuth(_ authError: AuthError) {
-        self.errorText = authError.errorDescription
+    private func failureAuth(_ authError: String) {
+        self.errorText = authError
         self.isLoading = false
         self.isErrorAuth = true
     }

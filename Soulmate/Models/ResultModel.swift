@@ -7,9 +7,14 @@
 
 import Foundation
 
+//enum Result {
+//    case success 
+//    case failure(AuthError)
+//}
+
 enum Result {
-    case success 
-    case failure(AuthError)
+    case success
+    case failure(LocalizedError)
 }
 
 

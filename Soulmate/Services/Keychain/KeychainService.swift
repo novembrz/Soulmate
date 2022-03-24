@@ -81,7 +81,7 @@ extension KeychainService {
             let data = try JSONEncoder().encode(item)
             save(data, account: account)
         } catch {
-            assertionFailure("Fail to encode item for keychain: \(error)")
+            assertionFailure("\(KeychainServiceError.encodeDataError) \(error)")
         }
     }
     
@@ -94,7 +94,7 @@ extension KeychainService {
             let item = try JSONDecoder().decode(type, from: data)
             return item
         } catch {
-            assertionFailure("Fail to decode item for keychain: \(error)")
+            assertionFailure("\(KeychainServiceError.decodeDataError) \(error)")
             return nil
         }
     }

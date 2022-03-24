@@ -58,14 +58,23 @@ final class NetworkService {
     
     static private func sendRequest<T: Decodable>(_ request: URLRequest, completion: @escaping (Result, T?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if error != nil || (response as! HTTPURLResponse).statusCode != 200 {
-                print("💔💔💔", (response as! HTTPURLResponse).statusCode)
-                completion(.failure(AuthError.serverError), nil)
+            
+            if error != nil {
+                print("💔💔💔", error!.localizedDescription)
+                completion(.failure(NetworkResponseError.serverError), nil)
                 return
             }
             
-            if let decode = NetworkService.decodeJSON(type: T.self, from: data) {
-                completion(.success, decode)
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    if let decode = NetworkService.decodeJSON(type: T.self, from: data) {
+                        completion(.success, decode)
+                    }
+                case .failure(let networkFailureError):
+                    completion(.failure(networkFailureError), nil)
+                }
             }
         }
         task.resume()
@@ -76,14 +85,30 @@ final class NetworkService {
     
     static private func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
         let decoder = JSONDecoder()
-        guard let data = from else { return nil }
+        guard let data = from else {
+            print(NetworkResponseError.noData)
+            return nil
+        }
         
         do {
             let objects = try decoder.decode(type.self, from: data)
             return objects
-        } catch let error {
-            print("💔 ", error.localizedDescription)
+        } catch {
+            print(NetworkResponseError.unableToDecode)
             return nil
+        }
+    }
+    
+    
+    //MARK: - NetworkResponse
+    
+    static private func handleNetworkResponse(_ response: HTTPURLResponse) -> Result {
+        switch response.statusCode {
+        case 200...299: return .success
+        case 401...500: return .failure(NetworkResponseError.authenticationError)
+        case 501...599: return .failure(NetworkResponseError.badRequest)
+        case 600: return .failure(NetworkResponseError.outdated)
+        default: return .failure(NetworkResponseError.serverError)
         }
     }
 }
