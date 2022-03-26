@@ -56,7 +56,7 @@ struct AboutUserView: View {
             Group {
                 title
                 if user.description != nil {
-                    BigTextBlock(text: user.description!, textLineLimit: 6)
+                    BigTextBlock(user.description!, lineLimit: 6)
                 }
             }
             .padding(.horizontal, Constants.horizontalInset)

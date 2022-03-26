@@ -36,7 +36,7 @@ struct UserWorksView: View {
                 title
                 
                 if viewModel.works != []  {
-                    BigTextBlock(text: viewModel.folderDescription)
+                    BigTextBlock(viewModel.folderDescription)
                     works
                     seeOtherButton
                 } else {
