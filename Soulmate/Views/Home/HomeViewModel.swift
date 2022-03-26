@@ -18,6 +18,7 @@ final class HomeViewModel: ObservableObject {
     
     @Published var notAnAuthorizedUser = false //Это не авториз пользовать
     @Published var isLoading = false
+    @Published var isInternetConnected = true
     
     var cardColumns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
     var folderColumns: [GridItem] = Array(repeating: .init(.fixed(65), spacing: 13, alignment: .topLeading), count: 2)
@@ -25,17 +26,26 @@ final class HomeViewModel: ObservableObject {
     
     func fetchHomePage() {
         isLoading = true
-        DataFetcherServices.fetchHomePage { [weak self] home in
+        DataFetcherServices.fetchHomePage { [weak self] result, home in
             DispatchQueue.main.async {
-                guard let suitableUsers = home?.users,
-                        let suitableCards = home?.cards,
-                        let suitableFolders = home?.folders
-                else { return }
-                
-                self?.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
-                self?.suitableFolders = suitableFolders
-                self?.suitableCards = suitableCards
-                self?.isLoading = false
+                switch result {
+                case .success:
+                    guard let suitableUsers = home?.users,
+                          let suitableCards = home?.cards,
+                          let suitableFolders = home?.folders
+                    else { return }
+                    
+                    self?.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
+                    self?.suitableFolders = suitableFolders
+                    self?.suitableCards = suitableCards
+                    self?.isLoading = false
+                    
+                case .failure(let error):
+                    if error.errorDescription == NetworkResponseError.internetError.errorDescription {
+                        self?.isInternetConnected = false
+                    }
+                    self?.isLoading = false
+                }
             }
         }
     }

@@ -10,27 +10,40 @@ import Foundation
 
 final class NetworkService {
     
-    //MARK: - fetchData
+    //MARK: - GET
     
-    static func fetchData<T: Decodable>(urlString: String, completion: @escaping (T?) -> Void) {
+    static func fetchData<T: Decodable>(urlString: String, completion: @escaping (Result, T?) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
         let session = URLSession.shared
         
-        let task = session.dataTask(with: url) { data, _, error in
-            if let error = error {
-                print("💔💔💔 ", error.localizedDescription)
+        let task = session.dataTask(with: url) { data, response, error in
+            if error != nil {
+                print("💔💔💔", error!.localizedDescription)
+                if error!.localizedDescription == "The Internet connection appears to be offline." {
+                    completion(.failure(NetworkResponseError.internetError), nil)
+                } else {
+                    completion(.failure(NetworkResponseError.serverError), nil)
+                }
                 return
             }
             
-            let decoded = decodeJSON(type: T.self, from: data)
-            completion(decoded)
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    let decoded = decodeJSON(type: T.self, from: data)
+                    completion(.success, decoded)
+                case .failure(let error):
+                    completion(.failure(error), nil)
+                }
+            }
         }
         task.resume()
     }
     
     
-    //MARK: - postData
+    //MARK: - POST
     
     static func postData<T: Decodable>(param: [String: Any], urlString: String, completion: @escaping (Result, T?) -> Void) {
         guard let jsonData = try? JSONSerialization.data(withJSONObject: param, options: []),

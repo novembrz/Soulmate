@@ -19,9 +19,13 @@ struct ProfileView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: -120) {
-                    profile
-                    GridView(viewModel: viewModel)
+                VStack(spacing: -70) {
+                    if viewModel.isInternetConnected {
+                        profile
+                        GridView(viewModel: viewModel)
+                    } else {
+                        InternetConnectionView()
+                    }
                 }
                 .padding(.top, Constants.topInset)
                 .padding(.bottom, 140)
@@ -109,7 +113,8 @@ struct ProfileView: View {
                 .padding(.horizontal, Constants.horizontalInset)
                 .padding(.top, Constants.topInset)
         } destination: {
-            
+            AboutUserView(user: viewModel.user ?? MockService.mockUser, viewModel: AboutUserViewModel())
+                .frame(maxWidth: .infinity)
         }
     }
     
@@ -121,13 +126,13 @@ struct ProfileView: View {
             VStack(alignment: .trailing, spacing: 12) {
                 HStack(spacing: 12) {
                     if viewModel.isAllowWritingMessages {
-                        StandartButton(imageName: "send")
+                        StandartButton(imageName: "send", routing: true)
                     }
                     StandartButton(imageName: "subscribe")
                 }
                 
-                CustomNavigationLink { //MARK: ;;;; aaaaaaa
-                    StandartButton(imageName: "dote")
+                CustomNavigationLink {
+                    StandartButton(imageName: "dote", routing: true)
                 } destination: {
                     AboutUserView(user: viewModel.user ?? MockService.mockUser, viewModel: AboutUserViewModel())
                         .frame(maxWidth: .infinity)
@@ -136,6 +141,7 @@ struct ProfileView: View {
         }
         .padding(.horizontal, Constants.horizontalInset)
         .padding(.top, Constants.topInset)
+        
     }
     
     
@@ -178,11 +184,6 @@ struct ProfileView_Previews: PreviewProvider {
             CustomNavigationView {
                 ProfileView(userId: 5, viewModel: ProfileViewModel())
             }
-            .preferredColorScheme(.light)
-            CustomNavigationView {
-                ProfileView(userId: 5, viewModel: ProfileViewModel())
-            }
-            .preferredColorScheme(.dark)
         }
     }
 }

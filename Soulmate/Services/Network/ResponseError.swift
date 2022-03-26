@@ -12,10 +12,10 @@ enum NetworkResponseError {
     case badRequest
     case outdated
     case serverError
+    case internetError
     case noData
     case unableToDecode
 }
-
 
 extension NetworkResponseError: LocalizedError {
     var errorDescription: String? {
@@ -28,6 +28,8 @@ extension NetworkResponseError: LocalizedError {
             return NSLocalizedString("💔 Запрошенный вами URL-адрес устарел", comment: "")
         case .serverError:
             return NSLocalizedString("💔 Ошибка выполнения запроса!", comment: "")
+        case .internetError:
+            return NSLocalizedString("💔 Ошибка подключения к сети интернет!", comment: "")
         case .noData:
             return NSLocalizedString("💔 Не удалось получить данные", comment: "")
         case .unableToDecode:

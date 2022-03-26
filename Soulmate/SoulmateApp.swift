@@ -12,7 +12,6 @@ struct SoulmateApp: App {
     var body: some Scene {
         WindowGroup {
             DisplayView()
-            //RegisterView(viewModel: RegisterViewModel())
         }
     }
 }

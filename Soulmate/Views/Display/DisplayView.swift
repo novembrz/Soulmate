@@ -53,6 +53,8 @@ struct DisplayView: View {
 }
 
 
+//MARK: - Previews
+
 struct HomeContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

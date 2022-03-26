@@ -16,7 +16,11 @@ struct HomeView: View {
         CustomNavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 ZStack {
-                    homePage
+                    if viewModel.isInternetConnected {
+                        homePage
+                    } else {
+                        InternetConnectionView()
+                    }
                 }
             }
             .background(Color.defaultBackground.ignoresSafeArea())
@@ -27,8 +31,8 @@ struct HomeView: View {
                     viewModel.fetchHomePage()
                 }
             })
+            .showLoading(isShowing: $viewModel.isLoading)
         }
-        .showLoading(isShowing: $viewModel.isLoading)
     }
     
     

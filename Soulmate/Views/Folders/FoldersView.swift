@@ -14,8 +14,12 @@ struct FoldersView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            content
-            moreButtons
+            if viewModel.isInternetConnected {
+                content
+                moreButtons
+            } else {
+                InternetConnectionView()
+            }
         }
         .background(Color.defaultBackground.ignoresSafeArea())
         .onAppear {
@@ -52,12 +56,7 @@ struct FoldersView: View {
             Spacer()
             
             StandartButton(imageName: viewModel.currentViewStyle == .stroke ? "rectangles" : "lines", action: viewModel.changeFolderView)
-            
-            VStack(spacing: 12) {
-                StandartButton(imageName: "more", action: viewModel.openDetailBottomSheet)
-                
-                StandartButton(imageName: "user", action: viewModel.routeToUserDescription)
-            }
+            StandartButton(imageName: "more", action: viewModel.openDetailBottomSheet)
         }
         .padding(.top, Constants.topInset)
         .padding(.horizontal, Constants.horizontalInset)

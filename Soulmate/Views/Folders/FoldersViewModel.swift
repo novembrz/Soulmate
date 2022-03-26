@@ -16,19 +16,31 @@ final class FoldersViewModel: ObservableObject {
     @Published var folders: [FolderModel] = []
     @Published var currentViewStyle: ViewStyle = .stroke
     @Published var projectName: String?
-    
+    @Published var isInternetConnected = true
     
     //MARK: - Fetch Data
     
     func fetchData(userProfessionId: Int?) {
         if userProfessionId != nil {
-            DataFetcherServices.fetchUserProfessionFolders(id: userProfessionId!) { [weak self] foldersArray in
-                self?.projectName = foldersArray?.profession.name
-                self?.checkAndAssignData(foldersArray?.folders)
+            DataFetcherServices.fetchUserProfessionFolders(id: userProfessionId!) { [weak self] result, foldersArray in
+                switch result {case .success:
+                    self?.projectName = foldersArray?.profession.name
+                    self?.checkAndAssignData(foldersArray?.folders)
+                case .failure(let error):
+                    if error.errorDescription == NetworkResponseError.internetError.errorDescription {
+                        self?.isInternetConnected = false
+                    }
+                }
             }
         } else {
-            DataFetcherServices.fetchAllFolders { [weak self] foldersArray in
-                self?.checkAndAssignData(foldersArray)
+            DataFetcherServices.fetchAllFolders { [weak self] result, foldersArray in
+                switch result {case .success:
+                    self?.checkAndAssignData(foldersArray)
+                case .failure(let error):
+                    if error.errorDescription == NetworkResponseError.internetError.errorDescription {
+                        self?.isInternetConnected = false
+                    }
+                }
             }
         }
     }
@@ -48,10 +60,6 @@ final class FoldersViewModel: ObservableObject {
     
     
     //MARK: - Action method
-    
-    func routeToUserDescription() {
-        print(#function)
-    }
     
     func openDetailBottomSheet() {
         print(#function)

@@ -16,7 +16,12 @@ struct SuitableUsersView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 35) {
                     TitleBlock(viewTitle: "Из твоей среды")
-                    gridBlock
+                    
+                    if viewModel.isInternetConnected {
+                        gridBlock
+                    } else {
+                        InternetConnectionView()
+                    }
                 }
                 .padding(.horizontal, Constants.horizontalInset)
                 .padding(.bottom, Constants.bottomInset)
@@ -24,8 +29,9 @@ struct SuitableUsersView: View {
             .background(Color.defaultBackground.ignoresSafeArea())
         }
         .onAppear {
-            //viewModel.fetchAllPeople()
+            viewModel.fetchAllPeople()
         }
+        .showLoading(isShowing: $viewModel.isLoading)
     }
     
     

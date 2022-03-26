@@ -14,8 +14,12 @@ struct UserWorksView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            content
-            moreButton
+            if viewModel.isInternetConnected {
+                content
+                moreButton
+            } else {
+                InternetConnectionView()
+            }
         }
         .background(Color.defaultBackground.ignoresSafeArea())
         .onAppear {

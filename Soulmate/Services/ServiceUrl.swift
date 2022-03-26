@@ -12,7 +12,7 @@ final class ServiceUrl {
     static var userURL = host + "/user"
     static var professionURL = host + "/profession"
     static var homePageURL = host + "/home"
-    static var whoIAmURL = host + "/whoaiam"
+    static var whoIAmURL = host + "/whoiam"
     
     
     final class Auth {
@@ -20,7 +20,7 @@ final class ServiceUrl {
         static var signIn = base + "/signin"
         static var register = base + "/signup"
         static var refreshToken = base + "/refreshtoken"
-        static var isFreeData = base + "is-free/"
+        static var isFreeData = base + "/is-free"
     }
     
     final class Folder {
@@ -32,5 +32,4 @@ final class ServiceUrl {
         static private var base = host + "/was-work"
         static var byUser = base + "/by-user"
     }
-    
 }

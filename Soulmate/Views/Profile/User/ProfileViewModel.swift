@@ -13,6 +13,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var user: UserModel?
     @Published var columns: [ColumnModel] = []
     @Published var isAllowWritingMessages = true
+    @Published var isInternetConnected = true
     
     var ageString: String { user?.age == nil ? "" : "\(user?.age ?? 0)" }
     var description: String { "\(user?.city ?? ""), \(ageString)"}
@@ -32,11 +33,19 @@ final class ProfileViewModel: ObservableObject {
     //MARK: - Fetch
     
     func fetchUser(_ userId: Int) {
-        DataFetcherServices.fetchUser(id: userId) { [weak self] result in
+        DataFetcherServices.fetchUser(id: userId) { [weak self] result, userData in
             DispatchQueue.main.async {
-                guard let userData = result else { return }
-                self?.user = userData
-                self?.createColumns()
+                switch result {
+                case .success:
+                    guard let userData = userData else { return }
+                    self?.user = userData
+                    self?.createColumns()
+                case .failure(let error):
+                    if error.errorDescription == NetworkResponseError.internetError.errorDescription {
+                        self?.isInternetConnected = false
+                    }
+                }
+                
             }
         }
     }

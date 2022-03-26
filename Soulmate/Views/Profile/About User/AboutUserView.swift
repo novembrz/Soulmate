@@ -17,14 +17,19 @@ struct AboutUserView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            content
-            buttons
+            if viewModel.isInternetConnected {
+                content
+                buttons
+            } else {
+                InternetConnectionView()
+            }
         }
         .padding(.top, Constants.topInset)
         .background(Color.defaultBackground.ignoresSafeArea())
         .onAppear {
-            viewModel.fetchWorkPlaces(user.id)
+            viewModel.fetchUserInfo(user.id)
         }
+        .showLoading(isShowing: $viewModel.isLoading)
     }
     
     
@@ -35,7 +40,7 @@ struct AboutUserView: View {
             Spacer()
             
             if viewModel.isAllowWritingMessages {
-                StandartButton(imageName: "send")
+                StandartButton(imageName: "send", routing: true)
             }
             
             StandartButton(imageName: "subscribe")
@@ -72,13 +77,18 @@ struct AboutUserView: View {
         VStack(alignment: .leading, spacing: 23) {
             TitleBlock(viewTitle: "\(user.firstName ?? "")\n\(user.lastName ?? "")", subTitle: "\(user.city ?? ""), \(ageString)")
             
-            //MARK: if social != nil
-            HStack {
-                ForEach(0...3, id: \.self) { item in
-                    Rectangle()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(.mintGreen)
-                        .cornerRadius(7)
+            if viewModel.userSocialNetworks != nil {
+                HStack {
+                    ForEach(viewModel.userSocialNetworks!, id: \.self) { urlString in
+                        Button {
+                            viewModel.openSocialNetwork(urlString)
+                        } label: {
+                            Rectangle()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.mintGreen)
+                                .cornerRadius(7)
+                        }
+                    }
                 }
             }
         }

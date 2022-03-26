@@ -5,25 +5,56 @@
 //  Created by dasha on 16.01.2022.
 //
 
-import Foundation
+import SwiftUI
 
+enum SocialNetwork: String {
+    case vk, instagram, facebook, twitter, soundcloud, spotify, youtube, tikTok, telegram, gitHub, twitch, behance, dribble, tumblr, itunes
+}
 
 final class AboutUserViewModel: ObservableObject {
     
     @Published var userWorkPlaces: [WorkPlacesModel]?
+    @Published var userSocialNetworks: [String]?
     @Published var isAllowWritingMessages = true //будет внутри юзера
+    @Published var isLoading = false
+    @Published var isInternetConnected = true
     
     //MARK: - Fetch
     
-    func fetchWorkPlaces(_ userId: Int) {
-        DataFetcherServices.fetchUserWorkPlaces(id: userId) { [weak self] result in
+    func fetchUserInfo(_ userId: Int) {
+        fetchWorkPlaces(userId)
+        fetchSocialNetworks()
+    }
+    
+    private func fetchWorkPlaces(_ userId: Int) {
+        isLoading = true
+        DataFetcherServices.fetchUserWorkPlaces(id: userId) { [weak self] result, info in
             DispatchQueue.main.async {
-                guard let userWorkPlaces = result else { return }
-                self?.userWorkPlaces = userWorkPlaces
-                //self.dateFormatter2(dateString: userWorkPlaces[0].startDate)
+                switch result {
+                case .success:
+                    guard let userWorkPlaces = info else { return }
+                    self?.userWorkPlaces = userWorkPlaces
+                    self?.isLoading = false
+                case .failure(let error):
+                    if error.errorDescription == NetworkResponseError.internetError.errorDescription {
+                        self?.isInternetConnected = false
+                    }
+                    self?.isLoading = false
+                }
             }
         }
     }
+    
+    private func fetchSocialNetworks() {
+
+    }
+    
+    func openSocialNetwork(_ urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    
     
     //MARK: Check
     /*

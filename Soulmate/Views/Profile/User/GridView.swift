@@ -38,7 +38,6 @@ struct CardView: View {
     var user: UserModel?
     
     var body: some View {
-        
         ForEach(column.gridItems) { grid in
             CustomNavigationLink {
                 ZStack(alignment: .leading) {
