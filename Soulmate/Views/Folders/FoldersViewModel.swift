@@ -17,13 +17,23 @@ final class FoldersViewModel: ObservableObject {
     @Published var currentViewStyle: ViewStyle = .stroke
     @Published var projectName: String?
     @Published var isInternetConnected = true
+    @Published var refreshing = false
     
     //MARK: - Fetch Data
     
-    func fetchData(userProfessionId: Int?) {
+    func fetchData(userProfessionId: Int?, type: LoadPage = .loading) {
         if userProfessionId != nil {
-            DataFetcherServices.fetchUserProfessionFolders(id: userProfessionId!) { [weak self] result, foldersArray in
-                switch result {case .success:
+            fetchUserProfessionFolders(userProfessionId, type: type)
+        } else {
+            fetchAllFolders(type: type)
+        }
+    }
+    
+    private func fetchUserProfessionFolders(_ userProfessionId: Int?, type: LoadPage) {
+        DataFetcherServices.fetchUserProfessionFolders(id: userProfessionId!) { [weak self] result, foldersArray in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     self?.projectName = foldersArray?.profession.name
                     self?.checkAndAssignData(foldersArray?.folders)
                 case .failure(let error):
@@ -31,25 +41,30 @@ final class FoldersViewModel: ObservableObject {
                         self?.isInternetConnected = false
                     }
                 }
+                if type == .refreshing { self?.refreshing = false }
             }
-        } else {
-            DataFetcherServices.fetchAllFolders { [weak self] result, foldersArray in
-                switch result {case .success:
+        }
+    }
+    
+    private func fetchAllFolders(type: LoadPage) {
+        DataFetcherServices.fetchAllFolders { [weak self] result, foldersArray in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     self?.checkAndAssignData(foldersArray)
                 case .failure(let error):
                     if error.errorDescription == NetworkResponseError.internetError.errorDescription {
                         self?.isInternetConnected = false
                     }
                 }
+                if type == .refreshing { self?.refreshing = false }
             }
         }
     }
     
     private func checkAndAssignData(_ foldersArray: [FolderModel]?) {
-        DispatchQueue.main.async {
-            guard let folders = foldersArray else { return }
-            self.folders = folders
-        }
+        guard let folders = foldersArray else { return }
+        self.folders = folders
     }
     
     

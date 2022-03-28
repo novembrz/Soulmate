@@ -18,7 +18,7 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            ScrollView(.vertical, showsIndicators: false) {
+            RefreshableScrollView(refreshing: $viewModel.refreshing) {
                 VStack(spacing: -70) {
                     if viewModel.isInternetConnected {
                         profile
@@ -39,6 +39,9 @@ struct ProfileView: View {
             }
         }
         .onAppear { viewModel.fetchUser(userId) }
+        .onChange(of: viewModel.refreshing) { newValue in
+            viewModel.fetchUser(userId, type: .refreshing)
+        }
     }
     
     

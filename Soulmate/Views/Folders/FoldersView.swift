@@ -25,13 +25,16 @@ struct FoldersView: View {
         .onAppear {
             viewModel.fetchData(userProfessionId: userProfessionId)
         }
+        .onChange(of: viewModel.refreshing) { newValue in
+            viewModel.fetchData(userProfessionId: userProfessionId, type: .refreshing)
+        }
     }
     
     
     //MARK: - Content
     
     var content: some View {
-        ScrollView(.vertical, showsIndicators: false) {
+        RefreshableScrollView(refreshing: $viewModel.refreshing) {
             VStack(alignment: .leading, spacing: 34) {
                 TitleBlock(viewTitle: viewModel.getFolderName())
                 if viewModel.folders != [] {

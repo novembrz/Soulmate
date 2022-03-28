@@ -17,37 +17,42 @@ final class AboutUserViewModel: ObservableObject {
     @Published var userSocialNetworks: [String]?
     @Published var isAllowWritingMessages = true //будет внутри юзера
     @Published var isLoading = false
+    @Published var refreshing = false
     @Published var isInternetConnected = true
     
     //MARK: - Fetch
     
-    func fetchUserInfo(_ userId: Int) {
-        fetchWorkPlaces(userId)
-        fetchSocialNetworks()
+    func fetchUserInfo(_ userId: Int, type: LoadPage = .loading) {
+        if type == .loading { isLoading = true }
+        fetchWorkPlaces(userId, type: type)
+        fetchSocialNetworks(type: type)
     }
     
-    private func fetchWorkPlaces(_ userId: Int) {
-        isLoading = true
+    private func fetchWorkPlaces(_ userId: Int, type: LoadPage) {
         DataFetcherServices.fetchUserWorkPlaces(id: userId) { [weak self] result, info in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
                     guard let userWorkPlaces = info else { return }
                     self?.userWorkPlaces = userWorkPlaces
-                    self?.isLoading = false
                 case .failure(let error):
                     if error.errorDescription == NetworkResponseError.internetError.errorDescription {
                         self?.isInternetConnected = false
                     }
-                    self?.isLoading = false
                 }
+                self?.stopLoading(type: type)
             }
         }
     }
     
-    private func fetchSocialNetworks() {
+    private func fetchSocialNetworks(type: LoadPage) {
 
     }
+    
+    private func stopLoading(type: LoadPage) {
+        type == .loading ? (isLoading = false) : (refreshing = false)
+    }
+    
     
     func openSocialNetwork(_ urlString: String) {
         guard let url = URL(string: urlString) else { return }

@@ -14,6 +14,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var columns: [ColumnModel] = []
     @Published var isAllowWritingMessages = true
     @Published var isInternetConnected = true
+    @Published var refreshing = false
     
     var ageString: String { user?.age == nil ? "" : "\(user?.age ?? 0)" }
     var description: String { "\(user?.city ?? ""), \(ageString)"}
@@ -32,7 +33,7 @@ final class ProfileViewModel: ObservableObject {
     
     //MARK: - Fetch
     
-    func fetchUser(_ userId: Int) {
+    func fetchUser(_ userId: Int, type: LoadPage = .loading) {
         DataFetcherServices.fetchUser(id: userId) { [weak self] result, userData in
             DispatchQueue.main.async {
                 switch result {
@@ -45,7 +46,7 @@ final class ProfileViewModel: ObservableObject {
                         self?.isInternetConnected = false
                     }
                 }
-                
+                if type == .refreshing { self?.refreshing = false }
             }
         }
     }

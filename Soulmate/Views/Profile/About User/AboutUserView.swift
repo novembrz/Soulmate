@@ -16,12 +16,14 @@ struct AboutUserView: View {
     
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            if viewModel.isInternetConnected {
-                content
-                buttons
-            } else {
-                InternetConnectionView()
+        RefreshableScrollView(refreshing: $viewModel.refreshing) {
+            ZStack(alignment: .topLeading) {
+                if viewModel.isInternetConnected {
+                    content
+                    buttons
+                } else {
+                    InternetConnectionView()
+                }
             }
         }
         .padding(.top, Constants.topInset)
@@ -30,6 +32,9 @@ struct AboutUserView: View {
             viewModel.fetchUserInfo(user.id)
         }
         .showLoading(isShowing: $viewModel.isLoading)
+        .onChange(of: viewModel.refreshing) { newValue in
+            viewModel.fetchUserInfo(user.id, type: .refreshing)
+        }
     }
     
     

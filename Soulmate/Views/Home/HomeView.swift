@@ -14,7 +14,7 @@ struct HomeView: View {
     
     var body: some View {
         CustomNavigationView {
-            ScrollView(.vertical, showsIndicators: false) {
+            RefreshableScrollView(refreshing: $viewModel.refreshing) {
                 ZStack {
                     if viewModel.isInternetConnected {
                         homePage
@@ -32,6 +32,9 @@ struct HomeView: View {
                 }
             })
             .showLoading(isShowing: $viewModel.isLoading)
+            .onChange(of: viewModel.refreshing) { newValue in
+                viewModel.fetchHomePage(type: .refreshing)
+            }
         }
     }
     

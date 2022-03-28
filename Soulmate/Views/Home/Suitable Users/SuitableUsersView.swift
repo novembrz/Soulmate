@@ -13,7 +13,7 @@ struct SuitableUsersView: View {
     
     var body: some View {
         VStack {
-            ScrollView(.vertical, showsIndicators: false) {
+            RefreshableScrollView(refreshing: $viewModel.refreshing) {
                 VStack(alignment: .leading, spacing: 35) {
                     TitleBlock(viewTitle: "Из твоей среды")
                     
@@ -30,6 +30,9 @@ struct SuitableUsersView: View {
         }
         .onAppear {
             viewModel.fetchAllPeople()
+        }
+        .onChange(of: viewModel.refreshing) { newValue in
+            viewModel.fetchAllPeople(type: .refreshing)
         }
         .showLoading(isShowing: $viewModel.isLoading)
     }

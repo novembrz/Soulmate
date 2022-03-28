@@ -28,7 +28,6 @@ struct BigTextBlock: View {
             .foregroundColor(.blackText)
             .multilineTextAlignment(.leading)
             .lineSpacing(7)
-        
     }
     
     
