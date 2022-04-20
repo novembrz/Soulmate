@@ -12,6 +12,7 @@ final class ServiceUrl {
     static var userURL = host + "/user"
     static var professionURL = host + "/profession"
     static var homePageURL = host + "/home"
+    static var search = host + "/search"
     static var whoIAmURL = host + "/whoiam"
     
     

@@ -81,7 +81,7 @@ struct ContentBlock_Previews: PreviewProvider {
         ContentBlock(title: "Search", buttonTitle: "All") {
             ProfileView(userId: 2, viewModel: ProfileViewModel())
         } destination: {
-            SearchView(viewModel: SearchViewModel())
+            SearchView(viewModel: HomeViewModel())
         }
     }
 }

@@ -75,7 +75,7 @@ final class ProfileViewModel: ObservableObject {
     
     func subscribeUser() {
         //userService.followUser()
-        
+
         //TODO: Right routing / Right Services
     }
     

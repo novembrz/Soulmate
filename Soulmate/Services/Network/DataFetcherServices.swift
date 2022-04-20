@@ -6,11 +6,24 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct DataFetcherServices {
     
     static func fetchHomePage(completion: @escaping (Result, HomeModel?) -> Void) {
         NetworkService.fetchData(urlString: ServiceUrl.homePageURL, completion: completion)
+    }
+    
+    static func fetchSearchingData(searchingText: String, searchCategory: [SearchCategory] = [.user, .profession, .card, .folder], completion: @escaping (Result, HomeModel?) -> Void) {
+        NetworkService.postData(param: ["fields": ["name"],
+                                        "sorting": ["pageNumber": 0,
+                                                    "pageSize": 10,
+                                                    "sortDirection": "ASC",
+                                                    "sortBy": "id"],
+                                        "text": searchingText,
+                                        "searchTypes": ["USER", "FOLDER"]],//searchCategory],
+                                urlString: ServiceUrl.search,
+                                completion: completion)
     }
     
     static func fetchUser(id: Int, completion: @escaping (Result, UserModel?) -> Void) {
@@ -43,8 +56,9 @@ struct DataFetcherServices {
 }
 
 
-/*
- folders
- folders/user-profession/id - сюда передаем айди карточки профессии (userProfessionId ), именно ай ди связи - чтобы получить папки данной карточки юзера
- folders/id
- */
+enum SearchCategory: String {
+    case user = "USER"
+    case profession = "PROFESSION"
+    case card = "CARD"
+    case folder = "FOLDER"
+}

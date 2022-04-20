@@ -13,6 +13,7 @@ struct CardModel: Decodable {
     let name: String
     let author: UserModel
     let contentLink: String?
+    let picture: String?
 }
 
 extension CardModel: Hashable {

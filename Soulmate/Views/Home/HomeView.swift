@@ -32,7 +32,7 @@ struct HomeView: View {
                 }
             })
             .showLoading(isShowing: $viewModel.isLoading)
-            .onChange(of: viewModel.refreshing) { newValue in
+            .onChange(of: viewModel.refreshing ) { newValue in
                 viewModel.fetchHomePage(type: .refreshing)
             }
         }
@@ -47,7 +47,7 @@ struct HomeView: View {
             
             VStack(alignment: .leading, spacing: 25) {
                 HStack(spacing: 11) {
-                    SearchView(viewModel: SearchViewModel())
+                    SearchView(viewModel: viewModel)
                     filterButton
                 }
                 .padding(.horizontal, Constants.horizontalInset)
@@ -59,6 +59,7 @@ struct HomeView: View {
                     works
                 }
             }
+            
         }
         .padding(.top, 30)
         .padding(.bottom, Constants.bottomInset)
@@ -85,7 +86,7 @@ struct HomeView: View {
     
     var filterButton: some View {
         VStack {
-            Button {} label: {
+            CustomNavigationLink {
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
                         .foregroundColor(.mintGreen)
@@ -96,6 +97,8 @@ struct HomeView: View {
                         .frame(width: 14, height: 18)
                         .foregroundColor(.whiteText)
                 }
+            } destination: {
+                FiltersView(viewModel: FiltersViewModel())
             }
         }
     }
@@ -219,7 +222,7 @@ struct HomeView: View {
                     ContentCard(name: card.name,
                                 id: card.id,
                                 description: (card.author.firstName ?? "") + " " + (card.author.lastName ?? ""),
-                                imageString: card.contentLink ?? "",
+                                imageString: card.picture ?? "",
                                 contentType: .work,
                                 height: 137,
                                 smallText: true)

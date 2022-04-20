@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @ObservedObject var viewModel: SearchViewModel
+    @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         HStack {
             HStack {
-                TextField(viewModel.randomString(), text: $viewModel.searchText)
+                TextField(viewModel.randomSearchString(), text: $viewModel.searchText)
                     .frame(height: 47)
                     .padding(.leading, 40)
                     .disableAutocorrection(true)

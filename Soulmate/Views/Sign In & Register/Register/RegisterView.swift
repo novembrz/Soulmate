@@ -175,7 +175,7 @@ struct RegisterView: View {
                                    isChoose: profession.main,
                                    sphereType: .checkmarkCell)
                             .overlay(
-                                GeometryReader() { reader -> Color in
+                                GeometryReader { reader -> Color in
                                     let maxX = reader.frame(in: .global).maxX
                                     if maxX > UIScreen.width - 32 && !profession.isExceeded {
                                         DispatchQueue.global().async {
