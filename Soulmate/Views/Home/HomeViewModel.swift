@@ -25,15 +25,11 @@ final class HomeViewModel: ObservableObject {
     @Published var suitableFolders: [FolderModel] = []
     @Published var suitableCards: [CardModel] = []
     
-    @Published var notAnAuthorizedUser = false //Это не авториз пользовать
-    
     @Published var isLoading = false
     @Published var refreshing = false
-    @Published var isInternetConnected = true
     
     @Published var searchText = ""
     @Published var isSearching = false
-    @Published var noData = false
     
     
     func randomSearchString() -> String {
@@ -78,19 +74,9 @@ final class HomeViewModel: ObservableObject {
                 if home?.users == nil,
                    home?.cards == nil,
                    home?.folders == nil {
-                    return self.noDataError(type: type)
+                    self.noDataError(type: type)
                 } else {
-                    if let suitableUsers = home?.users {
-                        self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
-                    }
-                    
-                    if let suitableFolders = home?.folders {
-                        self.suitableFolders = suitableFolders
-                    }
-                    
-                    if let suitableCards = home?.cards {
-                        self.suitableCards = suitableCards
-                    }
+                    self.assignValues(home: home)
                 }
             case .failure(let error):
                 if error.errorDescription == NetworkResponseError.internetError.errorDescription {
@@ -98,6 +84,20 @@ final class HomeViewModel: ObservableObject {
                 }
             }
             self.stopLoading(type: type)
+        }
+    }
+    
+    private func assignValues(home: HomeModel?) {
+        if let suitableUsers = home?.users {
+            self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
+        }
+        
+        if let suitableFolders = home?.folders {
+            self.suitableFolders = suitableFolders
+        }
+        
+        if let suitableCards = home?.cards {
+            self.suitableCards = suitableCards
         }
     }
     

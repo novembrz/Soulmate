@@ -10,11 +10,11 @@ import SwiftUI
 struct FiltersView: View {
     //CheckboxGroupView
     
-    @ObservedObject var viewModel: FiltersViewModel
+    @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         VStack(spacing: 50) {
-            if viewModel.isInternetConnected {
+            if viewModel.homeViewState == .errorInternetConnection {
                 content
                 categories
             } else {
@@ -42,8 +42,11 @@ struct FiltersView: View {
     }
 }
 
+
+//MARK: - Previews
+
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FiltersView(viewModel: FiltersViewModel())
+        FiltersView(viewModel: HomeViewModel())
     }
 }

@@ -73,7 +73,7 @@ struct HeaderSearchView<Content: View>: View {
                         .foregroundColor(.whiteText)
                 }
             } destination: {
-                FiltersView(viewModel: FiltersViewModel())
+                FiltersView(viewModel: viewModel)
             }
         }
     }
