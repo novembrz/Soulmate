@@ -25,8 +25,9 @@ final class HomeViewModel: ObservableObject {
     @Published var refreshing = false
     @Published var isInternetConnected = true
     
-    @Published var searchText: String = ""
+    @Published var searchText = ""
     @Published var isSearching = false
+    @Published var noData = false
     
     
     func randomSearchString() -> String {
@@ -38,14 +39,19 @@ final class HomeViewModel: ObservableObject {
     var folderColumns: [GridItem] = Array(repeating: .init(.fixed(65), spacing: 13, alignment: .topLeading), count: 2)
     
     
-    func fetchHomePage(type: LoadPage = .loading) {
+    func fetchHomePage(type: LoadPage = .loading, newData: String? = "") {
+        //DispatchQueue.main.async { [self] in
         if type == .loading { isLoading = true }
+        
         if searchText.isEmpty {
+            noData = false
             fetchRelevantData(type: type)
         } else {
-            //if .haveFilters {} else {
-            fetchSearchingData(type: type)
+            if newData == searchText, searchText != "" {
+                fetchSearchingData(type: type)
+            }
         }
+        //}
     }
     
     private func fetchRelevantData(type: LoadPage) {
@@ -67,7 +73,7 @@ final class HomeViewModel: ObservableObject {
                 guard let suitableUsers = home?.users,
                       let suitableCards = home?.cards,
                       let suitableFolders = home?.folders
-                else { return }
+                else { return self.noDataError(type: type) }
                 
                 self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
                 self.suitableFolders = suitableFolders
@@ -85,21 +91,25 @@ final class HomeViewModel: ObservableObject {
         type == .loading ? (isLoading = false) : (refreshing = false)
     }
     
+    private func noDataError(type: LoadPage) {
+        stopLoading(type: type)
+        noData = true
+    }
     
     
     //MARK: - Zhopka
     
-//    @Published var didApper: Bool = false
-//    @Published var apperCount = 0
-//    
-//    func onLoad() {
-//        if !didApper {
-//            apperCount += 1
-//        }
-//        didApper = true
-//        
-//        if didApper {
-//            //checkToken()
-//        }
-//    }
+    //    @Published var didApper: Bool = false
+    //    @Published var apperCount = 0
+    //
+    //    func onLoad() {
+    //        if !didApper {
+    //            apperCount += 1
+    //        }
+    //        didApper = true
+    //
+    //        if didApper {
+    //            //checkToken()
+    //        }
+    //    }
 }

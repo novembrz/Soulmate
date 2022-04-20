@@ -14,14 +14,15 @@ struct DataFetcherServices {
         NetworkService.fetchData(urlString: ServiceUrl.homePageURL, completion: completion)
     }
     
-    static func fetchSearchingData(searchingText: String, searchCategory: [SearchCategory] = [.user, .profession, .card, .folder], completion: @escaping (Result, HomeModel?) -> Void) {
+    static func fetchSearchingData(searchingText: String, searchCategories: [SearchCategory] = [.user, .profession, .card, .folder], completion: @escaping (Result, HomeModel?) -> Void) {
+        let categories = searchCategories.map { $0.rawValue }
         NetworkService.postData(param: ["fields": ["name"],
                                         "sorting": ["pageNumber": 0,
                                                     "pageSize": 10,
                                                     "sortDirection": "ASC",
                                                     "sortBy": "id"],
                                         "text": searchingText,
-                                        "searchTypes": ["USER", "FOLDER"]],//searchCategory],
+                                        "searchTypes": categories],
                                 urlString: ServiceUrl.search,
                                 completion: completion)
     }

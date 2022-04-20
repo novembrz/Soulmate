@@ -35,6 +35,9 @@ struct HomeView: View {
             .onChange(of: viewModel.refreshing ) { newValue in
                 viewModel.fetchHomePage(type: .refreshing)
             }
+            .onChange(of: viewModel.searchText) { newData in
+                viewModel.fetchHomePage(type: .loading, newData: newData)
+            }
         }
     }
     
@@ -52,11 +55,18 @@ struct HomeView: View {
                 }
                 .padding(.horizontal, Constants.horizontalInset)
                 
-                VStack(spacing: 48) {
-                    sphere
-                    suitableUsers
-                    folders
-                    works
+                if !viewModel.noData {
+                    VStack(spacing: 48) {
+                        sphere
+                        suitableUsers
+                        folders
+                        works
+                    }
+                } else {
+                    Image("noDataPlug")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.horizontal, Constants.horizontalInset)
                 }
             }
             
