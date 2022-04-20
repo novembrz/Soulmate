@@ -44,8 +44,8 @@ struct FolderStrokeCardView: View {
                 } placeholder: {
                     ProgressView()
                 }
+                .aspectRatio(contentMode: .fill)
                 .frame(width: 45, height: 45)
-                .aspectRatio(contentMode: .fit)
                 .cornerRadius(8)
                 
             } else {

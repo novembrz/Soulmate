@@ -31,14 +31,13 @@ final class HomeViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var isSearching = false
     
+    var cardColumns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
+    var folderColumns: [GridItem] = Array(repeating: .init(.fixed(65), spacing: 13, alignment: .topLeading), count: 2)
     
     func randomSearchString() -> String {
         let words = ["Найди своё окружение", "Найди своё вдохновение", "Найди интересные проекты", "Найди своё комьюнити", "Найди лучшие работы"]
         return words.randomElement()!
     }
-    
-    var cardColumns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
-    var folderColumns: [GridItem] = Array(repeating: .init(.fixed(65), spacing: 13, alignment: .topLeading), count: 2)
     
     
     func fetchHomePage(type: LoadPage = .loading, newData: String? = "") {
@@ -71,13 +70,8 @@ final class HomeViewModel: ObservableObject {
         DispatchQueue.main.async {
             switch result {
             case .success:
-                if home?.users == nil,
-                   home?.cards == nil,
-                   home?.folders == nil {
-                    self.noDataError(type: type)
-                } else {
-                    self.assignValues(home: home)
-                }
+                guard let home = home else { return self.noDataError(type: type) }
+                self.assignValues(home: home)
             case .failure(let error):
                 if error.errorDescription == NetworkResponseError.internetError.errorDescription {
                     self.homeViewState = .errorInternetConnection
@@ -87,16 +81,16 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
-    private func assignValues(home: HomeModel?) {
-        if let suitableUsers = home?.users {
+    private func assignValues(home: HomeModel) {
+        if let suitableUsers = home.users {
             self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
         }
         
-        if let suitableFolders = home?.folders {
+        if let suitableFolders = home.folders {
             self.suitableFolders = suitableFolders
         }
         
-        if let suitableCards = home?.cards {
+        if let suitableCards = home.cards {
             self.suitableCards = suitableCards
         }
     }
@@ -109,6 +103,7 @@ final class HomeViewModel: ObservableObject {
         stopLoading(type: type)
         homeViewState = .noSearchData
     }
+    
     
     
     //MARK: - Zhopka

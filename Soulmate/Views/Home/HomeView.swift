@@ -195,22 +195,41 @@ struct HomeView: View {
             if viewModel.suitableFolders != [] {
                 ContentBlock(title: "Проекты", buttonTitle: "Все") {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHGrid(rows: viewModel.folderColumns, alignment: .top, spacing: 18) {
-                            ForEach(viewModel.suitableFolders, id: \.self) { folder in
-                                CustomNavigationLink {
-                                    FolderStrokeCardView(folder: folder, haveProfileButton: true)
-                                } destination: {
-                                    UserWorksView(folderId: folder.id, viewModel: UserWorksViewModel())
-                                }
-                            }
+                        if viewModel.folderColumns.count == 1 {
+                            oneFolder
+                        } else {
+                            manyFolders
                         }
-                        .padding(.horizontal, Constants.horizontalInset)
                     }
                 }  destination: {
                     FoldersView(viewModel: FoldersViewModel())
                 }
             }
         }
+    }
+    
+    
+    var oneFolder: some View {
+        CustomNavigationLink {
+            FolderStrokeCardView(folder: viewModel.suitableFolders[0], haveProfileButton: true)
+                .padding(.horizontal, Constants.horizontalInset)
+        } destination: {
+            UserWorksView(folderId: viewModel.suitableFolders[0].id, viewModel: UserWorksViewModel())
+        }
+    }
+    
+    
+    var manyFolders: some View {
+        LazyHGrid(rows: viewModel.folderColumns, alignment: .top, spacing: 18) {
+            ForEach(viewModel.suitableFolders, id: \.self) { folder in
+                CustomNavigationLink {
+                    FolderStrokeCardView(folder: folder, haveProfileButton: true)
+                } destination: {
+                    UserWorksView(folderId: folder.id, viewModel: UserWorksViewModel())
+                }
+            }
+        }
+        .padding(.horizontal, Constants.horizontalInset)
     }
     
     

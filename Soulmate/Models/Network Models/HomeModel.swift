@@ -9,9 +9,9 @@ import Foundation
 
 
 struct HomeModel: Decodable {
-    var users: [UserModel]
+    var users: [UserModel]?
     var cards: [CardModel]?
-    var folders: [FolderModel]
+    var folders: [FolderModel]?
 }
 
 
