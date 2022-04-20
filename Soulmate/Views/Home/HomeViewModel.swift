@@ -11,7 +11,13 @@ enum LoadPage {
     case loading, refreshing
 }
 
+enum HomeViewState {
+    case home, searchSuccess, noSearchData, errorInternetConnection
+}
+
 final class HomeViewModel: ObservableObject {
+    
+    @Published var homeViewState: HomeViewState = .home
 
     @Published var professionalSpheres = MockService.professionalSpheres
     
@@ -40,27 +46,26 @@ final class HomeViewModel: ObservableObject {
     
     
     func fetchHomePage(type: LoadPage = .loading, newData: String? = "") {
-        //DispatchQueue.main.async { [self] in
         if type == .loading { isLoading = true }
         
-        if searchText.isEmpty {
-            noData = false
+        if searchText == "" {
             fetchRelevantData(type: type)
         } else {
             if newData == searchText, searchText != "" {
                 fetchSearchingData(type: type)
             }
         }
-        //}
     }
     
     private func fetchRelevantData(type: LoadPage) {
+        homeViewState = .home
         DataFetcherServices.fetchHomePage { [weak self] result, home in
             self?.fetchData(result: result, home: home, type: type)
         }
     }
     
     private func fetchSearchingData(type: LoadPage) {
+        homeViewState = .searchSuccess
         DataFetcherServices.fetchSearchingData(searchingText: searchText) { [weak self] result, home in
             self?.fetchData(result: result, home: home, type: type)
         }
@@ -70,17 +75,26 @@ final class HomeViewModel: ObservableObject {
         DispatchQueue.main.async {
             switch result {
             case .success:
-                guard let suitableUsers = home?.users,
-                      let suitableCards = home?.cards,
-                      let suitableFolders = home?.folders
-                else { return self.noDataError(type: type) }
-                
-                self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
-                self.suitableFolders = suitableFolders
-                self.suitableCards = suitableCards
+                if home?.users == nil,
+                   home?.cards == nil,
+                   home?.folders == nil {
+                    return self.noDataError(type: type)
+                } else {
+                    if let suitableUsers = home?.users {
+                        self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
+                    }
+                    
+                    if let suitableFolders = home?.folders {
+                        self.suitableFolders = suitableFolders
+                    }
+                    
+                    if let suitableCards = home?.cards {
+                        self.suitableCards = suitableCards
+                    }
+                }
             case .failure(let error):
                 if error.errorDescription == NetworkResponseError.internetError.errorDescription {
-                    self.isInternetConnected = false
+                    self.homeViewState = .errorInternetConnection
                 }
             }
             self.stopLoading(type: type)
@@ -93,7 +107,7 @@ final class HomeViewModel: ObservableObject {
     
     private func noDataError(type: LoadPage) {
         stopLoading(type: type)
-        noData = true
+        homeViewState = .noSearchData
     }
     
     

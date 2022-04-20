@@ -16,8 +16,7 @@ struct DataFetcherServices {
     
     static func fetchSearchingData(searchingText: String, searchCategories: [SearchCategory] = [.user, .profession, .card, .folder], completion: @escaping (Result, HomeModel?) -> Void) {
         let categories = searchCategories.map { $0.rawValue }
-        NetworkService.postData(param: ["fields": ["name"],
-                                        "sorting": ["pageNumber": 0,
+        NetworkService.postData(param: ["sorting": ["pageNumber": 0,
                                                     "pageSize": 10,
                                                     "sortDirection": "ASC",
                                                     "sortBy": "id"],

@@ -55,6 +55,7 @@
 		C86C556627971C4B000710DD /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C556527971C4B000710DD /* AuthValidators.swift */; };
 		C86C556827975674000710DD /* AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C556727975674000710DD /* AuthErrors.swift */; };
 		C86DD36D27D283EE00F6D43B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C86DD36C27D283EE00F6D43B /* Lottie */; };
+		C87433F52810BD1A00475096 /* HeaderSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87433F42810BD1900475096 /* HeaderSearchView.swift */; };
 		C875324527BBCD36004DED24 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C875324427BBCD36004DED24 /* KeychainService.swift */; };
 		C875999727EF51D8001200BF /* InternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C875999627EF51D8001200BF /* InternetConnectionView.swift */; };
 		C875999B27EF7103001200BF /* BigTextBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C875999A27EF7103001200BF /* BigTextBlock.swift */; };
@@ -158,6 +159,7 @@
 		C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughModel.swift; sourceTree = "<group>"; };
 		C86C556527971C4B000710DD /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
 		C86C556727975674000710DD /* AuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrors.swift; sourceTree = "<group>"; };
+		C87433F42810BD1900475096 /* HeaderSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSearchView.swift; sourceTree = "<group>"; };
 		C875324427BBCD36004DED24 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		C875999627EF51D8001200BF /* InternetConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionView.swift; sourceTree = "<group>"; };
 		C875999A27EF7103001200BF /* BigTextBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTextBlock.swift; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 			children = (
 				C8B06F2427552CF700177330 /* HomeView.swift */,
 				C8F17D8B275697E700BC6A44 /* HomeViewModel.swift */,
+				C87433F42810BD1900475096 /* HeaderSearchView.swift */,
 				C8CE4858277A612A001CF60A /* ContentCard.swift */,
 				C8F17D922756BFB300BC6A44 /* Search */,
 				C803E6B2278F4BAB009D4BBE /* Suitable Users */,
@@ -801,6 +804,7 @@
 				C819EE7B279201810011676F /* UIScreen + Extension.swift in Sources */,
 				C819193C27BF8B56009AC7C6 /* String + Extension.swift in Sources */,
 				C8D8DAF6275C337C009A0552 /* UserModel.swift in Sources */,
+				C87433F52810BD1A00475096 /* HeaderSearchView.swift in Sources */,
 				C8A6AFEB278CDB9A00A3B80D /* TitleBlock.swift in Sources */,
 				C8864405275A110800BC1B06 /* FolderStrokeCardView.swift in Sources */,
 				C884135C27614C26004C21C3 /* ProfileBaseInfoView.swift in Sources */,
