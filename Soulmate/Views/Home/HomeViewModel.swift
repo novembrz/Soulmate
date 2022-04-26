@@ -31,6 +31,9 @@ final class HomeViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var isSearching = false
     
+    @State var deleteAllFilters = false
+    @State var selectedFilters: [String] = []
+    
     var cardColumns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
     var folderColumns: [GridItem] = Array(repeating: .init(.fixed(65), spacing: 13, alignment: .topLeading), count: 2)
     

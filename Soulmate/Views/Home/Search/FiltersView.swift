@@ -113,7 +113,7 @@ struct FiltersView: View {
         HStack {
             Spacer()
             Button {
-                deleteAll = true
+                viewModel.deleteAllFilters = true
             } label: {
                 Text("Очистить фильтры")
                     .boldFont(16)
