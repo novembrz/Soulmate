@@ -51,6 +51,7 @@
 		C856D39827F30C7700312612 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C856D39727F30C7700312612 /* FiltersView.swift */; };
 		C85AF643278C8DB0008034FE /* CustomNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AF642278C8DB0008034FE /* CustomNavigationLink.swift */; };
 		C85AF645278CC034008034FE /* AboutUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85AF644278CC034008034FE /* AboutUserView.swift */; };
+		C85C05162819C4F8008A8837 /* CheckboxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85C05152819C4F8008A8837 /* CheckboxModel.swift */; };
 		C86A8F482772155100CEBCC8 /* WalkthroughModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */; };
 		C86C556627971C4B000710DD /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C556527971C4B000710DD /* AuthValidators.swift */; };
 		C86C556827975674000710DD /* AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C556727975674000710DD /* AuthErrors.swift */; };
@@ -157,6 +158,7 @@
 		C856D39727F30C7700312612 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		C85AF642278C8DB0008034FE /* CustomNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationLink.swift; sourceTree = "<group>"; };
 		C85AF644278CC034008034FE /* AboutUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUserView.swift; sourceTree = "<group>"; };
+		C85C05152819C4F8008A8837 /* CheckboxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxModel.swift; sourceTree = "<group>"; };
 		C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughModel.swift; sourceTree = "<group>"; };
 		C86C556527971C4B000710DD /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
 		C86C556727975674000710DD /* AuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrors.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				C842576227527DF5009C405C /* ColumnModel.swift */,
+				C85C05152819C4F8008A8837 /* CheckboxModel.swift */,
 				C86A8F472772155100CEBCC8 /* WalkthroughModel.swift */,
 			);
 			path = "UI Models";
@@ -778,6 +781,7 @@
 			files = (
 				C8F17D8A2756943700BC6A44 /* ProfessionalSpheres.swift in Sources */,
 				C8135723276354C00072B1F7 /* DisplayView.swift in Sources */,
+				C85C05162819C4F8008A8837 /* CheckboxModel.swift in Sources */,
 				C81F1029277BBB6B006787E0 /* HomeModel.swift in Sources */,
 				C8F17D8F2756BFA400BC6A44 /* SearchView.swift in Sources */,
 				C851BC0B2763E606007A725E /* FoldersViewModel.swift in Sources */,

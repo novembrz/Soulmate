@@ -44,11 +44,6 @@ struct CheckboxGroupView: View {
 
 
 //MARK: - CheckboxView
-struct CheckboxModel: Hashable {
-    var title: String
-    var filterName: String
-    var isChoose = false
-}
 
 struct CheckboxView: View {
     @State var checkbox: CheckboxModel
