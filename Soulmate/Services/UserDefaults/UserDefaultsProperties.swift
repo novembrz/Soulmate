@@ -9,7 +9,7 @@ import Foundation
 
 
 struct UserDefaultsProperties {
-    static private var homeViewFilters = [
+    static var homeViewFilters = [
         CheckboxModel(title: "Люди", filterName: SearchCategory.user.rawValue),
         CheckboxModel(title: "Работы", filterName: SearchCategory.card.rawValue),
         CheckboxModel(title: "Проекты", filterName: SearchCategory.folder.rawValue)

@@ -12,7 +12,7 @@ import SwiftUI
 
 struct CheckboxGroupView: View {
     @State var checkbox: [CheckboxModel]
-    @State var selectedCheckbox: Set<String> = []
+    @State var selectedCheckbox: Set<CheckboxModel> = Set(UserDefaultsProperties.homeViewFilters)
     @Binding var deleteAll: Bool
     
     let callback: ([String]) -> ()
@@ -25,9 +25,11 @@ struct CheckboxGroupView: View {
             ForEach(checkbox, id: \.self) { checkbox in
                 CheckboxView(checkbox: checkbox, deleteAll: $deleteAll) { filter in
                     if filter.isChoose {
-                        self.selectedCheckbox.insert(filter.filterName)
+                        self.selectedCheckbox.remove(filter)
+                        self.selectedCheckbox.insert(filter)
                     } else {
-                        self.selectedCheckbox.remove(filter.filterName)
+                        self.selectedCheckbox.remove(filter)
+                        self.selectedCheckbox.insert(filter)
                     }
                 }
             }
@@ -37,7 +39,8 @@ struct CheckboxGroupView: View {
         }
         .onChange(of: selectedCheckbox) { newValue in
             let array = Array(selectedCheckbox)
-            callback(array)
+            //callback(array)
+            print("🥕", selectedCheckbox)
         }
     }
 }
@@ -97,18 +100,3 @@ struct CheckboxView: View {
             .frame(width: 25, height: 25)
     }
 }
-
-
-//MARK: - Previews
-//
-//struct CheckboxView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CheckboxGroupView(
-//            checkbox: [
-//                CheckboxModel(title: "Люди", filterName: SearchCategory.user.rawValue),
-//                CheckboxModel(title: "Работы", filterName: SearchCategory.card.rawValue),
-//                CheckboxModel(title: "Проекты", filterName: SearchCategory.folder.rawValue)
-//            ])
-//        .padding(.horizontal, Constants.horizontalInset)
-//    }
-//}
