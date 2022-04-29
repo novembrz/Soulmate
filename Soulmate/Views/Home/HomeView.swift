@@ -20,20 +20,16 @@ struct HomeView: View {
                 }
             }
             .background(Color.defaultBackground.ignoresSafeArea())
-            .onAppear(perform: {
-                if !appears {
-                    appears = !appears
-                } else {
-                    viewModel.fetchHomePage()
-                }
-            })
-            .showLoading(isShowing: $viewModel.isLoading)
+            .onAppear {
+                viewModel.fetchHomePage()
+            }
             .onChange(of: viewModel.refreshing ) { newValue in
                 viewModel.fetchHomePage(type: .refreshing)
             }
             .onChange(of: viewModel.searchText) { newData in
                 viewModel.fetchHomePage(type: .loading, newData: newData)
             }
+            .showLoading(isShowing: $viewModel.isLoading)
         }
     }
     
@@ -48,7 +44,9 @@ struct HomeView: View {
         case .searchSuccess:
             searchSuccess
         case .noSearchData:
-            noSearchData
+            noData
+        case .error:
+            noData
         case .errorInternetConnection:
             InternetConnectionView()
         }
@@ -84,9 +82,9 @@ struct HomeView: View {
     
     //MARK: - no search data
     
-    var noSearchData: some View {
+    var noData: some View {
         HeaderSearchView(viewModel: viewModel) {
-            Image("noDataPlug")
+            Image(viewModel.homeViewState == .noSearchData ? "noDataPlug" : "errorPlug")
                 .resizable()
                 .scaledToFit()
                 .padding(.horizontal, Constants.horizontalInset)

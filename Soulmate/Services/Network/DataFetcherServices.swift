@@ -9,28 +9,6 @@ import Foundation
 import SwiftUI
 
 struct DataFetcherServices {
-    
-    static func fetchHomePage(completion: @escaping (Result, HomeModel?) -> Void) {
-        NetworkService.fetchData(urlString: ServiceUrl.homePageURL, completion: completion)
-    }
-    
-    static func fetchSearchingData(searchingText: String, searchCategories: [SearchCategory] = [.user, .profession, .card, .folder], completion: @escaping (Result, HomeModel?) -> Void) {
-        let categories = searchCategories.map { $0.rawValue }
-        NetworkService.postData(param: ["sorting": ["pageNumber": 0,
-                                                    "pageSize": 10,
-                                                    "sortDirection": "ASC",
-                                                    "sortBy": "id"],
-                                        "text": searchingText,
-                                        "searchTypes": categories],
-                                urlString: ServiceUrl.search,
-                                completion: completion)
-    }
-    
-    static func fetchUser(id: Int, completion: @escaping (Result, UserModel?) -> Void) {
-        let urlString = ServiceUrl.userURL.withId(id)
-        NetworkService.fetchData(urlString: urlString, completion: completion)
-    }
-    
     // folders
     
     static func fetchAllFolders(completion: @escaping (Result, [FolderModel]?) -> Void) {

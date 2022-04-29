@@ -10,6 +10,8 @@ import SwiftUI
 
 final class ProfileViewModel: ObservableObject {
     
+    private let store = NetworkServiceStore()
+    
     @Published var user: UserModel?
     @Published var columns: [ColumnModel] = []
     @Published var isAllowWritingMessages = true
@@ -32,22 +34,23 @@ final class ProfileViewModel: ObservableObject {
     
     
     //MARK: - Fetch
+
     
     func fetchUser(_ userId: Int, type: LoadPage = .loading) {
-        DataFetcherServices.fetchUser(id: userId) { [weak self] result, userData in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    guard let userData = userData else { return }
-                    self?.user = userData
-                    self?.createColumns()
-                case .failure(let error):
-                    if error.errorDescription == NetworkResponseError.internetError.errorDescription {
-                        self?.isInternetConnected = false
-                    }
-                }
-                if type == .refreshing { self?.refreshing = false }
-            }
+        Task {
+            try? await fetchData(userId, type: type)
+        }
+    }
+    
+    @MainActor
+    private func fetchData(_ userId: Int, type: LoadPage) async throws {
+        defer { if type == .refreshing { refreshing = false } }
+        
+        if let userData = try await store.fetchData(urlString: ServiceUrl.userURL.withId(userId), model: UserModel.self) {
+            self.user = userData
+            self.createColumns()
+        } else {
+            isInternetConnected = false
         }
     }
     

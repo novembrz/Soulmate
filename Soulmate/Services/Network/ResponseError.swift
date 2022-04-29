@@ -33,7 +33,7 @@ extension NetworkResponseError: LocalizedError {
         case .noData:
             return NSLocalizedString("💔 Не удалось получить данные", comment: "")
         case .unableToDecode:
-            return NSLocalizedString("💔 Не получилось декодировать данные", comment: "")
+            return NSLocalizedString("💔💔 Не получилось декодировать данные", comment: "")
         }
     }
 }

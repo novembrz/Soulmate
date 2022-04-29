@@ -10,6 +10,8 @@ import SwiftUI
 
 final class SuitableUsersViewModel: ObservableObject {
     
+    private let store = NetworkServiceStore()
+    
     @Published var suitableUsers: [UserModel]?
     @Published var isInternetConnected = true
     @Published var isLoading = false
@@ -17,25 +19,23 @@ final class SuitableUsersViewModel: ObservableObject {
     
     var columnsArray: [GridItem] = Array(repeating: .init(.flexible(minimum: 82, maximum: 125), spacing: 12, alignment: .leading), count: 3)
     
-    func fetchAllPeople(type: LoadPage = .loading) { //MARK: Временный метод
-        if type == .loading { isLoading = true }
-        DataFetcherServices.fetchHomePage { [weak self] result, home in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    guard let suitableUsers = home?.users else { return }
-                    self?.suitableUsers = suitableUsers
-                case .failure(let error):
-                    if error.errorDescription == NetworkResponseError.internetError.errorDescription {
-                        self?.isInternetConnected = false
-                    }
-                }
-                self?.stopLoading(type: type)
-            }
+    func fetchAllPeople(type: LoadPage = .loading) {
+        Task {
+            try? await fetchData(type: type)
         }
     }
     
-    private func stopLoading(type: LoadPage) {
-        type == .loading ? (isLoading = false) : (refreshing = false)
+    @MainActor
+    private func fetchData(type: LoadPage) async throws {
+        if type == .loading { isLoading = true }
+        defer { type == .loading ? (isLoading = false) : (refreshing = false) }
+        
+        if let home = try await store.fetchData(urlString: ServiceUrl.homePageURL, model: HomeModel.self) {
+            if let suitableUsers = home.users {
+                self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
+            }
+        } else {
+            isInternetConnected = false
+        }
     }
 }

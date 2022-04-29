@@ -12,10 +12,12 @@ enum LoadPage {
 }
 
 enum HomeViewState {
-    case home, searchSuccess, noSearchData, errorInternetConnection
+    case home, searchSuccess, noSearchData, errorInternetConnection, error
 }
 
 final class HomeViewModel: ObservableObject {
+    
+    private let store = NetworkServiceStore()
     
     @Published var homeViewState: HomeViewState = .home
 
@@ -34,6 +36,8 @@ final class HomeViewModel: ObservableObject {
     @State var deleteAllFilters = false
     @State var selectedFilters: [String] = []
     
+    var searchCategories: [String] = [SearchCategory.user.rawValue, SearchCategory.card.rawValue,SearchCategory.folder.rawValue, SearchCategory.profession.rawValue]
+    
     var cardColumns: [GridItem] = Array(repeating: .init(.flexible(minimum: 90, maximum: 125), spacing: 12, alignment: .top), count: 3)
     var folderColumns: [GridItem] = Array(repeating: .init(.fixed(65), spacing: 13, alignment: .topLeading), count: 2)
     
@@ -44,84 +48,75 @@ final class HomeViewModel: ObservableObject {
     
     
     func fetchHomePage(type: LoadPage = .loading, newData: String? = "") {
-        if type == .loading { isLoading = true }
-        
-        if searchText == "" {
-            fetchRelevantData(type: type)
-        } else {
-            if newData == searchText, searchText != "" {
-                fetchSearchingData(type: type)
-            }
-        }
-    }
-    
-    private func fetchRelevantData(type: LoadPage) {
-        homeViewState = .home
-        DataFetcherServices.fetchHomePage { [weak self] result, home in
-            self?.fetchData(result: result, home: home, type: type)
-        }
-    }
-    
-    private func fetchSearchingData(type: LoadPage) {
-        homeViewState = .searchSuccess
-        DataFetcherServices.fetchSearchingData(searchingText: searchText) { [weak self] result, home in
-            self?.fetchData(result: result, home: home, type: type)
-        }
-    }
-    
-    private func fetchData(result: Result, home: HomeModel?, type: LoadPage = .loading) {
-        DispatchQueue.main.async {
-            switch result {
-            case .success:
-                guard let home = home else { return self.noDataError(type: type) }
-                self.assignValues(home: home)
-            case .failure(let error):
-                if error.errorDescription == NetworkResponseError.internetError.errorDescription {
-                    self.homeViewState = .errorInternetConnection
+        Task {
+            if searchText == "" {
+                try? await fetchRelevantData(type: type, urlString: ServiceUrl.homePageURL)
+            } else {
+                if newData == searchText, searchText != "" {
+                    try? await fetchSearchData(type: type, urlString: ServiceUrl.search)
                 }
             }
-            self.stopLoading(type: type)
+        }
+    }
+    
+    @MainActor
+    private func fetchRelevantData(type: LoadPage, urlString: String) async throws {
+        if type == .loading { isLoading = true }
+        defer { type == .loading ? (isLoading = false) : (refreshing = false) }
+        
+        homeViewState = .home
+        
+        do {
+            if let home = try await store.fetchData(urlString: urlString, model: HomeModel.self) {
+                assignValues(home: home)
+            }
+        } catch {
+            errorHandling(error, state: .error)
+        }
+    }
+    
+    @MainActor
+    private func fetchSearchData(type: LoadPage, urlString: String) async throws {
+        if type == .loading { isLoading = true }
+        defer { type == .loading ? (isLoading = false) : (refreshing = false) }
+        
+        homeViewState = .searchSuccess
+        
+        do {
+            if let home = try await store.postData(param: ["sorting": ["pageNumber": 0,
+                                                                       "pageSize": 10,
+                                                                       "sortDirection": "ASC",
+                                                                       "sortBy": "id"],
+                                                           "text": searchText,
+                                                           "searchTypes": searchCategories],
+                                                   urlString: urlString,
+                                                   model: HomeModel.self) {
+                assignValues(home: home)
+            }
+        } catch {
+            errorHandling(error, state: .noSearchData)
         }
     }
     
     private func assignValues(home: HomeModel) {
-        if let suitableUsers = home.users {
-            self.suitableUsers = suitableUsers.filter { $0.firstName != nil && $0.lastName != nil }
+        if let users = home.users {
+            suitableUsers = users.filter { $0.firstName != nil && $0.lastName != nil }
         }
         
-        if let suitableFolders = home.folders {
-            self.suitableFolders = suitableFolders
+        if let folders = home.folders {
+            self.suitableFolders = folders
         }
         
-        if let suitableCards = home.cards {
-            self.suitableCards = suitableCards
+        if let cards = home.cards {
+            self.suitableCards = cards
         }
     }
     
-    private func stopLoading(type: LoadPage) {
-        type == .loading ? (isLoading = false) : (refreshing = false)
+    private func errorHandling(_ error: Error, state: HomeViewState) {
+        if error as! NetworkResponseError == NetworkResponseError.internetError {
+            homeViewState = .errorInternetConnection
+        } else {
+            homeViewState = state
+        }
     }
-    
-    private func noDataError(type: LoadPage) {
-        stopLoading(type: type)
-        homeViewState = .noSearchData
-    }
-    
-    
-    
-    //MARK: - Zhopka
-    
-    //    @Published var didApper: Bool = false
-    //    @Published var apperCount = 0
-    //
-    //    func onLoad() {
-    //        if !didApper {
-    //            apperCount += 1
-    //        }
-    //        didApper = true
-    //
-    //        if didApper {
-    //            //checkToken()
-    //        }
-    //    }
 }
