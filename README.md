@@ -5,6 +5,10 @@
 ## About app:
 A social network for finding people by professional interests. Upload your portfolio, communicate, look for inspiration, find people to implement your creative projects!
 
+### Authors
+- Backend - 
+- Designer - is me
+
 ### What is in the app?
 #### Done:
 - Feed of posts (Infinity scroll), search and filtering
