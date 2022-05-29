@@ -1,16 +1,24 @@
 # Soulmate 
-<img src="https://user-images.githubusercontent.com/51517187/170827648-b39be1d7-025c-434b-a515-c614b6297977.gif" width="200" height="433"/>
+<img src="https://user-images.githubusercontent.com/51517187/170864201-0faa5c6f-ae3d-4d27-9217-359e5b28ec63.gif" height="433"/>
+
 
 ## About app:
 A social network for finding people by professional interests. Upload your portfolio, communicate, look for inspiration, find people to implement your creative projects!
 
-#### What is in the app?
-- Infinity scroll, search and filtering
-- Registration and authorization
+### What is in the app?
+#### Done:
+- Feed of posts (Infinity scroll), search and filtering
+
+#### In progress:
+- Registration and authorization 
 - User profile: the ability to subscribe, like, watch content
 - Ability to create and edit posts - photos, videos, text and audio content
-- Chat
-- Custom settings of the application and your profile
+- Walkthrough
+
+#### To do:
+- User statistics 
+- Chat 
+- Custom settings of the application and your profile 
 
 ## Used
 - SwiftUI
